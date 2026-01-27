@@ -1,0 +1,18 @@
+import Stripe from 'stripe';
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is not set');
+}
+
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2024-11-20.acacia',
+  typescript: true,
+});
+
+export const STRIPE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
+
+// Product prices in cents (€12.99 = 1299 cents)
+export const PRICES = {
+  EARLY_BIRD: 1299, // €12.99
+  REGULAR: 2499, // €24.99
+};

@@ -1,0 +1,57 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { stripe, PRICES } from '@/lib/stripe';
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { priceType } = body;
+
+    // Validate price type
+    if (priceType !== 'early_bird' && priceType !== 'regular') {
+      return NextResponse.json(
+        { error: 'Invalid price type' },
+        { status: 400 }
+      );
+    }
+
+    const price = priceType === 'early_bird' ? PRICES.EARLY_BIRD : PRICES.REGULAR;
+    const displayPrice = priceType === 'early_bird' ? '€12.99' : '€24.99';
+
+    // Create Stripe checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: 'Как да превърнеш AI в реален доход',
+              description: 'Пълният наръчник за Prompt Engineering и бизнес стратегии',
+              images: ['https://via.placeholder.com/400x600/22d3ee/ffffff?text=AI+Ebook'],
+            },
+            unit_amount: price,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.headers.get('origin')}/cancel`,
+      customer_email: body.email || undefined,
+      metadata: {
+        priceType,
+        displayPrice,
+      },
+      billing_address_collection: 'required',
+      locale: 'bg',
+    });
+
+    return NextResponse.json({ sessionId: session.id, url: session.url });
+  } catch (error) {
+    console.error('Stripe checkout error:', error);
+    return NextResponse.json(
+      { error: 'Error creating checkout session' },
+      { status: 500 }
+    );
+  }
+}

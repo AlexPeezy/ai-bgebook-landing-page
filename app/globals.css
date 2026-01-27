@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  /* Custom color palette - Soft professional cyan/blue */
+  --cyan-light: #67e8f9;
+  --cyan: #22d3ee;
+  --cyan-dark: #0891b2;
+
+  --blue-light: #38bdf8;
+  --blue: #0ea5e9;
+  --blue-dark: #0284c7;
+
+  --navy-light: #475569;
+  --navy: #334155;
+  --navy-dark: #1e293b;
+  --navy-darker: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-manrope);
+
+  /* Custom colors */
+  --color-cyan-light: var(--cyan-light);
+  --color-cyan: var(--cyan);
+  --color-cyan-dark: var(--cyan-dark);
+
+  --color-blue-light: var(--blue-light);
+  --color-blue: var(--blue);
+  --color-blue-dark: var(--blue-dark);
+
+  --color-navy-light: var(--navy-light);
+  --color-navy: var(--navy);
+  --color-navy-dark: var(--navy-dark);
+  --color-navy-darker: var(--navy-darker);
+
+  /* Gradient variables for easy reuse */
+  --gradient-primary: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+  --gradient-dark: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-darker) 100%);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-dark);
+}
