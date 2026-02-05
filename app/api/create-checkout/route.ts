@@ -6,6 +6,9 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { priceType } = body;
 
+    // Get base URL from origin header or environment variable
+    const baseUrl = req.headers.get('origin') || process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
     // Validate price type
     if (priceType !== 'early_bird' && priceType !== 'regular') {
       return NextResponse.json(
@@ -35,8 +38,8 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get('origin')}/cancel`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cancel`,
       customer_email: body.email || undefined,
       metadata: {
         priceType,
