@@ -55,13 +55,65 @@ const faqs = [
     answer:
       'Разбира се! Всички промпти, стратегии и модели от книгата са за твоя лична и комерсиална употреба. Използвай ги свободно в бизнеса си и печели.',
   },
+  {
+    question: 'Какво да направя ако не получа имейл?',
+    answer:
+      'Първо провери папката за спам/нежелана поща. Ако и там няма имейл, пиши ни на support@aiebook.bg с номера на поръчката и ще ти изпратим книгата ръчно веднага. Имаш и възможност за директно изтегляне от страницата след успешно плащане.',
+  },
+  {
+    question: 'Има ли видео съдържание?',
+    answer:
+      'Книгата е в PDF формат с текст и илюстрации. Не включва видео съдържание, но всички обяснения са детайлни и стъпка по стъпка, така че да можеш лесно да следваш инструкциите.',
+  },
+  {
+    question: 'Какви AI инструменти са включени?',
+    answer:
+      'Книгата покрива работа с ChatGPT, Claude, Midjourney, DALL-E и други популярни AI инструменти. Фокусът е върху prompt engineering техники, които работят с повечето AI модели.',
+  },
 ];
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <Section id="faq" background="white">
+    <Section
+      id="faq"
+      background="white"
+      backgroundEffects={
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {/* Top arc glow */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[400px]"
+            style={{
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)',
+            }}
+          />
+          {/* Bottom arc glow */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[400px]"
+            style={{
+              background: 'linear-gradient(0deg, rgba(59, 130, 246, 0.12) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 100%)',
+            }}
+          />
+          {/* Right orb */}
+          <div
+            className="absolute top-[20%] right-0 w-[400px] h-[400px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%)',
+              filter: 'blur(100px)',
+            }}
+          />
+          {/* Left orb */}
+          <div
+            className="absolute bottom-[20%] left-0 w-[400px] h-[400px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+              filter: 'blur(100px)',
+            }}
+          />
+        </div>
+      }
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -88,8 +140,8 @@ export default function FAQ() {
             <div
               className={`bg-white border-2 rounded-xl overflow-hidden transition-all duration-300 ${
                 openIndex === index
-                  ? 'border-cyan shadow-lg shadow-cyan/10'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-cyan shadow-lg shadow-cyan/20'
+                  : 'border-gray-200 hover:border-cyan/50'
               }`}
             >
               <button
@@ -146,17 +198,17 @@ export default function FAQ() {
         viewport={{ once: true }}
         className="text-center mt-16"
       >
-        <div className="inline-block bg-gradient-to-r from-cyan/10 to-blue/10 rounded-2xl p-8 border border-cyan/20">
+        <div className="inline-block bg-gradient-to-br from-cyan/15 to-blue/10 rounded-2xl p-8 border border-cyan/30 shadow-lg shadow-cyan/10">
           <p className="text-lg text-navy-dark mb-4">
             Все още имаш въпроси?
           </p>
           <p className="text-gray-600 mb-6">
             Пиши ни на{' '}
             <a
-              href="mailto:support@example.com"
-              className="text-cyan font-semibold hover:underline"
+              href="mailto:support@aiebook.bg"
+              className="text-cyan font-semibold hover:underline hover:text-cyan-dark transition-colors duration-300"
             >
-              support@example.com
+              support@aiebook.bg
             </a>
           </p>
           <p className="text-sm text-gray-500">

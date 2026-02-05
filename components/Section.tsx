@@ -5,6 +5,7 @@ interface SectionProps {
   className?: string;
   id?: string;
   background?: 'white' | 'dark' | 'gradient';
+  backgroundEffects?: ReactNode;
 }
 
 export default function Section({
@@ -12,6 +13,7 @@ export default function Section({
   className = '',
   id,
   background = 'white',
+  backgroundEffects,
 }: SectionProps) {
   const backgrounds = {
     white: 'bg-white',
@@ -22,9 +24,10 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-16 md:py-24 ${backgrounds[background]} ${className}`}
+      className={`py-16 md:py-24 relative overflow-hidden ${backgrounds[background]} ${className}`}
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      {backgroundEffects}
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
         {children}
       </div>
     </section>

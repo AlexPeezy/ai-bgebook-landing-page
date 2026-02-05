@@ -10,7 +10,6 @@ export default function Footer() {
       title: 'Полезни връзки',
       links: [
         { name: 'За книгата', href: '#showcase' },
-        { name: 'Цени', href: '#pricing' },
         { name: 'Отзиви', href: '#testimonials' },
         { name: 'ЧЗВ', href: '#faq' },
       ],
@@ -18,24 +17,54 @@ export default function Footer() {
     {
       title: 'Информация',
       links: [
-        { name: 'Правила за ползване', href: '#' },
-        { name: 'Политика за поверителност', href: '#' },
-        { name: 'Условия за плащане', href: '#' },
-        { name: 'Връщане на средства', href: '#' },
+        { name: 'Правила за ползване', href: '/legal/terms' },
+        { name: 'Политика за поверителност', href: '/legal/privacy' },
+        { name: 'Условия за плащане', href: '/legal/terms' },
+        { name: 'Връщане на средства', href: '/legal/refund' },
       ],
     },
   ];
 
-  const socialLinks = [
-    { name: 'Facebook', icon: '📘', href: '#' },
-    { name: 'Instagram', icon: '📷', href: '#' },
-    { name: 'LinkedIn', icon: '💼', href: '#' },
-    { name: 'YouTube', icon: '📺', href: '#' },
-  ];
+  // Social links removed - add real URLs when available
+  const socialLinks: { name: string; icon: React.ReactNode; href: string }[] = [];
 
   return (
-    <footer className="bg-gradient-to-br from-navy-darker via-navy-dark to-navy text-white">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+    <footer className="bg-gradient-to-br from-navy-darker via-navy-dark to-navy text-white relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Top gradient glow */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[350px]"
+          style={{
+            background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)',
+          }}
+        />
+        {/* Bottom gradient glow */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-[250px]"
+          style={{
+            background: 'linear-gradient(0deg, rgba(59, 130, 246, 0.12) 0%, transparent 100%)',
+          }}
+        />
+        {/* Right orb */}
+        <div
+          className="absolute bottom-[15%] right-0 w-[400px] h-[400px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 60%)',
+            filter: 'blur(100px)',
+          }}
+        />
+        {/* Left orb */}
+        <div
+          className="absolute top-[25%] left-0 w-[350px] h-[350px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 60%)',
+            filter: 'blur(100px)',
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
         {/* Main footer content */}
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand column */}
@@ -58,7 +87,7 @@ export default function Footer() {
                   href={social.href}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center hover:bg-white/20 transition-all border border-white/20"
+                  className="w-10 h-10 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center hover:bg-cyan/20 hover:border-cyan/50 transition-all duration-300 border border-white/20"
                   aria-label={social.name}
                 >
                   <span className="text-xl">{social.icon}</span>
@@ -82,7 +111,7 @@ export default function Footer() {
                   <li key={linkIndex}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan transition-colors text-sm"
+                      className="text-gray-400 hover:text-cyan transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </a>

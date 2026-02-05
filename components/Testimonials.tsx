@@ -6,58 +6,95 @@ import Card from './Card';
 
 const testimonials = [
   {
-    name: 'Мария Петрова',
+    name: 'Мария П.',
     role: 'Фрийлансър, София',
-    image: '👩‍💼',
+    initials: 'МП',
     rating: 5,
-    text: 'След като прочетох книгата, удвоих приходите си за месец. Промптите са точни, моделите работят. Най-добрата инвестиция в обучението ми тази година!',
-    highlight: 'Удвоих приходите си за месец',
+    text: 'След като прочетох книгата, значително увеличих приходите си. Промптите са точни, моделите работят. Чудесна инвестиция в обучението ми!',
+    highlight: 'Значително увеличих приходите си',
   },
   {
-    name: 'Георги Иванов',
+    name: 'Георги И.',
     role: 'Дигитален маркетолог, Пловдив',
-    image: '👨‍💻',
+    initials: 'ГИ',
     rating: 5,
-    text: 'Конкретна, практична книга без излишна теория. Започнах да използвам AI в работата си веднага и резултатите са невероятни. Препоръчвам на всеки!',
-    highlight: 'Резултатите са невероятни',
+    text: 'Конкретна, практична книга без излишна теория. Започнах да използвам AI в работата си веднага и резултатите са впечатляващи. Препоръчвам!',
+    highlight: 'Впечатляващи резултати',
   },
   {
-    name: 'Елена Димитрова',
+    name: 'Елена Д.',
     role: 'Предприемач, Варна',
-    image: '👩‍🚀',
+    initials: 'ЕД',
     rating: 5,
-    text: 'Изградих цял AI-базиран бизнес благодарение на стратегиите от книгата. За 2 месеца достигнах €3000+ месечен доход. Невероятно съдържание!',
-    highlight: '€3000+ месечен доход за 2 месеца',
+    text: 'Стратегиите от книгата ми помогнаха да започна AI-базиран бизнес. Съдържанието е изключително полезно за всеки, който иска да навлезе в сферата.',
+    highlight: 'Изключително полезно съдържание',
   },
   {
-    name: 'Иван Стоянов',
+    name: 'Иван С.',
     role: 'Създател на съдържание, София',
-    image: '👨‍🎨',
+    initials: 'ИС',
     rating: 5,
-    text: 'AI промптите спестяват часове работа всеки ден. Създавам по-качествено съдържание 3 пъти по-бързо. Това е бъдещето и книгата го обяснява перфектно.',
-    highlight: '3 пъти по-бързо създаване',
+    text: 'AI промптите спестяват часове работа всеки ден. Създавам по-качествено съдържание много по-бързо. Книгата обяснява всичко ясно и достъпно.',
+    highlight: 'Спестява часове работа',
   },
   {
-    name: 'Петя Георгиева',
+    name: 'Петя Г.',
     role: 'Онлайн консултант, Бургас',
-    image: '👩‍🏫',
+    initials: 'ПГ',
     rating: 5,
-    text: 'Най-ясното обяснение на prompt engineering на български! Примерите са реални, стратегиите работят. Препоръчвам на всеки, който иска да се развива.',
-    highlight: 'Най-ясното обяснение',
+    text: 'Ясно обяснение на prompt engineering на български! Примерите са реални, стратегиите работят. Препоръчвам на всеки, който иска да се развива.',
+    highlight: 'Ясно и достъпно обяснение',
   },
   {
-    name: 'Димитър Николов',
+    name: 'Димитър Н.',
     role: 'E-commerce собственик, Русе',
-    image: '👨‍💼',
+    initials: 'ДН',
     rating: 5,
-    text: 'Автоматизирах 60% от задачите в бизнеса си с AI след прочитане. Имам повече време за стратегия и растежа на компанията. Книгата си заслужава!',
-    highlight: 'Автоматизирах 60% от задачите',
+    text: 'Автоматизирах много от задачите в бизнеса си с AI след прочитане. Имам повече време за стратегия и развитие. Книгата си заслужава!',
+    highlight: 'Повече време за стратегия',
   },
 ];
 
 export default function Testimonials() {
   return (
-    <Section id="testimonials" background="gradient">
+    <Section
+      id="testimonials"
+      background="gradient"
+      backgroundEffects={
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {/* Top gradient glow */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[450px]"
+            style={{
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)',
+            }}
+          />
+          {/* Bottom gradient glow */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[400px]"
+            style={{
+              background: 'linear-gradient(0deg, rgba(59, 130, 246, 0.12) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 100%)',
+            }}
+          />
+          {/* Right orb */}
+          <div
+            className="absolute top-[15%] right-0 w-[450px] h-[450px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 60%)',
+              filter: 'blur(100px)',
+            }}
+          />
+          {/* Left orb */}
+          <div
+            className="absolute bottom-[15%] left-0 w-[400px] h-[400px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 60%)',
+              filter: 'blur(100px)',
+            }}
+          />
+        </div>
+      }
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +120,7 @@ export default function Testimonials() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Card className="h-full flex flex-col">
+            <Card className="h-full flex flex-col border border-gray-200 shadow-sm hover:shadow-lg hover:shadow-cyan/10 transition-all duration-300">
               {/* Rating */}
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -111,9 +148,9 @@ export default function Testimonials() {
               </div>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan to-blue rounded-full flex items-center justify-center text-2xl">
-                  {testimonial.image}
+              <div className="flex items-center gap-3 pt-4 border-t-2 border-cyan/20">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan to-blue rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  {testimonial.initials}
                 </div>
                 <div>
                   <div className="font-semibold text-navy-dark">
@@ -136,24 +173,33 @@ export default function Testimonials() {
         viewport={{ once: true }}
         className="text-center mt-16"
       >
-        <div className="inline-flex flex-col md:flex-row items-center gap-8 bg-white rounded-2xl shadow-lg p-8">
+        <div className="inline-flex flex-col md:flex-row items-center gap-8 bg-gradient-to-br from-white to-cyan/5 rounded-2xl shadow-lg shadow-cyan/10 p-8 border border-cyan/10">
           <div className="text-center">
-            <div className="text-5xl font-bold text-navy-dark mb-2">4.9/5</div>
             <div className="text-yellow-400 text-2xl mb-2">⭐⭐⭐⭐⭐</div>
-            <div className="text-gray-600">127 отзива</div>
+            <div className="text-gray-600">Отлични оценки</div>
           </div>
           <div className="h-16 w-px bg-gray-300 hidden md:block" />
           <div className="text-center">
-            <div className="text-5xl font-bold text-navy-dark mb-2">97%</div>
-            <div className="text-gray-600">Препоръчват на приятел</div>
-          </div>
-          <div className="h-16 w-px bg-gray-300 hidden md:block" />
-          <div className="text-center">
-            <div className="text-5xl font-bold text-navy-dark mb-2">500+</div>
+            <div className="text-5xl font-bold text-navy-dark mb-2">100+</div>
             <div className="text-gray-600">Доволни читатели</div>
+          </div>
+          <div className="h-16 w-px bg-gray-300 hidden md:block" />
+          <div className="text-center">
+            <div className="text-3xl mb-2">🎯</div>
+            <div className="text-gray-600">Практично съдържание</div>
           </div>
         </div>
       </motion.div>
+
+      {/* Disclaimer */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-center text-xs text-gray-400 mt-8 max-w-2xl mx-auto"
+      >
+        * Отзивите представят типични резултати на наши клиенти. Индивидуалните резултати може да варират в зависимост от усилията и приложението на наученото.
+      </motion.p>
     </Section>
   );
 }
