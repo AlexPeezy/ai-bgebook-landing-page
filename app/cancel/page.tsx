@@ -75,10 +75,10 @@ export default function CancelPage() {
                 <p className="text-gray-300">
                   Имате въпроси? Свържете се с нас на{' '}
                   <a
-                    href="mailto:support@example.com"
+                    href="mailto:support@aiebook.bg"
                     className="text-cyan hover:underline"
                   >
-                    support@example.com
+                    support@aiebook.bg
                   </a>
                 </p>
               </div>

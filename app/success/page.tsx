@@ -3,33 +3,127 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/Section';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 
+interface SessionData {
+  valid: boolean;
+  customerEmail?: string;
+  amountPaid?: number;
+  currency?: string;
+  error?: string;
+}
+
 export default function SuccessPage() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const [loading, setLoading] = useState(true);
+  const [sessionData, setSessionData] = useState<SessionData | null>(null);
 
   useEffect(() => {
-    // Simulate loading check
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    async function verifySession() {
+      if (!sessionId) {
+        setSessionData({ valid: false, error: 'No session ID provided' });
+        setLoading(false);
+        return;
+      }
 
-    return () => clearTimeout(timer);
-  }, []);
+      try {
+        const response = await fetch(`/api/verify-session?session_id=${sessionId}`);
+        const data = await response.json();
+        setSessionData(data);
+      } catch {
+        setSessionData({ valid: false, error: 'Failed to verify payment' });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    verifySession();
+  }, [sessionId]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy-darker to-navy-dark">
         <div className="text-white text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-cyan mx-auto mb-4"></div>
-          <p className="text-lg">Обработваме поръчката...</p>
+          <p className="text-lg">Проверяваме плащането...</p>
         </div>
       </div>
+    );
+  }
+
+  // Show error state if session is invalid
+  if (!sessionData?.valid) {
+    return (
+      <Section background="dark" className="min-h-screen flex items-center">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, type: 'spring' }}
+            className="mb-8"
+          >
+            <div className="w-32 h-32 mx-auto bg-gradient-to-r from-red-400 to-orange-400 rounded-full flex items-center justify-center text-6xl">
+              ✕
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-heading">
+              Невалидна сесия
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              {sessionData?.error || 'Не успяхме да потвърдим плащането.'}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Card glass className="mb-8">
+              <div className="text-center space-y-4">
+                <p className="text-gray-300">
+                  Ако вече сте направили плащане, моля свържете се с нас на{' '}
+                  <a
+                    href="mailto:support@aiebook.bg"
+                    className="text-cyan hover:underline"
+                  >
+                    support@aiebook.bg
+                  </a>
+                </p>
+              </div>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link href="/#pricing">
+              <Button size="lg" variant="primary">
+                Опитай отново
+              </Button>
+            </Link>
+            <Link href="/">
+              <Button size="lg" variant="outline">
+                Към началната страница
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </Section>
     );
   }
 
@@ -42,8 +136,29 @@ export default function SuccessPage() {
           transition={{ duration: 0.5, type: 'spring' }}
           className="mb-8"
         >
-          <div className="w-32 h-32 mx-auto bg-gradient-to-r from-green-400 to-cyan rounded-full flex items-center justify-center text-6xl">
-            ✓
+          <div className="relative inline-block">
+            <motion.div
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -inset-4 bg-gradient-to-r from-green-400 via-cyan to-blue rounded-xl blur-2xl opacity-50"
+            />
+            <Image
+              src="/logoo.png"
+              alt="AI Ebook"
+              width={180}
+              height={270}
+              className="relative z-10 rounded-lg shadow-xl"
+            />
+            <div className="absolute -bottom-3 -right-3 z-20 w-12 h-12 bg-gradient-to-r from-green-400 to-cyan rounded-full flex items-center justify-center text-2xl shadow-lg">
+              ✓
+            </div>
           </div>
         </motion.div>
 
@@ -74,7 +189,9 @@ export default function SuccessPage() {
                     Проверете имейла си
                   </h3>
                   <p className="text-gray-300">
-                    Изпратихме ви имейл с връзка за изтегляне на вашата електронна книга.
+                    Изпратихме ви имейл{sessionData.customerEmail && (
+                      <> на <span className="text-cyan">{sessionData.customerEmail}</span></>
+                    )} с връзка за изтегляне на вашата електронна книга.
                     Проверете и в папката за спам, ако не го виждате в основната входяща поща.
                   </p>
                 </div>
@@ -115,15 +232,44 @@ export default function SuccessPage() {
                     <p className="text-gray-300">
                       Ако имате въпроси или проблеми с изтеглянето, свържете се с нас на{' '}
                       <a
-                        href="mailto:support@example.com"
+                        href="mailto:support@aiebook.bg"
                         className="text-cyan hover:underline"
                       >
-                        support@example.com
+                        support@aiebook.bg
                       </a>
                     </p>
                   </div>
                 </div>
               </div>
+            </div>
+          </Card>
+        </motion.div>
+
+        {/* Direct download button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mb-8"
+        >
+          <Card glass className="border-2 border-cyan/30 bg-cyan/5">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl">📥</div>
+                <div className="text-left">
+                  <h3 className="text-lg font-semibold text-white">
+                    Директно изтегляне
+                  </h3>
+                  <p className="text-sm text-gray-400">
+                    Не чакай имейла - изтегли веднага
+                  </p>
+                </div>
+              </div>
+              <a href={`/api/download?session_id=${sessionId}`}>
+                <Button size="lg" variant="primary">
+                  Изтегли PDF
+                </Button>
+              </a>
             </div>
           </Card>
         </motion.div>
@@ -134,9 +280,6 @@ export default function SuccessPage() {
           transition={{ delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button size="lg" variant="primary">
-            Отвори имейла
-          </Button>
           <Link href="/">
             <Button size="lg" variant="outline">
               Връщане към началото
