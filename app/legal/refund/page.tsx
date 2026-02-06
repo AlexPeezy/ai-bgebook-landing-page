@@ -24,8 +24,8 @@ export default function RefundPage() {
         <ol className="list-decimal list-inside text-gray-300 space-y-3">
           <li>
             <strong>Изпратете имейл</strong> на{' '}
-            <a href="mailto:support@aiebook.bg" className="text-cyan hover:underline">
-              support@aiebook.bg
+            <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
+              contact@aidohod.com
             </a>
           </li>
           <li>
@@ -112,8 +112,8 @@ export default function RefundPage() {
         <h2 className="text-xl font-semibold text-white mb-4">Контакт</h2>
         <p className="text-gray-300">
           За заявки за възстановяване или въпроси, свържете се с нас на{' '}
-          <a href="mailto:support@aiebook.bg" className="text-cyan hover:underline">
-            support@aiebook.bg
+          <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
+            contact@aidohod.com
           </a>
         </p>
       </section>

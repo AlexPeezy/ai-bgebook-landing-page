@@ -51,7 +51,7 @@ export default function TermsPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">4. Гаранция за връщане на парите</h2>
         <p className="text-gray-300 mb-4">
-          Предлагаме 30-дневна гаранция за връщане на парите. Ако не сте доволни от книгата по каквато и да е причина, свържете се с нас на <a href="mailto:support@aiebook.bg" className="text-cyan hover:underline">support@aiebook.bg</a> и ще ви възстановим пълната сума.
+          Предлагаме 30-дневна гаранция за връщане на парите. Ако не сте доволни от книгата по каквато и да е причина, свържете се с нас на <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">contact@aidohod.com</a> и ще ви възстановим пълната сума.
         </p>
       </section>
 
@@ -80,8 +80,8 @@ export default function TermsPage() {
         <h2 className="text-xl font-semibold text-white mb-4">8. Контакт</h2>
         <p className="text-gray-300">
           За въпроси относно тези условия, свържете се с нас на{' '}
-          <a href="mailto:support@aiebook.bg" className="text-cyan hover:underline">
-            support@aiebook.bg
+          <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
+            contact@aidohod.com
           </a>
         </p>
       </section>

@@ -58,7 +58,7 @@ const faqs = [
   {
     question: 'Какво да направя ако не получа имейл?',
     answer:
-      'Първо провери папката за спам/нежелана поща. Ако и там няма имейл, пиши ни на support@aiebook.bg с номера на поръчката и ще ти изпратим книгата ръчно веднага. Имаш и възможност за директно изтегляне от страницата след успешно плащане.',
+      'Първо провери папката за спам/нежелана поща. Ако и там няма имейл, пиши ни на contact@aidohod.com с номера на поръчката и ще ти изпратим книгата ръчно веднага. Имаш и възможност за директно изтегляне от страницата след успешно плащане.',
   },
   {
     question: 'Има ли видео съдържание?',
@@ -205,10 +205,10 @@ export default function FAQ() {
           <p className="text-gray-600 mb-6">
             Пиши ни на{' '}
             <a
-              href="mailto:support@aiebook.bg"
+              href="mailto:contact@aidohod.com"
               className="text-cyan font-semibold hover:underline hover:text-cyan-dark transition-colors duration-300"
             >
-              support@aiebook.bg
+              contact@aidohod.com
             </a>
           </p>
           <p className="text-sm text-gray-500">

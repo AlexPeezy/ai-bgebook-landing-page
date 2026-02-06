@@ -1,12 +1,13 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Section from '@/components/Section';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 
-export default function DownloadErrorPage() {
+function DownloadErrorContent() {
   const searchParams = useSearchParams();
   const message = searchParams.get('message') || 'Възникна грешка при изтеглянето';
 
@@ -39,8 +40,8 @@ export default function DownloadErrorPage() {
                 <span className="text-cyan">•</span>
                 <span>
                   Свържете се с нас на{' '}
-                  <a href="mailto:support@aiebook.bg" className="text-cyan hover:underline">
-                    support@aiebook.bg
+                  <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
+                    contact@aidohod.com
                   </a>{' '}
                   за нов линк
                 </span>
@@ -50,7 +51,7 @@ export default function DownloadErrorPage() {
         </Card>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="mailto:support@aiebook.bg?subject=Проблем с изтеглянето">
+          <a href="mailto:contact@aidohod.com?subject=Проблем с изтеглянето">
             <Button size="lg" variant="primary">
               Свържи се с поддръжката
             </Button>
@@ -63,5 +64,13 @@ export default function DownloadErrorPage() {
         </div>
       </div>
     </Section>
+  );
+}
+
+export default function DownloadErrorPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-dark" />}>
+      <DownloadErrorContent />
+    </Suspense>
   );
 }
