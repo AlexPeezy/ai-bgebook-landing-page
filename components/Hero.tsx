@@ -89,7 +89,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10 pb-20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10 pt-20 pb-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left column - Text content */}
           <div className="text-white space-y-8">
@@ -224,7 +224,7 @@ export default function Hero() {
 
               {/* Early Bird Badge */}
               <div className="flex items-center justify-between mb-4">
-                <div className="bg-gradient-to-r from-cyan to-blue text-white text-xs font-bold px-3 py-1 rounded-full">
+                <div className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
                   EARLY BIRD
                 </div>
                 <div className="text-right">
@@ -297,21 +297,6 @@ export default function Hero() {
 
       {/* Bottom gradient fade for smooth transition to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white pointer-events-none z-10" />
-
-      {/* Scroll indicator */}
-      <motion.button
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 group hidden md:flex"
-      >
-        <div className="flex flex-col items-center gap-2 text-white/70 group-hover:text-cyan transition-colors">
-          <span className="text-sm font-medium">Разгледай надолу</span>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      </motion.button>
 
       {/* Email capture modal */}
       <EmailCaptureModal

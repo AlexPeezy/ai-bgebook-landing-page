@@ -24,7 +24,7 @@ export default function Button({
   const baseStyles = 'font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variants = {
-    primary: 'bg-gradient-to-r from-cyan to-blue text-white hover:shadow-lg hover:shadow-cyan/50 hover:scale-105',
+    primary: 'bg-[#2563eb] text-white hover:bg-[#2563eb]/90 hover:shadow-lg hover:shadow-blue-900/50 hover:scale-105',
     secondary: 'bg-navy text-white hover:bg-navy-dark hover:scale-105',
     outline: 'border-2 border-cyan text-cyan hover:bg-cyan hover:text-white hover:scale-105',
   };
