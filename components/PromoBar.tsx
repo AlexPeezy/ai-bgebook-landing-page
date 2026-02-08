@@ -8,7 +8,7 @@ export default function PromoBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] bg-navy-darker/95 backdrop-blur-sm border-b border-cyan/10">
       <div className="container mx-auto px-4 py-2.5">
-        <div className="flex items-center justify-center gap-6 md:gap-12 text-sm">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 md:gap-12 text-sm">
           {/* Price */}
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">

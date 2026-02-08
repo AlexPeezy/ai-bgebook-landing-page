@@ -121,7 +121,9 @@ export default function FAQ() {
         className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">
-          Често задавани въпроси
+          <span className="bg-gradient-to-r from-cyan via-blue to-cyan-dark bg-clip-text text-transparent">
+            Често задавани въпроси
+          </span>
         </h2>
         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
           Всичко, което трябва да знаеш преди да започнеш

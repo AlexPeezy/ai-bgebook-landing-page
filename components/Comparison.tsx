@@ -102,7 +102,7 @@ export default function Comparison() {
               <p className="text-blue-400 mb-3">📊 БИЗНЕС СТРАТЕГИЯ:</p>
 
               {/* Table */}
-              <div className="text-xs overflow-x-auto">
+              <div className="text-xs overflow-x-auto -mx-2 px-2">
                 <table className="w-full text-left">
                   <thead>
                     <tr className="text-gray-400 border-b border-gray-700">
