@@ -118,7 +118,7 @@ export default function FAQ() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">
           Често задавани въпроси
@@ -196,7 +196,7 @@ export default function FAQ() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mt-16"
+        className="text-center mt-12"
       >
         <div className="inline-block bg-gradient-to-br from-cyan/15 to-blue/10 rounded-2xl p-8 border border-cyan/30 shadow-lg shadow-cyan/10">
           <p className="text-lg text-navy-dark mb-4">

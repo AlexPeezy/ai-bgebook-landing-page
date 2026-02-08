@@ -199,7 +199,7 @@ export default function Showcase() {
       </motion.div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
@@ -272,7 +272,7 @@ export default function Showcase() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mt-16"
+        className="text-center mt-12"
       >
         <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan/20 to-blue/10 rounded-full border border-cyan/30 shadow-lg shadow-cyan/10 hover:shadow-cyan/20 transition-all duration-300">
           <span className="text-2xl">🎉</span>

@@ -99,7 +99,7 @@ export default function Testimonials() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">
           <span className="bg-gradient-to-r from-cyan via-blue to-cyan-dark bg-clip-text text-transparent">
@@ -171,7 +171,7 @@ export default function Testimonials() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mt-16"
+        className="text-center mt-12"
       >
         <div className="inline-flex flex-col md:flex-row items-center gap-8 bg-gradient-to-br from-white to-cyan/5 rounded-2xl shadow-lg shadow-cyan/10 p-8 border border-cyan/10">
           <div className="text-center">
