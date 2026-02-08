@@ -24,7 +24,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-navy-darker via-navy-dark to-navy overflow-hidden">
+    <section className="relative min-h-[calc(100vh-48px)] flex items-center justify-center bg-gradient-to-br from-navy-darker via-navy-dark to-navy overflow-hidden">
       {/* Glowing background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Large glowing horizon arc at bottom */}
@@ -300,7 +300,7 @@ export default function Hero() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 group"
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 group hidden md:flex"
       >
         <div className="flex flex-col items-center gap-2 text-white/70 group-hover:text-cyan transition-colors">
           <span className="text-sm font-medium">Разгледай надолу</span>
