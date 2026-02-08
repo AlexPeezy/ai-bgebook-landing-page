@@ -170,7 +170,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1 }}
-              className="flex items-center gap-6 text-sm text-gray-400"
+              className="flex items-center gap-6 text-sm text-gray-300"
             >
               <div className="flex items-center gap-2">
                 <div className="flex items-center">
@@ -245,7 +245,7 @@ export default function Hero() {
               </div>
 
               {/* One-time payment note */}
-              <div className="text-center text-gray-400 text-xs mb-4">
+              <div className="text-center text-gray-300 text-xs mb-4">
                 Еднократно плащане • Без абонамент
               </div>
 
@@ -277,7 +277,7 @@ export default function Hero() {
                 ЗАПОЧНИ ДА ПЕЧЕЛИШ СЕГА
               </Button>
 
-              <div className="mt-3 text-center text-xs text-gray-400">
+              <div className="mt-3 text-center text-xs text-gray-300">
                 🔒 Сигурно плащане чрез Stripe
               </div>
 
