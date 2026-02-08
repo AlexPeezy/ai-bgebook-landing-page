@@ -62,34 +62,11 @@ export default function Testimonials() {
       background="gradient"
       backgroundEffects={
         <div className="absolute inset-0 pointer-events-none z-0">
-          {/* Top gradient glow */}
+          {/* Subtle top gradient */}
           <div
-            className="absolute top-0 left-0 right-0 h-[450px]"
+            className="absolute top-0 left-0 right-0 h-[400px]"
             style={{
-              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)',
-            }}
-          />
-          {/* Bottom gradient glow */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-[400px]"
-            style={{
-              background: 'linear-gradient(0deg, rgba(59, 130, 246, 0.12) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 100%)',
-            }}
-          />
-          {/* Right orb */}
-          <div
-            className="absolute top-[15%] right-0 w-[450px] h-[450px] rounded-full"
-            style={{
-              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 60%)',
-              filter: 'blur(100px)',
-            }}
-          />
-          {/* Left orb */}
-          <div
-            className="absolute bottom-[15%] left-0 w-[400px] h-[400px] rounded-full"
-            style={{
-              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 60%)',
-              filter: 'blur(100px)',
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.08) 0%, transparent 100%)',
             }}
           />
         </div>

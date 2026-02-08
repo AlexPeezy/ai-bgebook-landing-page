@@ -87,42 +87,11 @@ export default function Showcase() {
       background="gradient"
       backgroundEffects={
         <div className="absolute inset-0 pointer-events-none z-0">
-          {/* Top gradient */}
+          {/* Subtle top gradient */}
           <div
-            className="absolute top-0 left-0 right-0 h-[500px]"
+            className="absolute top-0 left-0 right-0 h-[400px]"
             style={{
-              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.18) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 100%)',
-            }}
-          />
-          {/* Bottom gradient */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-[400px]"
-            style={{
-              background: 'linear-gradient(0deg, rgba(59, 130, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 100%)',
-            }}
-          />
-          {/* Right side orb */}
-          <div
-            className="absolute top-[15%] right-0 w-[500px] h-[500px] rounded-full"
-            style={{
-              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 60%)',
-              filter: 'blur(100px)',
-            }}
-          />
-          {/* Left side orb */}
-          <div
-            className="absolute bottom-[15%] left-0 w-[450px] h-[450px] rounded-full"
-            style={{
-              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 60%)',
-              filter: 'blur(100px)',
-            }}
-          />
-          {/* Grid pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: 'radial-gradient(circle, #0ea5e9 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%)',
             }}
           />
         </div>
