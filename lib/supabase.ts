@@ -21,6 +21,18 @@ export interface DownloadToken {
   created_at: string;
 }
 
+export interface ConsultationRequest {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  status: 'pending' | 'responded';
+  is_buyer: boolean;
+  created_at: string;
+  responded_at?: string;
+}
+
 // Create Supabase client (server-side with service role)
 export const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -125,6 +137,53 @@ export async function orderExists(stripeSessionId: string): Promise<boolean> {
     .single();
 
   return !!data;
+}
+
+// Create consultation request
+export async function createConsultationRequest(
+  name: string,
+  email: string,
+  message: string,
+  phone?: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { error } = await supabaseAdmin
+      .from('consultations')
+      .insert({
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        phone: phone?.trim() || null,
+        message: message.trim(),
+        status: 'pending',
+        is_buyer: false,
+      });
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return { success: false, error: 'Failed to save consultation request' };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Create consultation error:', error);
+    return { success: false, error: 'Internal server error' };
+  }
+}
+
+// Get pending consultations count for an email
+export async function getPendingConsultationsCount(email: string): Promise<number> {
+  try {
+    const { count } = await supabaseAdmin
+      .from('consultations')
+      .select('*', { count: 'exact', head: true })
+      .eq('email', email.toLowerCase().trim())
+      .eq('status', 'pending');
+
+    return count || 0;
+  } catch (error) {
+    console.error('Get consultations count error:', error);
+    return 0;
+  }
 }
 
 // Generate secure random token

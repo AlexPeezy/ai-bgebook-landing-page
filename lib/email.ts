@@ -134,3 +134,136 @@ function getPurchaseEmailTemplate(downloadUrl: string, amount: string): string {
 `;
 }
 
+export async function sendConsultationConfirmation(
+  name: string,
+  email: string,
+  message: string
+): Promise<boolean> {
+  try {
+    const { error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: email,
+      subject: 'Консултацията е получена 📞',
+      html: getConsultationEmailTemplate(name, message),
+    });
+
+    if (error) {
+      console.error('Resend email error:', error);
+      return false;
+    }
+
+    console.log('Consultation confirmation email sent');
+    return true;
+  } catch (error) {
+    console.error('Send consultation email error:', error);
+    return false;
+  }
+}
+
+function getConsultationEmailTemplate(name: string, message: string): string {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f3f4f6;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%); padding: 40px 20px; text-align: center;">
+      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
+        Благодарим за запитването! ✅
+      </h1>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px 30px;">
+      <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
+        Здравей <strong>${name}</strong>,
+      </p>
+
+      <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
+        Получихме твоето запитване за AI консултация. Ето какво каза:
+      </p>
+
+      <!-- Message Box -->
+      <div style="background-color: #f3f4f6; border-left: 4px solid #06b6d4; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+        <p style="font-size: 14px; line-height: 1.6; color: #4b5563; margin: 0; font-style: italic;">
+          "${message}"
+        </p>
+      </div>
+
+      <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
+        <strong>Какво следва?</strong>
+      </p>
+
+      <ul style="font-size: 16px; line-height: 1.8; color: #374151; margin-bottom: 30px;">
+        <li>Ще получиш персонализиран отговор в рамките на <strong>24 часа</strong> (работни дни)</li>
+        <li>Отговорът ще включва конкретни стъпки и примери за твоята ситуация</li>
+        <li>Ако имаш спешен въпрос, отговори на този имейл</li>
+      </ul>
+
+      <!-- CTA Box -->
+      <div style="background: linear-gradient(135deg, #ecfeff 0%, #dbeafe 100%); padding: 25px; border-radius: 8px; text-align: center; margin-bottom: 30px;">
+        <p style="font-size: 14px; color: #0c4a6e; margin: 0 0 15px 0;">
+          💡 <strong>Искаш неограничена поддръжка?</strong>
+        </p>
+        <p style="font-size: 14px; color: #0c4a6e; margin: 0 0 20px 0;">
+          Купувачите на електронната книга получават безлимитни консултации + пълен достъп до всички стратегии за печелене с AI.
+        </p>
+        <a href="${BASE_URL}/#pricing" style="display: inline-block; background-color: #2563eb; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 6px; font-weight: 600; font-size: 16px;">
+          Виж офертата →
+        </a>
+      </div>
+
+      <p style="font-size: 14px; line-height: 1.6; color: #6b7280; margin-bottom: 10px;">
+        Поздрави,<br>
+        <strong>AI Ebook Екип</strong>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #f9fafb; padding: 20px 30px; border-top: 1px solid #e5e7eb; text-align: center;">
+      <p style="font-size: 12px; color: #9ca3af; margin: 0;">
+        © ${new Date().getFullYear()} AI Ebook. Всички права запазени.
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
+`;
+}
+
+export async function sendAdminNotification(
+  name: string,
+  email: string,
+  phone: string | undefined,
+  message: string
+): Promise<boolean> {
+  try {
+    const { error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: 'contact@aidohod.com',
+      subject: `🔔 Ново запитване за консултация от ${name}`,
+      html: `
+        <h2>Ново запитване за консултация</h2>
+        <p><strong>Име:</strong> ${name}</p>
+        <p><strong>Имейл:</strong> ${email}</p>
+        <p><strong>Телефон:</strong> ${phone || 'Не е посочен'}</p>
+        <p><strong>Съобщение:</strong></p>
+        <blockquote style="background: #f3f4f6; padding: 15px; border-left: 4px solid #06b6d4;">
+          ${message}
+        </blockquote>
+        <p><em>Отговори на ${email} в рамките на 24 часа.</em></p>
+      `,
+    });
+
+    return !error;
+  } catch {
+    return false;
+  }
+}
+

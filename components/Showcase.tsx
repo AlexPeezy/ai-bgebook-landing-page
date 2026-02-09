@@ -48,21 +48,23 @@ const features = [
 
 export default function Showcase() {
   return (
-    <Section
-      id="showcase"
-      background="gradient"
-      backgroundEffects={
-        <div className="absolute inset-0 pointer-events-none z-0">
-          {/* Subtle top gradient */}
-          <div
-            className="absolute top-0 left-0 right-0 h-[400px]"
-            style={{
-              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%)',
-            }}
-          />
-        </div>
-      }
-    >
+    <>
+      {/* Dark Section - Terminal */}
+      <Section
+        id="showcase"
+        background="dark"
+        backgroundEffects={
+          <div className="absolute inset-0 pointer-events-none z-0">
+            {/* Subtle top gradient */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[400px]"
+              style={{
+                background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.05) 0%, transparent 100%)',
+              }}
+            />
+          </div>
+        }
+      >
       {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -76,7 +78,7 @@ export default function Showcase() {
             AI революцията е тук
           </span>
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
           Не чакай другите да те изпреварят. Започни днес и превърни AI в твоя конкурентно предимство.
         </p>
       </motion.div>
@@ -157,78 +159,85 @@ export default function Showcase() {
           Научи се да превръщаш слаби промптове в мощни инструкции
         </p>
       </motion.div>
-
-      {/* Features/Content value grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mb-12"
-      >
-        <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 font-heading">
-          Какво ще получиш?
-        </h3>
-      </motion.div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {features.map((feature, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.08 }}
-          >
-            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: "easeOut" }}>
-              <Card className="h-full border border-cyan/10 hover:border-cyan/30 hover:shadow-xl hover:shadow-cyan/20 transition-all duration-300 group">
-                <div className="flex items-start gap-4">
-                  {/* Icon with rotation on hover */}
-                  <motion.div
-                    className="text-4xl flex-shrink-0"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    {feature.icon}
-                  </motion.div>
-
-                  <div className="flex-1">
-                    {/* Counter with gradient shift on hover */}
-                    <div className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-cyan via-blue to-cyan-dark bg-clip-text text-transparent group-hover:from-blue group-hover:via-cyan group-hover:to-blue transition-all duration-500">
-                      <AnimatedCounter
-                        value={feature.value}
-                        suffix={feature.suffix}
-                      />
-                    </div>
-
-                    <h4 className="text-lg font-semibold mb-2 text-navy group-hover:text-navy-dark transition-colors duration-300">
-                      {feature.title}
-                    </h4>
-
-                    <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mt-12"
-      >
-        <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan/20 to-blue/10 rounded-full border border-cyan/30 shadow-lg shadow-cyan/10 hover:shadow-cyan/20 transition-all duration-300">
-          <span className="text-2xl">🎉</span>
-          <span className="text-navy-dark font-semibold">
-            Всичко това за <span className="text-cyan font-bold">€14.99</span> вместо €24.99
-          </span>
-        </div>
-      </motion.div>
     </Section>
+
+      {/* White Section - Features Grid */}
+      <Section
+        id="features"
+        background="light"
+      >
+        {/* Features/Content value grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 font-heading text-navy-dark">
+            Какво ще получиш?
+          </h3>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+            >
+              <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: "easeOut" }}>
+                <Card className="h-full bg-white border border-gray-200 hover:border-cyan/30 hover:shadow-xl hover:shadow-cyan/10 transition-all duration-300 group">
+                  <div className="flex items-start gap-4">
+                    {/* Icon with rotation on hover */}
+                    <motion.div
+                      className="text-4xl flex-shrink-0"
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      {feature.icon}
+                    </motion.div>
+
+                    <div className="flex-1">
+                      {/* Counter with gradient shift on hover */}
+                      <div className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-cyan via-blue to-cyan-dark bg-clip-text text-transparent group-hover:from-blue group-hover:via-cyan group-hover:to-blue transition-all duration-500">
+                        <AnimatedCounter
+                          value={feature.value}
+                          suffix={feature.suffix}
+                        />
+                      </div>
+
+                      <h4 className="text-lg font-semibold mb-2 text-navy group-hover:text-navy-dark transition-colors duration-300">
+                        {feature.title}
+                      </h4>
+
+                      <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan/10 to-blue/5 rounded-full border border-cyan/30 shadow-lg shadow-cyan/5 hover:shadow-cyan/10 transition-all duration-300">
+            <span className="text-2xl">🎉</span>
+            <span className="text-navy-dark font-semibold">
+              Всичко това за <span className="text-cyan font-bold">€14.99</span> вместо €24.99
+            </span>
+          </div>
+        </motion.div>
+      </Section>
+    </>
   );
 }

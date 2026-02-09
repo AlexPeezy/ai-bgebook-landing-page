@@ -73,3 +73,29 @@ FROM orders;
 -- Grant access to the view
 GRANT SELECT ON order_stats TO authenticated;
 GRANT SELECT ON order_stats TO service_role;
+
+-- Consultation requests table
+CREATE TABLE IF NOT EXISTS consultations (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  message TEXT NOT NULL,
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'responded')),
+  is_buyer BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  responded_at TIMESTAMPTZ
+);
+
+-- Indexes for consultations
+CREATE INDEX IF NOT EXISTS idx_consultations_email ON consultations(email);
+CREATE INDEX IF NOT EXISTS idx_consultations_status ON consultations(status);
+CREATE INDEX IF NOT EXISTS idx_consultations_created_at ON consultations(created_at DESC);
+
+-- Row Level Security for consultations
+ALTER TABLE consultations ENABLE ROW LEVEL SECURITY;
+
+-- Service role full access on consultations
+CREATE POLICY "Service role full access on consultations"
+  ON consultations FOR ALL
+  USING (auth.role() = 'service_role');

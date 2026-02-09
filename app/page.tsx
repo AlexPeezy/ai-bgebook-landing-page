@@ -4,6 +4,7 @@ import Showcase from '@/components/Showcase';
 import Comparison from '@/components/Comparison';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
+import ConsultationSection from '@/components/ConsultationSection';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <ConsultationSection />
       <Showcase />
       <Comparison />
       <Testimonials />
