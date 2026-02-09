@@ -4,13 +4,6 @@ import { createOrder, createDownloadToken, orderExists } from '@/lib/supabase';
 import { sendPurchaseConfirmation } from '@/lib/email';
 import Stripe from 'stripe';
 
-// Disable body parsing - Stripe needs raw body for signature verification
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export async function POST(request: NextRequest) {
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
