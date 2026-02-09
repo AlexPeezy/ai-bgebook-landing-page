@@ -33,14 +33,13 @@ npm run lint     # Run ESLint
 3. User completes payment on Stripe hosted checkout
 4. Stripe webhook (`/api/webhooks/stripe`) handles:
    - `checkout.session.completed`: Creates order, generates download token, sends email
-   - `charge.refunded`: Sends refund confirmation email
    - `charge.dispute.created`: Logs dispute for admin review
 5. User downloads ebook via `/api/download?token=xxx`
 
 ### Pricing Logic
 
 Two price tiers defined in `lib/stripe.ts`:
-- Early bird: €12.99 (1299 cents)
+- Early bird: €14.99 (1499 cents)
 - Regular: €24.99 (2499 cents)
 
 Early bird deadline controlled by `NEXT_PUBLIC_EARLY_BIRD_DEADLINE` env var.
@@ -58,7 +57,7 @@ Located in `supabase/schema.sql`. Two tables:
 - `lib/email.ts` - Email templates and sending via Resend
 - `lib/useCheckout.ts` - Client-side checkout hook
 - `lib/useCountdown.ts` - Countdown timer for early bird deadline
-- `app/legal/*` - Terms, privacy policy, and refund policy pages
+- `app/legal/*` - Terms and privacy policy pages
 
 ## Environment Variables
 

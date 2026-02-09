@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     const price = priceType === 'early_bird' ? PRICES.EARLY_BIRD : PRICES.REGULAR;
-    const displayPrice = priceType === 'early_bird' ? '€12.99' : '€24.99';
+    const displayPrice = priceType === 'early_bird' ? '€14.99' : '€24.99';
 
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({

@@ -150,7 +150,7 @@ function SuccessContent() {
               className="absolute -inset-4 bg-gradient-to-r from-green-400 via-cyan to-blue rounded-xl blur-2xl opacity-50"
             />
             <Image
-              src="/logoo.png"
+              src="/ebook-cover.png"
               alt="AI Ebook"
               width={180}
               height={270}

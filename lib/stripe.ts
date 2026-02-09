@@ -11,8 +11,8 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export const STRIPE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
 
-// Product prices in cents (€12.99 = 1299 cents)
+// Product prices in cents (€14.99 = 1499 cents)
 export const PRICES = {
-  EARLY_BIRD: 1299, // €12.99
+  EARLY_BIRD: 1499, // €14.99
   REGULAR: 2499, // €24.99
 };

@@ -22,8 +22,18 @@ export default function Card({
 
   return (
     <motion.div
-      whileHover={hover ? { y: -5, transition: { duration: 0.2 } } : {}}
-      className={`rounded-xl p-6 shadow-lg ${glassStyles} ${className}`}
+      whileHover={
+        hover
+          ? {
+              y: -5,
+              boxShadow: glass
+                ? '0 20px 40px rgba(34, 197, 230, 0.15), 0 10px 20px rgba(59, 130, 246, 0.1)'
+                : '0 20px 40px rgba(0, 0, 0, 0.1)',
+              transition: { duration: 0.25, ease: "easeOut" },
+            }
+          : {}
+      }
+      className={`rounded-xl p-6 shadow-lg transition-all duration-300 ${glassStyles} ${className}`}
     >
       {children}
     </motion.div>

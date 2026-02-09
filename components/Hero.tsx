@@ -25,57 +25,58 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-48px)] flex items-center justify-center bg-gradient-to-br from-navy-darker via-navy-dark to-navy overflow-hidden">
-      {/* Glowing background effects */}
+      {/* Glowing background effects - REPOSITIONED to safe zones */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large glowing horizon arc at bottom */}
+        {/* Large glowing horizon arc - REPOSITIONED to bottom-left corner */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[-50%] w-[200vw] h-[100vh] rounded-[50%]"
+          className="absolute left-[-20%] bottom-[-60%] w-[120vw] h-[80vh] rounded-[50%]"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.5) 0%, rgba(59, 130, 246, 0.25) 40%, transparent 70%)',
-            filter: 'blur(80px)',
+            background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.4) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%)',
+            filter: 'blur(100px)',
           }}
         />
-        {/* Brighter inner arc */}
+        {/* Brighter inner arc - bottom-left */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[-40%] w-[160vw] h-[80vh] rounded-[50%]"
+          className="absolute left-[-15%] bottom-[-50%] w-[100vw] h-[60vh] rounded-[50%]"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.6) 0%, rgba(59, 130, 246, 0.35) 30%, transparent 60%)',
-            filter: 'blur(50px)',
+            background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.5) 0%, rgba(59, 130, 246, 0.3) 30%, transparent 60%)',
+            filter: 'blur(60px)',
           }}
         />
-        {/* Sharp glowing edge */}
+        {/* Sharp glowing edge - bottom-left accent */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[-35%] w-[140vw] h-[70vh] rounded-[50%]"
+          className="absolute left-[-10%] bottom-[-40%] w-[80vw] h-[50vh] rounded-[50%]"
           style={{
             background: 'transparent',
-            boxShadow: '0 0 100px 30px rgba(6, 182, 212, 0.7), 0 0 160px 60px rgba(59, 130, 246, 0.4)',
+            boxShadow: '0 0 80px 20px rgba(6, 182, 212, 0.5), 0 0 120px 40px rgba(59, 130, 246, 0.3)',
           }}
         />
 
-        {/* Floating orb top-left */}
+        {/* Floating orb - top-left corner (safe zone) */}
         <div
-          className="absolute top-[10%] left-[5%] w-[300px] h-[300px] rounded-full"
+          className="absolute top-[2%] left-[2%] w-[200px] h-[200px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)',
-            filter: 'blur(40px)',
-          }}
-        />
-
-        {/* Floating orb top-right */}
-        <div
-          className="absolute top-[5%] right-[10%] w-[250px] h-[250px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
             filter: 'blur(50px)',
           }}
         />
 
-        {/* Diagonal light streak */}
+        {/* Floating orb - top-right corner (safe zone) */}
         <div
-          className="absolute top-[20%] right-[-10%] w-[600px] h-[2px] rotate-[-30deg]"
+          className="absolute top-[2%] right-[2%] w-[220px] h-[220px] rounded-full"
           style={{
-            background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), transparent)',
-            filter: 'blur(2px)',
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
+
+        {/* Subtle diagonal accent - bottom-right safe zone */}
+        <div
+          className="absolute bottom-[15%] right-[-5%] w-[400px] h-[1px] rotate-[-25deg]"
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent)',
+            filter: 'blur(1px)',
+            boxShadow: '0 0 10px rgba(6, 182, 212, 0.3)',
           }}
         />
 
@@ -131,7 +132,7 @@ export default function Hero() {
             {/* Subheader */}
             <AnimatedText delay={0.4}>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                Научи се да печелиш с AI. Пълният наръчник за Prompt Engineering и бизнес стратегии на български език
+                Практическият наръчник за печелене с AI на български език — от промптове до първите ти клиенти
               </p>
             </AnimatedText>
 
@@ -143,10 +144,10 @@ export default function Hero() {
               className="space-y-3"
             >
               {[
-                'Овладей AI prompt engineering',
-                'Открий 30+ доказани AI бизнес модела',
-                '50+ готови AI промпта за директна употреба',
-                'Научи се да печелиш €500+ месечно с AI',
+                'Формулата за силни промптове в 5 стъпки',
+                '7 реални начина да печелиш с AI без програмиране',
+                'Готов 30-дневен план за първите ти приходи',
+                'Стратегии, създадени специално за българския пазар',
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
@@ -212,7 +213,7 @@ export default function Hero() {
                     className="absolute -inset-4 bg-gradient-to-tr from-blue/20 via-cyan/30 to-blue/20 rounded-xl blur-xl"
                   />
                   <Image
-                    src="/logoo.png"
+                    src="/ebook-cover.png"
                     alt="Как да превърнеш AI в реален доход - Book Cover"
                     width={200}
                     height={300}
@@ -233,14 +234,13 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Pricing */}
+              {/* Pricing - clean display */}
               <div className="mb-4">
                 <div className="flex items-end gap-2 mb-2">
-                  <span className="text-4xl font-bold text-white">€12.99</span>
-                  <span className="text-xl text-gray-500 line-through mb-1">€24.99</span>
+                  <span className="text-4xl font-bold text-white">€14.99</span>
                 </div>
                 <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
-                  Спестяваш 48%
+                  Спестяваш 40% • Само €10 отстъпка
                 </div>
               </div>
 
@@ -252,11 +252,11 @@ export default function Hero() {
               {/* Key features */}
               <div className="space-y-2 mb-6 text-sm">
                 {[
-                  '50+ промпт шаблона за печелене на пари',
-                  'Доказани стратегии за AI монетизация',
-                  'Техники за българския пазар',
+                  '12 глави от основи до реален доход',
+                  '7 модела за доход без програмиране',
+                  'Написана изцяло за българския пазар',
                   'Безплатни актуализации',
-                  'Моментален достъп до всички материали',
+                  'Моментален достъп (PDF)',
                 ].map((feature, idx) => (
                   <div key={idx} className="flex items-center gap-2 text-gray-300">
                     <svg className="w-4 h-4 text-cyan flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,8 +295,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom gradient fade for smooth transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white pointer-events-none z-10" />
+      {/* Bottom gradient fade - FIXED for dark-to-light transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-navy-dark/50 to-white pointer-events-none z-10" />
 
       {/* Email capture modal */}
       <EmailCaptureModal

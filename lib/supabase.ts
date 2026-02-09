@@ -7,7 +7,7 @@ export interface Order {
   stripe_session_id: string;
   amount_cents: number;
   currency: string;
-  status: 'pending' | 'completed' | 'refunded';
+  status: 'pending' | 'completed';
   created_at: string;
 }
 

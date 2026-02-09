@@ -10,14 +10,14 @@ import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 
 const features = [
-  'Пълен достъп до всички 150+ страници',
-  '50+ готови AI промпта',
-  '30+ проверени бизнес модела',
-  '20+ реални case studies',
-  '12 модула обучение',
-  'Бонус: AI Tools справочник',
-  'Бонус: Шаблони за автоматизация',
-  'Безплатни актуализации',
+  '12 глави практическо съдържание',
+  'Формулата за силни AI промптове (5 стъпки)',
+  '7 реални модела за доход без програмиране',
+  'Готов 30-дневен план стъпка по стъпка',
+  '4 стратегии за намиране на клиенти без реклама',
+  'Как да създадеш първата си оферта с AI',
+  '7 грешки, които да избегнеш от старта',
+  'Написана изцяло за българския пазар',
   'Моментално получаване (PDF)',
   'Достъп от всички устройства',
 ];
@@ -26,9 +26,9 @@ const pricingPlan = {
   name: 'Early Bird',
   badge: 'ОГРАНИЧЕНА ОФЕРТА',
   badgeColor: 'bg-gradient-to-r from-cyan to-blue',
-  price: '12.99',
+  price: '14.99',
   originalPrice: '24.99',
-  discount: '48%',
+  discount: '40%',
   features: features,
   cta: 'Купи Early Bird',
   spots: 53,
@@ -94,55 +94,79 @@ export default function Pricing() {
         </div>
       }
     >
-      {/* Book cover with glow */}
+      {/* Book cover with enhanced glow, shimmer, and floating animation */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         className="flex justify-center mb-12"
       >
-        <div
+        <motion.div
           className="relative"
-          style={{ filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15))' }}
+          style={{ filter: 'drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2))' }}
+          animate={{
+            y: [0, -15, 0],
+            x: [0, 5, 0, -5, 0],
+            rotate: [0, 1, 0, -1, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
-          {/* Outer glow */}
+          {/* Outer glow - more prominent */}
           <motion.div
             animate={{
-              opacity: [0.2, 0.4, 0.2],
-              scale: [1.05, 1, 1.05],
+              opacity: [0.3, 0.6, 0.3],
+              scale: [1.08, 1, 1.08],
             }}
             transition={{
-              duration: 4,
+              duration: 3.5,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute -inset-6 bg-gradient-to-tr from-blue/20 via-cyan/30 to-blue/20 rounded-2xl blur-2xl"
+            className="absolute -inset-8 bg-gradient-to-tr from-blue/30 via-cyan/40 to-blue/30 rounded-2xl blur-3xl"
           />
+
           {/* Inner glow */}
           <motion.div
             animate={{
-              opacity: [0.3, 0.5, 0.3],
-              scale: [1, 1.03, 1],
+              opacity: [0.4, 0.7, 0.4],
+              scale: [1, 1.05, 1],
             }}
             transition={{
-              duration: 3,
+              duration: 2.8,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.5,
+              delay: 0.4,
             }}
-            className="absolute -inset-3 bg-gradient-to-r from-cyan/20 via-blue/30 to-cyan/20 rounded-xl blur-xl"
+            className="absolute -inset-4 bg-gradient-to-r from-cyan/30 via-blue/40 to-cyan/30 rounded-xl blur-2xl"
           />
+
+          {/* Shimmer overlay */}
+          <motion.div className="absolute inset-0 rounded-xl overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              animate={{ x: ['-200%', '200%'] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+            />
+          </motion.div>
+
+          {/* Book image - larger size with white background removed */}
           <Image
-            src="/logoo.png"
+            src="/ebook-cover.png"
             alt="AI Ebook Cover"
-            width={280}
-            height={420}
-            className="relative z-10 rounded-xl border border-cyan/20 max-w-[200px] md:max-w-[250px]"
+            width={400}
+            height={600}
+            className="relative z-10 max-w-[280px] md:max-w-[350px]"
             style={{
-              boxShadow: '0 0 20px rgba(34, 197, 230, 0.15), 0 0 40px rgba(59, 130, 246, 0.1)',
+              boxShadow: '0 0 30px rgba(34, 197, 230, 0.25), 0 0 60px rgba(59, 130, 246, 0.15)',
+              mixBlendMode: 'lighten',
+              filter: 'contrast(1.15) saturate(1.1)',
             }}
           />
-        </div>
+        </motion.div>
       </motion.div>
 
       <motion.div
@@ -155,7 +179,7 @@ export default function Pricing() {
           Вземи книгата сега
         </h2>
         <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-          Инвестирай в себе си днес. 30-дневна гаранция за връщане на парите.
+          Инвестирай в себе си днес.
         </p>
       </motion.div>
 
@@ -195,55 +219,153 @@ export default function Pricing() {
               </div>
             </div>
 
-            {/* Pricing */}
+            {/* Pricing with emphasis animation */}
             <div className="mb-6">
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-bold text-white">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex items-end gap-2 mb-2"
+              >
+                {/* Main price with glow */}
+                <motion.span
+                  animate={{
+                    textShadow: [
+                      '0 0 10px rgba(34, 197, 230, 0)',
+                      '0 0 20px rgba(34, 197, 230, 0.4)',
+                      '0 0 10px rgba(34, 197, 230, 0)',
+                    ],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="text-5xl font-bold text-white"
+                >
                   €{pricingPlan.price}
-                </span>
-                <span className="text-2xl text-gray-500 line-through mb-2">
+                </motion.span>
+
+                {/* Original price with fade-in */}
+                <motion.span
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="text-2xl text-gray-500 line-through mb-2"
+                >
                   €{pricingPlan.originalPrice}
-                </span>
-              </div>
-              <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
+                </motion.span>
+              </motion.div>
+
+              {/* Discount badge with bounce */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  delay: 0.6,
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15,
+                }}
+                className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full"
+              >
                 Спестяваш {pricingPlan.discount}
-              </div>
+              </motion.div>
             </div>
 
-            {/* Features */}
+            {/* Features with staggered reveal */}
             <div className="space-y-3 mb-8">
               {pricingPlan.features.map((feature, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-cyan to-blue flex items-center justify-center mt-0.5">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7 + idx * 0.05, duration: 0.3 }}
+                  className="flex items-start gap-3"
+                >
+                  {/* Checkmark with scale animation */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      delay: 0.7 + idx * 0.05 + 0.2,
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 15,
+                    }}
+                    className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-cyan to-blue flex items-center justify-center mt-0.5"
+                  >
                     <svg
                       className="w-3 h-3 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path
+                      <motion.path
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: 0.7 + idx * 0.05 + 0.3,
+                          duration: 0.3,
+                          ease: "easeOut",
+                        }}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={3}
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                  </div>
-                  <span className="text-gray-300 text-sm">{feature}</span>
-                </div>
+                  </motion.div>
+
+                  <motion.span
+                    className="text-gray-300 text-sm"
+                    whileHover={{ x: 3, color: "#ffffff" }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {feature}
+                  </motion.span>
+                </motion.div>
               ))}
             </div>
 
-            {/* CTA */}
-            <Button
-              variant="primary"
-              size="lg"
-              fullWidth
-              onClick={handleBuyEarlyBird}
-              isLoading={loading}
+            {/* CTA with shimmer effect */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              className="relative overflow-hidden rounded-lg"
             >
-              {pricingPlan.cta}
-            </Button>
+              <Button
+                variant="primary"
+                size="lg"
+                fullWidth
+                onClick={handleBuyEarlyBird}
+                isLoading={loading}
+                className="relative z-10"
+              >
+                {pricingPlan.cta}
+              </Button>
+
+              {/* Shimmer effect overlay */}
+              {!loading && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
+                  animate={{ x: ['-200%', '200%'] }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    repeatDelay: 1.5,
+                  }}
+                />
+              )}
+            </motion.div>
 
             <div className="mt-4 text-center text-xs text-gray-400">
               🔒 Сигурно плащане чрез Stripe
@@ -260,28 +382,6 @@ export default function Pricing() {
           </Card>
         </motion.div>
       </div>
-
-      {/* Money-back guarantee */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mt-16"
-      >
-        <Card glass className="inline-block border-2 border-cyan/30 bg-cyan/5 shadow-lg shadow-cyan/10">
-          <div className="flex items-center gap-4">
-            <div className="text-5xl">✅</div>
-            <div className="text-left">
-              <div className="text-white font-bold text-lg mb-1">
-                30-дневна гаранция
-              </div>
-              <div className="text-gray-400 text-sm">
-                Не харесаш книгата? Връщаме ти парите, без въпроси.
-              </div>
-            </div>
-          </div>
-        </Card>
-      </motion.div>
 
       {/* Email capture modal */}
       <EmailCaptureModal

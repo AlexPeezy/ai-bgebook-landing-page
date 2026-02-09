@@ -2,58 +2,203 @@
 
 import { motion } from 'framer-motion';
 import Section from './Section';
-import Card from './Card';
 
-const testimonials = [
+interface SocialTestimonial {
+  name: string;
+  platform: 'facebook' | 'instagram' | 'tiktok';
+  text: string;
+  timeAgo: string;
+  likes: number;
+  replies?: number;
+}
+
+const testimonials: SocialTestimonial[] = [
   {
-    name: 'Мария П.',
-    role: 'Фрийлансър, София',
-    initials: 'МП',
-    rating: 5,
+    name: 'Мария Петрова',
+    platform: 'facebook',
     text: 'След като прочетох книгата, значително увеличих приходите си. Промптите са точни, моделите работят. Чудесна инвестиция в обучението ми!',
-    highlight: 'Значително увеличих приходите си',
+    timeAgo: '2 дни',
+    likes: 47,
+    replies: 12,
   },
   {
-    name: 'Георги И.',
-    role: 'Дигитален маркетолог, Пловдив',
-    initials: 'ГИ',
-    rating: 5,
+    name: 'goshk0o',
+    platform: 'instagram',
     text: 'Конкретна, практична книга без излишна теория. Започнах да използвам AI в работата си веднага и резултатите са впечатляващи. Препоръчвам!',
-    highlight: 'Впечатляващи резултати',
+    timeAgo: '3 дни',
+    likes: 89,
   },
   {
-    name: 'Елена Д.',
-    role: 'Предприемач, Варна',
-    initials: 'ЕД',
-    rating: 5,
+    name: 'eliii_d',
+    platform: 'tiktok',
     text: 'Стратегиите от книгата ми помогнаха да започна AI-базиран бизнес. Съдържанието е изключително полезно за всеки, който иска да навлезе в сферата.',
-    highlight: 'Изключително полезно съдържание',
+    timeAgo: '5 дни',
+    likes: 234,
   },
   {
-    name: 'Иван С.',
-    role: 'Създател на съдържание, София',
-    initials: 'ИС',
-    rating: 5,
+    name: 'vankata03',
+    platform: 'tiktok',
     text: 'AI промптите спестяват часове работа всеки ден. Създавам по-качествено съдържание много по-бързо. Книгата обяснява всичко ясно и достъпно.',
-    highlight: 'Спестява часове работа',
+    timeAgo: '1 седмица',
+    likes: 412,
   },
   {
-    name: 'Петя Г.',
-    role: 'Онлайн консултант, Бургас',
-    initials: 'ПГ',
-    rating: 5,
+    name: 'p.gancheva',
+    platform: 'instagram',
     text: 'Ясно обяснение на prompt engineering на български! Примерите са реални, стратегиите работят. Препоръчвам на всеки, който иска да се развива.',
-    highlight: 'Ясно и достъпно обяснение',
+    timeAgo: '4 дни',
+    likes: 156,
   },
   {
-    name: 'Димитър Н.',
-    role: 'E-commerce собственик, Русе',
-    initials: 'ДН',
-    rating: 5,
+    name: 'Димитър Николов',
+    platform: 'facebook',
     text: 'Автоматизирах много от задачите в бизнеса си с AI след прочитане. Имам повече време за стратегия и развитие. Книгата си заслужава!',
-    highlight: 'Повече време за стратегия',
+    timeAgo: '1 седмица',
+    likes: 63,
+    replies: 8,
   },
 ];
+
+function FacebookComment({ testimonial, index }: { testimonial: SocialTestimonial; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
+    >
+      <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+        <div className="p-4 flex-grow">
+          <div className="bg-gray-100 rounded-2xl px-4 py-3">
+            <div className="font-semibold text-[#1877F2] text-sm mb-1">
+              {testimonial.name}
+            </div>
+            <p className="text-gray-800 text-sm leading-relaxed">
+              {testimonial.text}
+            </p>
+          </div>
+
+          {/* Interaction row */}
+          <div className="flex items-center gap-4 mt-2 px-2">
+            <span className="text-xs font-semibold text-gray-500">Харесвам</span>
+            <span className="text-xs font-semibold text-gray-500">Отговори</span>
+            <span className="text-xs text-gray-400">{testimonial.timeAgo}</span>
+            <div className="ml-auto flex items-center gap-1">
+              <div className="w-4 h-4 rounded-full bg-[#1877F2] flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M2 21h4V9H2v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+                </svg>
+              </div>
+              <span className="text-xs text-gray-500">{testimonial.likes}</span>
+            </div>
+          </div>
+
+          {testimonial.replies && (
+            <div className="mt-2 px-2">
+              <span className="text-xs text-gray-500">
+                Виж {testimonial.replies} отговора
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function InstagramComment({ testimonial, index }: { testimonial: SocialTestimonial; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
+    >
+      <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+        <div className="p-4 flex-grow flex flex-col">
+          <div className="flex items-start gap-2">
+            <div className="flex-1 min-w-0">
+              <p className="text-sm text-gray-900 leading-relaxed">
+                <span className="font-semibold mr-1.5">{testimonial.name}</span>
+                {testimonial.text}
+              </p>
+            </div>
+
+            {/* Heart icon */}
+            <div className="flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Meta row */}
+          <div className="flex items-center gap-4 mt-3">
+            <span className="text-xs text-gray-400">{testimonial.timeAgo}</span>
+            <span className="text-xs font-semibold text-gray-400">
+              {testimonial.likes} харесвания
+            </span>
+            <span className="text-xs font-semibold text-gray-400">Отговори</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function TikTokComment({ testimonial, index }: { testimonial: SocialTestimonial; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
+    >
+      <div className="bg-[#161823] rounded-lg border border-gray-700/50 shadow-sm hover:shadow-md hover:shadow-white/5 transition-shadow duration-300 h-full flex flex-col">
+        <div className="p-4 flex-grow flex flex-col">
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <div className="font-semibold text-sm text-white/90 mb-0.5">
+                {testimonial.name}
+              </div>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                {testimonial.text}
+              </p>
+            </div>
+
+            {/* Heart + count */}
+            <div className="flex flex-col items-center gap-1 flex-shrink-0 mt-2">
+              <svg className="w-5 h-5 text-[#FE2C55]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              <span className="text-[11px] text-gray-400">{testimonial.likes}</span>
+            </div>
+          </div>
+
+          {/* Meta row */}
+          <div className="flex items-center gap-4 mt-3">
+            <span className="text-xs text-gray-500">{testimonial.timeAgo}</span>
+            <span className="text-xs font-semibold text-gray-500">Отговори</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function SocialComment({ testimonial, index }: { testimonial: SocialTestimonial; index: number }) {
+  switch (testimonial.platform) {
+    case 'facebook':
+      return <FacebookComment testimonial={testimonial} index={index} />;
+    case 'instagram':
+      return <InstagramComment testimonial={testimonial} index={index} />;
+    case 'tiktok':
+      return <TikTokComment testimonial={testimonial} index={index} />;
+  }
+}
 
 export default function Testimonials() {
   return (
@@ -90,83 +235,9 @@ export default function Testimonials() {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonials.map((testimonial, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <Card className="h-full flex flex-col border border-gray-200 shadow-sm hover:shadow-lg hover:shadow-cyan/10 transition-all duration-300">
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="w-5 h-5 text-yellow-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-
-              {/* Testimonial text */}
-              <p className="text-gray-700 mb-4 flex-grow leading-relaxed">
-                "{testimonial.text}"
-              </p>
-
-              {/* Highlight */}
-              <div className="bg-gradient-to-r from-cyan/10 to-blue/10 border-l-4 border-cyan px-4 py-2 rounded mb-4">
-                <p className="text-sm font-semibold text-navy-dark">
-                  {testimonial.highlight}
-                </p>
-              </div>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t-2 border-cyan/20">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan to-blue rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  {testimonial.initials}
-                </div>
-                <div>
-                  <div className="font-semibold text-navy-dark">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
+          <SocialComment key={index} testimonial={testimonial} index={index} />
         ))}
       </div>
-
-      {/* Trust indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mt-12"
-      >
-        <div className="inline-flex flex-col md:flex-row items-center gap-8 bg-gradient-to-br from-white to-cyan/5 rounded-2xl shadow-lg shadow-cyan/10 p-8 border border-cyan/10">
-          <div className="text-center">
-            <div className="text-yellow-400 text-2xl mb-2">⭐⭐⭐⭐⭐</div>
-            <div className="text-gray-600">Отлични оценки</div>
-          </div>
-          <div className="h-16 w-px bg-gray-300 hidden md:block" />
-          <div className="text-center">
-            <div className="text-5xl font-bold text-navy-dark mb-2">100+</div>
-            <div className="text-gray-600">Доволни читатели</div>
-          </div>
-          <div className="h-16 w-px bg-gray-300 hidden md:block" />
-          <div className="text-center">
-            <div className="text-3xl mb-2">🎯</div>
-            <div className="text-gray-600">Практично съдържание</div>
-          </div>
-        </div>
-      </motion.div>
 
       {/* Disclaimer */}
       <motion.p

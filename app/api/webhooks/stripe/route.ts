@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { createOrder, createDownloadToken, orderExists } from '@/lib/supabase';
-import { sendPurchaseConfirmation, sendRefundConfirmation } from '@/lib/email';
+import { sendPurchaseConfirmation } from '@/lib/email';
 import Stripe from 'stripe';
 
 // Disable body parsing - Stripe needs raw body for signature verification
@@ -36,10 +36,6 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case 'checkout.session.completed':
         await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
-        break;
-
-      case 'charge.refunded':
-        await handleRefund(event.data.object as Stripe.Charge);
         break;
 
       case 'charge.dispute.created':
@@ -107,21 +103,6 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 
   console.log('Successfully processed order:', order.id);
-}
-
-async function handleRefund(charge: Stripe.Charge) {
-  console.log('Processing refund for charge:', charge.id);
-
-  const customerEmail = charge.billing_details?.email || charge.receipt_email;
-  if (!customerEmail) {
-    console.error('No email for refund notification');
-    return;
-  }
-
-  const amount = formatAmount(charge.amount_refunded, charge.currency);
-  await sendRefundConfirmation(customerEmail, amount);
-
-  console.log('Refund confirmation sent to:', customerEmail);
 }
 
 async function handleDispute(dispute: Stripe.Dispute) {

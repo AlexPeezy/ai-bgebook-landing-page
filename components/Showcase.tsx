@@ -4,79 +4,45 @@ import { motion } from 'framer-motion';
 import Section from './Section';
 import Card from './Card';
 import AnimatedCounter from './AnimatedCounter';
-
-const stats = [
-  {
-    icon: '🚀',
-    value: 40,
-    suffix: '%',
-    label: 'Годишен растеж на AI индустрията',
-    color: 'from-cyan to-blue',
-  },
-  {
-    icon: '💰',
-    value: 2000,
-    prefix: '€',
-    suffix: '+',
-    label: 'Месечни приходи на завършили',
-    color: 'from-blue to-cyan-dark',
-  },
-  {
-    icon: '📈',
-    value: 300,
-    suffix: '%',
-    label: 'Увеличение на търсенето на AI умения',
-    color: 'from-cyan-dark to-blue-dark',
-  },
-  {
-    icon: '👥',
-    value: 500,
-    suffix: '+',
-    label: 'Обучени предприемачи',
-    color: 'from-blue-dark to-cyan',
-  },
-];
+import TypingText from './TypingText';
 
 const features = [
   {
-    icon: '📚',
-    value: 150,
-    suffix: '+',
-    title: 'Страници съдържание',
-    description: 'Детайлни обяснения и практически примери',
-  },
-  {
-    icon: '💡',
-    value: 50,
-    suffix: '+',
-    title: 'Готови AI промпта',
-    description: 'За директна употреба в твоя бизнес',
-  },
-  {
     icon: '🎯',
+    value: 5,
+    title: 'Стъпки формула за промптове',
+    description: 'Роля, контекст, цел, формат и ограничения',
+  },
+  {
+    icon: '💰',
+    value: 7,
+    suffix: '+',
+    title: 'Модела за доход с AI',
+    description: 'Без програмиране, за българския пазар',
+  },
+  {
+    icon: '📅',
     value: 30,
-    suffix: '+',
-    title: 'Бизнес модела',
-    description: 'Доказани стратегии за печалба с AI',
+    title: 'Дневен план за действие',
+    description: 'Седмица по седмица до първите приходи',
   },
   {
-    icon: '📊',
-    value: 20,
-    suffix: '+',
-    title: 'Case Studies',
-    description: 'Реални истории от български предприемачи',
+    icon: '🤝',
+    value: 4,
+    title: 'Стратегии за клиенти',
+    description: 'Как да намериш клиенти без реклама',
   },
   {
-    icon: '🎓',
+    icon: '📖',
     value: 12,
-    title: 'Модула обучение',
-    description: 'От основи до напреднали техники',
+    title: 'Глави обучение',
+    description: 'От основи до реални приходи стъпка по стъпка',
   },
   {
-    icon: '⚡',
-    value: 30,
-    title: 'Дни до първи приходи',
-    description: 'Следвай стъпките и виж резултати',
+    icon: '⚠️',
+    value: 7,
+    title: 'Грешки да избегнеш',
+    description: 'Спести си месеци лутане от самото начало',
   },
 ];
 
@@ -137,60 +103,60 @@ export default function Showcase() {
           {/* Content */}
           <div className="p-6 space-y-5">
             {/* User prompt - basic */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+            >
               <div className="text-gray-500 text-xs uppercase tracking-wider mb-2">ВАШИЯТ ПРОМПТ:</div>
               <div className="bg-navy-dark/50 rounded-lg p-4 border border-gray-700">
                 <p className="text-gray-300 font-mono text-sm">Напиши ми бизнес идея с AI.</p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Arrow */}
-            <div className="flex justify-center">
-              <div className="text-cyan text-2xl">↓</div>
-            </div>
+            {/* Arrow with pulse */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="flex justify-center"
+            >
+              <motion.div
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="text-cyan text-2xl"
+              >
+                ↓
+              </motion.div>
+            </motion.div>
 
-            {/* Optimized prompt */}
-            <div>
+            {/* Optimized prompt with typing */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+            >
               <div className="text-cyan text-xs uppercase tracking-wider mb-2">ОПТИМИЗИРАН С НАРЪЧНИКА:</div>
               <div className="bg-gradient-to-br from-cyan/10 to-blue/5 rounded-lg p-4 border border-cyan/30">
-                <p className="text-gray-200 font-mono text-sm leading-relaxed">
-                  Действай като бизнес консултант с 15г. опит в дигитален маркетинг. Създай 5 конкретни начина да печеля пари с ChatGPT, включващи: необходими умения, начални инвестиции, потенциален месечен доход и стъпки за стартиране. Фокусирай се върху българския пазар.
-                </p>
+                <TypingText
+                  text="Действай като бизнес консултант с 15г. опит в дигитален маркетинг. Създай 5 конкретни начина да печеля пари с ChatGPT, включващи: необходими умения, начални инвестиции, потенциален месечен доход и стъпки за стартиране. Фокусирай се върху българския пазар."
+                  delay={800}
+                  speed={25}
+                  className="text-gray-200 font-mono text-sm leading-relaxed"
+                />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Caption */}
         <p className="text-center text-gray-500 text-sm mt-4">
-          50+ готови промпта като този в книгата
+          Научи се да превръщаш слаби промптове в мощни инструкции
         </p>
       </motion.div>
-
-      {/* Stats grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <Card className="text-center border border-cyan/10 border-b-2 border-b-cyan/30 hover:shadow-lg hover:shadow-cyan/10 transition-all duration-300">
-              <div className="text-5xl mb-4">{stat.icon}</div>
-              <div className={`text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                <AnimatedCounter
-                  value={stat.value}
-                  prefix={stat.prefix}
-                  suffix={stat.suffix}
-                />
-              </div>
-              <p className="text-sm text-gray-600">{stat.label}</p>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
 
       {/* Features/Content value grid */}
       <motion.div
@@ -211,27 +177,40 @@ export default function Showcase() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
           >
-            <Card className="h-full border border-cyan/10 hover:shadow-lg hover:shadow-cyan/20 transition-all duration-300">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl flex-shrink-0">{feature.icon}</div>
-                <div className="flex-1">
-                  <div className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-cyan via-blue to-cyan-dark bg-clip-text text-transparent">
-                    <AnimatedCounter
-                      value={feature.value}
-                      suffix={feature.suffix}
-                    />
+            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: "easeOut" }}>
+              <Card className="h-full border border-cyan/10 hover:border-cyan/30 hover:shadow-xl hover:shadow-cyan/20 transition-all duration-300 group">
+                <div className="flex items-start gap-4">
+                  {/* Icon with rotation on hover */}
+                  <motion.div
+                    className="text-4xl flex-shrink-0"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+
+                  <div className="flex-1">
+                    {/* Counter with gradient shift on hover */}
+                    <div className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-cyan via-blue to-cyan-dark bg-clip-text text-transparent group-hover:from-blue group-hover:via-cyan group-hover:to-blue transition-all duration-500">
+                      <AnimatedCounter
+                        value={feature.value}
+                        suffix={feature.suffix}
+                      />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2 text-navy group-hover:text-navy-dark transition-colors duration-300">
+                      {feature.title}
+                    </h4>
+
+                    <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h4 className="text-lg font-semibold mb-2 text-navy">
-                    {feature.title}
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    {feature.description}
-                  </p>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           </motion.div>
         ))}
       </div>
@@ -246,7 +225,7 @@ export default function Showcase() {
         <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan/20 to-blue/10 rounded-full border border-cyan/30 shadow-lg shadow-cyan/10 hover:shadow-cyan/20 transition-all duration-300">
           <span className="text-2xl">🎉</span>
           <span className="text-navy-dark font-semibold">
-            Всичко това за <span className="text-cyan font-bold">€12.99</span> вместо €24.99
+            Всичко това за <span className="text-cyan font-bold">€14.99</span> вместо €24.99
           </span>
         </div>
       </motion.div>

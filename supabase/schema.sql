@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS orders (
   stripe_session_id TEXT UNIQUE NOT NULL,
   amount_cents INTEGER NOT NULL,
   currency TEXT NOT NULL DEFAULT 'eur',
-  status TEXT NOT NULL DEFAULT 'completed' CHECK (status IN ('pending', 'completed', 'refunded')),
+  status TEXT NOT NULL DEFAULT 'completed' CHECK (status IN ('pending', 'completed')),
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -67,7 +67,6 @@ SELECT
   COUNT(*) as total_orders,
   SUM(amount_cents) / 100.0 as total_revenue,
   COUNT(CASE WHEN status = 'completed' THEN 1 END) as completed_orders,
-  COUNT(CASE WHEN status = 'refunded' THEN 1 END) as refunded_orders,
   COUNT(DISTINCT email) as unique_customers
 FROM orders;
 

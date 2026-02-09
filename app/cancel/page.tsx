@@ -54,10 +54,6 @@ export default function CancelPage() {
                 <ul className="text-gray-300 space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-cyan">✓</span>
-                    <span>30-дневна гаранция за връщане на парите</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan">✓</span>
                     <span>Моментално получаване след покупка</span>
                   </li>
                   <li className="flex items-start gap-2">

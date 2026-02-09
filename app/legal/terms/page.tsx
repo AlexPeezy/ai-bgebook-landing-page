@@ -49,35 +49,28 @@ export default function TermsPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-4">4. Гаранция за връщане на парите</h2>
-        <p className="text-gray-300 mb-4">
-          Предлагаме 30-дневна гаранция за връщане на парите. Ако не сте доволни от книгата по каквато и да е причина, свържете се с нас на <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">contact@aidohod.com</a> и ще ви възстановим пълната сума.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-4">5. Интелектуална собственост</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">4. Интелектуална собственост</h2>
         <p className="text-gray-300 mb-4">
           Цялото съдържание на книгата, включително текст, графики, промпти и стратегии, е защитено от авторско право. Нарушаването на тези права може да доведе до правни последици.
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-4">6. Отказ от отговорност</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">5. Отказ от отговорност</h2>
         <p className="text-gray-300 mb-4">
           Съдържанието на книгата е с образователна цел. Резултатите може да варират в зависимост от индивидуалните усилия и приложение. Не гарантираме конкретни финансови резултати.
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-4">7. Промени в условията</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">6. Промени в условията</h2>
         <p className="text-gray-300 mb-4">
           Запазваме правото да актуализираме тези условия. При съществени промени ще уведомим съществуващите клиенти по имейл.
         </p>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold text-white mb-4">8. Контакт</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">7. Контакт</h2>
         <p className="text-gray-300">
           За въпроси относно тези условия, свържете се с нас на{' '}
           <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
