@@ -164,7 +164,7 @@ export default function Showcase() {
       {/* White Section - Features Grid */}
       <Section
         id="features"
-        background="light"
+        background="white"
       >
         {/* Features/Content value grid */}
         <motion.div
