@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM_EMAIL = process.env.EMAIL_FROM || 'AI Ebook <noreply@aidohod.com>';
+const FROM_EMAIL = process.env.EMAIL_FROM || 'AI Ebook <noreply@bgpromptbook.shop>';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
 interface SendPurchaseEmailParams {
@@ -108,7 +108,7 @@ function getPurchaseEmailTemplate(downloadUrl: string, amount: string): string {
 
               <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 20px 0 0 0;">
                 Ако имаш въпроси, просто отговори на този имейл или пиши на
-                <a href="mailto:contact@aidohod.com" style="color: #0891b2;">contact@aidohod.com</a>
+                <a href="mailto:contact@bgpromptbook.shop" style="color: #0891b2;">contact@bgpromptbook.shop</a>
               </p>
             </td>
           </tr>
@@ -246,7 +246,7 @@ export async function sendAdminNotification(
   try {
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,
-      to: 'contact@aidohod.com',
+      to: 'contact@bgpromptbook.shop',
       subject: `🔔 Ново запитване за консултация от ${name}`,
       html: `
         <h2>Ново запитване за консултация</h2>

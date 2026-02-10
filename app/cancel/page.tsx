@@ -71,10 +71,10 @@ export default function CancelPage() {
                 <p className="text-gray-300">
                   Имате въпроси? Свържете се с нас на{' '}
                   <a
-                    href="mailto:contact@aidohod.com"
+                    href="mailto:contact@bgpromptbook.shop"
                     className="text-cyan hover:underline"
                   >
-                    contact@aidohod.com
+                    contact@bgpromptbook.shop
                   </a>
                 </p>
               </div>

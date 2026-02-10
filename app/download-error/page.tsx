@@ -40,8 +40,8 @@ function DownloadErrorContent() {
                 <span className="text-cyan">•</span>
                 <span>
                   Свържете се с нас на{' '}
-                  <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
-                    contact@aidohod.com
+                  <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+                    contact@bgpromptbook.shop
                   </a>{' '}
                   за нов линк
                 </span>
@@ -51,7 +51,7 @@ function DownloadErrorContent() {
         </Card>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="mailto:contact@aidohod.com?subject=Проблем с изтеглянето">
+          <a href="mailto:contact@bgpromptbook.shop?subject=Проблем с изтеглянето">
             <Button size="lg" variant="primary">
               Свържи се с поддръжката
             </Button>

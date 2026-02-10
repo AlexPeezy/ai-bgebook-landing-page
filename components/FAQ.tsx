@@ -53,7 +53,7 @@ const faqs = [
   {
     question: 'Какво да направя ако не получа имейл?',
     answer:
-      'Първо провери папката за спам/нежелана поща. Ако и там няма имейл, пиши ни на contact@aidohod.com с номера на поръчката и ще ти изпратим книгата ръчно веднага. Имаш и възможност за директно изтегляне от страницата след успешно плащане.',
+      'Първо провери папката за спам/нежелана поща. Ако и там няма имейл, пиши ни на contact@bgpromptbook.shop с номера на поръчката и ще ти изпратим книгата ръчно веднага. Имаш и възможност за директно изтегляне от страницата след успешно плащане.',
   },
   {
     question: 'Има ли видео съдържание?',
@@ -179,10 +179,10 @@ export default function FAQ() {
           <p className="text-gray-600 mb-6">
             Пиши ни на{' '}
             <a
-              href="mailto:contact@aidohod.com"
+              href="mailto:contact@bgpromptbook.shop"
               className="text-cyan font-semibold hover:underline hover:text-cyan-dark transition-colors duration-300"
             >
-              contact@aidohod.com
+              contact@bgpromptbook.shop
             </a>
           </p>
           <p className="text-sm text-gray-500">

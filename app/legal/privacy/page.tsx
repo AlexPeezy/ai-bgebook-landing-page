@@ -80,8 +80,8 @@ export default function PrivacyPage() {
         </ul>
         <p className="text-gray-300 mt-4">
           За упражняване на тези права, свържете се с нас на{' '}
-          <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
-            contact@aidohod.com
+          <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+            contact@bgpromptbook.shop
           </a>
         </p>
       </section>
@@ -114,8 +114,8 @@ export default function PrivacyPage() {
         <h2 className="text-xl font-semibold text-white mb-4">9. Контакт</h2>
         <p className="text-gray-300">
           За въпроси относно поверителността, свържете се с нас на{' '}
-          <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
-            contact@aidohod.com
+          <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+            contact@bgpromptbook.shop
           </a>
         </p>
       </section>

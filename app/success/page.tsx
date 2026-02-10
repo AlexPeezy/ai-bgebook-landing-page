@@ -95,10 +95,10 @@ function SuccessContent() {
                 <p className="text-gray-300">
                   Ако вече сте направили плащане, моля свържете се с нас на{' '}
                   <a
-                    href="mailto:contact@aidohod.com"
+                    href="mailto:contact@bgpromptbook.shop"
                     className="text-cyan hover:underline"
                   >
-                    contact@aidohod.com
+                    contact@bgpromptbook.shop
                   </a>
                 </p>
               </div>
@@ -232,10 +232,10 @@ function SuccessContent() {
                     <p className="text-gray-300">
                       Ако имате въпроси или проблеми с изтеглянето, свържете се с нас на{' '}
                       <a
-                        href="mailto:contact@aidohod.com"
+                        href="mailto:contact@bgpromptbook.shop"
                         className="text-cyan hover:underline"
                       >
-                        contact@aidohod.com
+                        contact@bgpromptbook.shop
                       </a>
                     </p>
                   </div>

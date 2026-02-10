@@ -73,8 +73,8 @@ export default function TermsPage() {
         <h2 className="text-xl font-semibold text-white mb-4">7. Контакт</h2>
         <p className="text-gray-300">
           За въпроси относно тези условия, свържете се с нас на{' '}
-          <a href="mailto:contact@aidohod.com" className="text-cyan hover:underline">
-            contact@aidohod.com
+          <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+            contact@bgpromptbook.shop
           </a>
         </p>
       </section>
