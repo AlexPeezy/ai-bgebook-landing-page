@@ -61,7 +61,8 @@ export default function PrivacyPage() {
         </p>
         <ul className="list-disc list-inside text-gray-300 space-y-2">
           <li><strong>Stripe</strong> - за обработка на плащания</li>
-          <li><strong>Имейл услуги</strong> - за доставка на книгата</li>
+          <li><strong>Имейл услуги (Resend)</strong> - за доставка на книгата</li>
+          <li><strong>Meta/Facebook</strong> - за маркетингов анализ и оптимизация на реклами (виж секция 7 за подробности)</li>
           <li><strong>При законово изискване</strong> - съгласно приложимото законодателство</li>
         </ul>
       </section>
@@ -87,14 +88,45 @@ export default function PrivacyPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-4">7. Бисквитки</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">7. Бисквитки и проследяване</h2>
         <p className="text-gray-300 mb-4">
-          Използваме минимален брой бисквитки за:
+          Използваме бисквитки и технологии за проследяване за:
         </p>
         <ul className="list-disc list-inside text-gray-300 space-y-2">
           <li>Основна функционалност на сайта</li>
           <li>Запомняне на предпочитанията ви</li>
-          <li>Анализ на посещаемостта (анонимизиран)</li>
+          <li>Маркетингов анализ и оптимизация на реклами</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold text-white mt-6 mb-3">Meta Pixel и Conversions API</h3>
+        <p className="text-gray-300 mb-4">
+          Използваме Meta Pixel (Facebook Pixel) и Meta Conversions API за анализ на ефективността на нашите рекламни кампании. Тези технологии събират информация за:
+        </p>
+        <ul className="list-disc list-inside text-gray-300 space-y-2">
+          <li>Посещения на страницата и навигация</li>
+          <li>Взаимодействия с бутони и елементи на сайта</li>
+          <li>Действия свързани с покупки (добавяне в количка, начало на плащане, завършена покупка)</li>
+          <li>Дълбочина на скролиране на страницата</li>
+        </ul>
+        <p className="text-gray-300 mt-4 mb-4">
+          Чрез Conversions API предаваме на Meta хеширани (криптирани) версии на имейл адреси за по-точно измерване на рекламните резултати. Meta използва тези данни съгласно своята{' '}
+          <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">
+            Политика за поверителност
+          </a>.
+        </p>
+
+        <h3 className="text-lg font-semibold text-white mt-6 mb-3">Отказ от проследяване</h3>
+        <p className="text-gray-300 mb-4">
+          Можете да се откажете от проследяването чрез Meta Pixel по следните начини:
+        </p>
+        <ul className="list-disc list-inside text-gray-300 space-y-2">
+          <li>Настройки на рекламите във Facebook:{' '}
+            <a href="https://www.facebook.com/adpreferences" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">
+              facebook.com/adpreferences
+            </a>
+          </li>
+          <li>Използване на браузърни разширения за блокиране на проследяване</li>
+          <li>Настройки &quot;Do Not Track&quot; в браузъра ви</li>
         </ul>
       </section>
 

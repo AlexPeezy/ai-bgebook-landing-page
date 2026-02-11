@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
             product_data: {
               name: 'Как да превърнеш AI в реален доход',
               description: 'Пълният наръчник за Prompt Engineering и бизнес стратегии',
-              images: ['https://via.placeholder.com/400x600/22d3ee/ffffff?text=AI+Ebook'],
+              images: [`${baseUrl}/ebook-cover.png`],
             },
             unit_amount: price,
           },
