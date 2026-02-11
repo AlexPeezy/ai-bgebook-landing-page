@@ -233,7 +233,7 @@ export default function Showcase() {
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan/10 to-blue/5 rounded-full border border-cyan/30 shadow-lg shadow-cyan/5 hover:shadow-cyan/10 transition-all duration-300">
             <span className="text-2xl">🎉</span>
             <span className="text-navy-dark font-semibold">
-              Всичко това за <span className="text-cyan font-bold">€14.99</span> вместо €24.99
+              Всичко това за само <span className="text-cyan font-bold">€15</span>
             </span>
           </div>
         </motion.div>

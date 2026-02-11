@@ -238,16 +238,16 @@ export default function Hero() {
               {/* Pricing - clean display */}
               <div className="mb-4">
                 <div className="flex items-end gap-2 mb-2">
-                  <span className="text-4xl font-bold text-white">€14.99</span>
+                  <span className="text-4xl font-bold text-white">€15</span>
                 </div>
                 <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
-                  Спестяваш 40% • Само €10 отстъпка
+                  Еднократно плащане • Без абонамент
                 </div>
               </div>
 
               {/* One-time payment note */}
               <div className="text-center text-gray-300 text-xs mb-4">
-                Еднократно плащане • Без абонамент
+                Моментален достъп след плащане
               </div>
 
               {/* Key features */}

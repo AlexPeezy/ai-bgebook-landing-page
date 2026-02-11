@@ -128,7 +128,7 @@ export default function Header() {
 
               {/* CTA Button */}
               <Button size="sm" onClick={handleBuyClick} isLoading={loading}>
-                КУПИ САМО СЕГА ЗА €14.99
+                КУПИ САМО СЕГА ЗА €15
               </Button>
             </div>
 
@@ -196,7 +196,7 @@ export default function Header() {
 
                   <div className="px-4 pt-2">
                     <Button size="sm" fullWidth onClick={handleBuyClick} isLoading={loading}>
-                      КУПИ САМО СЕГА ЗА €14.99
+                      КУПИ САМО СЕГА ЗА €15
                     </Button>
                   </div>
                 </nav>

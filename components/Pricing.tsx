@@ -27,9 +27,9 @@ const pricingPlan = {
   name: 'Early Bird',
   badge: 'ОГРАНИЧЕНА ОФЕРТА',
   badgeColor: 'bg-gradient-to-r from-cyan to-blue',
-  price: '14.99',
-  originalPrice: '24.99',
-  discount: '40%',
+  price: '15',
+  originalPrice: '',
+  discount: '',
   features: features,
   cta: 'Купи Early Bird',
   spots: 53,
@@ -249,6 +249,7 @@ export default function Pricing() {
                 </motion.span>
 
                 {/* Original price with fade-in */}
+                {pricingPlan.originalPrice && (
                 <motion.span
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -258,9 +259,11 @@ export default function Pricing() {
                 >
                   €{pricingPlan.originalPrice}
                 </motion.span>
+                )}
               </motion.div>
 
               {/* Discount badge with bounce */}
+              {pricingPlan.discount && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -275,6 +278,7 @@ export default function Pricing() {
               >
                 Спестяваш {pricingPlan.discount}
               </motion.div>
+              )}
             </div>
 
             {/* Features with staggered reveal */}
