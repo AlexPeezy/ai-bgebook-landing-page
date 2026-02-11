@@ -5,14 +5,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import AnimatedText from './AnimatedText';
 import Button from './Button';
-import Card from './Card';
 import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
-import { useCountdown } from '@/lib/useCountdown';
 
 export default function Hero() {
   const { initiateCheckout, loading, error } = useCheckout();
-  const countdown = useCountdown();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBuyNow = () => {
@@ -94,32 +91,6 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left column - Text content */}
           <div className="text-white space-y-8">
-            {/* Urgency badges */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Card glass hover={false} className="inline-flex items-center gap-2 px-4 py-2">
-                <span className="text-cyan text-2xl">⏰</span>
-                <span className="text-sm font-medium">
-                  {countdown.isExpired ? (
-                    <span className="text-red-400">Офертата изтече</span>
-                  ) : (
-                    <>
-                      <span className="text-cyan">{countdown.formatted}</span> до края на оферта
-                    </>
-                  )}
-                </span>
-              </Card>
-              <Card glass hover={false} className="inline-flex items-center gap-2 px-4 py-2">
-                <span className="text-blue text-2xl">🔥</span>
-                <span className="text-sm font-medium">
-                  Само <span className="text-cyan font-bold">53 копия</span> Early Bird
-                </span>
-              </Card>
-            </motion.div>
-
             {/* Main headline */}
             <AnimatedText delay={0.2}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-heading">

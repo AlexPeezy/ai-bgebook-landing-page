@@ -10,7 +10,7 @@ import { useCountdown } from '@/lib/useCountdown';
 const navLinks = [
   { name: 'За книгата', href: '#showcase' },
   { name: 'Отзиви', href: '#testimonials' },
-  { name: 'ЧЗВ', href: '#faq' },
+  { name: 'FAQ', href: '#faq' },
 ];
 
 export default function Header() {
