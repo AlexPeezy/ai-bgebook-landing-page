@@ -8,11 +8,13 @@ import ConsultationSection from '@/components/ConsultationSection';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import MetaViewContent from '@/components/MetaViewContent';
+import MetaScrollTracker from '@/components/MetaScrollTracker';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <MetaViewContent />
+      <MetaScrollTracker />
       <Header />
       <Hero />
       <ConsultationSection />

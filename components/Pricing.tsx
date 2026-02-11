@@ -8,6 +8,7 @@ import Card from './Card';
 import Button from './Button';
 import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
+import { trackAddToCart } from '@/lib/meta-pixel';
 
 const features = [
   '12 глави практическо съдържание',
@@ -41,6 +42,7 @@ export default function Pricing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBuyEarlyBird = () => {
+    trackAddToCart();
     setIsModalOpen(true);
   };
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { trackInitiateCheckout } from '@/lib/meta-pixel';
+import { trackInitiateCheckout, trackLead } from '@/lib/meta-pixel';
 
 export function useCheckout() {
   const [loading, setLoading] = useState(false);
@@ -10,6 +10,7 @@ export function useCheckout() {
   const initiateCheckout = async (priceType: 'early_bird' | 'regular', email?: string) => {
     setLoading(true);
     setError(null);
+    trackLead();
     trackInitiateCheckout();
 
     try {

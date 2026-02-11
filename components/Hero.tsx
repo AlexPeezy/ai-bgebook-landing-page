@@ -7,12 +7,14 @@ import AnimatedText from './AnimatedText';
 import Button from './Button';
 import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
+import { trackAddToCart } from '@/lib/meta-pixel';
 
 export default function Hero() {
   const { initiateCheckout, loading, error } = useCheckout();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBuyNow = () => {
+    trackAddToCart();
     setIsModalOpen(true);
   };
 

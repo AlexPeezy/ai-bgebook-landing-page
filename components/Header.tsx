@@ -6,6 +6,7 @@ import Button from './Button';
 import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { useCountdown } from '@/lib/useCountdown';
+import { trackAddToCart } from '@/lib/meta-pixel';
 
 const navLinks = [
   { name: 'За книгата', href: '#showcase' },
@@ -49,6 +50,7 @@ export default function Header() {
   }, []);
 
   const handleBuyClick = () => {
+    trackAddToCart();
     setIsModalOpen(true);
     setIsMobileMenuOpen(false);
   };

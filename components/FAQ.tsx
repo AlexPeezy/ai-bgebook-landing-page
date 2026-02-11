@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import Section from './Section';
+import { trackContact } from '@/lib/meta-pixel';
 
 const faqs = [
   {
@@ -180,6 +181,7 @@ export default function FAQ() {
             Пиши ни на{' '}
             <a
               href="mailto:contact@bgpromptbook.shop"
+              onClick={() => trackContact()}
               className="text-cyan font-semibold hover:underline hover:text-cyan-dark transition-colors duration-300"
             >
               contact@bgpromptbook.shop
