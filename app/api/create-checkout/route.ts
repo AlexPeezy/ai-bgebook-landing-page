@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe, PRICES } from '@/lib/stripe';
+import { sendCAPIEvent } from '@/lib/meta-capi';
 
 export async function POST(req: NextRequest) {
   try {
@@ -48,6 +49,18 @@ export async function POST(req: NextRequest) {
       billing_address_collection: 'required',
       locale: 'bg',
     });
+
+    // Send InitiateCheckout event to Meta CAPI (fire-and-forget)
+    sendCAPIEvent({
+      eventName: 'InitiateCheckout',
+      email: body.email,
+      value: price / 100,
+      currency: 'EUR',
+      sourceUrl: baseUrl,
+      eventId: session.id,
+      userAgent: req.headers.get('user-agent') || undefined,
+      ip: req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || undefined,
+    }).catch((err) => console.error('Meta CAPI InitiateCheckout error:', err));
 
     return NextResponse.json({ sessionId: session.id, url: session.url });
   } catch (error) {

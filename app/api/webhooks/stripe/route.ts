@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { createOrder, createDownloadToken, orderExists } from '@/lib/supabase';
 import { sendPurchaseConfirmation } from '@/lib/email';
+import { sendCAPIEvent } from '@/lib/meta-capi';
 import Stripe from 'stripe';
 
 export async function POST(request: NextRequest) {
@@ -94,6 +95,15 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     console.error('Failed to send confirmation email to:', customerEmail);
     // Don't throw - order is created, email can be resent manually
   }
+
+  // Send Purchase event to Meta CAPI (fire-and-forget)
+  sendCAPIEvent({
+    eventName: 'Purchase',
+    email: customerEmail,
+    value: (session.amount_total || 0) / 100,
+    currency: (session.currency || 'eur').toUpperCase(),
+    eventId: session.id,
+  }).catch((err) => console.error('Meta CAPI Purchase error:', err));
 
   console.log('Successfully processed order:', order.id);
 }

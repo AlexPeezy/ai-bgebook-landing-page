@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Section from '@/components/Section';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import { trackPurchase } from '@/lib/meta-pixel';
 
 interface SessionData {
   valid: boolean;
@@ -22,6 +23,7 @@ function SuccessContent() {
   const sessionId = searchParams.get('session_id');
   const [loading, setLoading] = useState(true);
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
+  const purchaseTracked = useRef(false);
 
   useEffect(() => {
     async function verifySession() {
@@ -35,6 +37,10 @@ function SuccessContent() {
         const response = await fetch(`/api/verify-session?session_id=${sessionId}`);
         const data = await response.json();
         setSessionData(data);
+        if (data.valid && !purchaseTracked.current) {
+          purchaseTracked.current = true;
+          trackPurchase();
+        }
       } catch {
         setSessionData({ valid: false, error: 'Failed to verify payment' });
       } finally {
