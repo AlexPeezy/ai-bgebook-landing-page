@@ -18,8 +18,9 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         valid: true,
         customerEmail: session.customer_details?.email,
-        amountPaid: session.amount_total,
-        currency: session.currency,
+        amountPaid: (session.amount_total || 0) / 100,
+        currency: (session.currency || 'eur').toUpperCase(),
+        sessionId: session.id,
       });
     }
 

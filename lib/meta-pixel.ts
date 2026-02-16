@@ -21,13 +21,17 @@ interface FbqParams {
 
 declare global {
   interface Window {
-    fbq: (action: string, event: string, params?: FbqParams) => void;
+    fbq: (action: string, event: string, params?: FbqParams, options?: { eventID: string }) => void;
   }
 }
 
-function fbq(event: FbqStandardEvent, params?: FbqParams) {
+function fbq(event: FbqStandardEvent, params?: FbqParams, eventID?: string) {
   if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', event, params);
+    if (eventID) {
+      window.fbq('track', event, params, { eventID });
+    } else {
+      window.fbq('track', event, params);
+    }
   }
 }
 
@@ -75,13 +79,13 @@ export function trackLead() {
   });
 }
 
-export function trackPurchase() {
+export function trackPurchase(params?: { value?: number; currency?: string; eventID?: string }) {
   fbq('Purchase', {
     content_name: 'AI Ebook',
     content_type: 'product',
-    currency: 'EUR',
-    value: 15,
-  });
+    currency: params?.currency || 'EUR',
+    value: params?.value ?? 15,
+  }, params?.eventID);
 }
 
 // User clicked contact email

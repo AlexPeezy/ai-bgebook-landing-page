@@ -15,6 +15,7 @@ interface SessionData {
   customerEmail?: string;
   amountPaid?: number;
   currency?: string;
+  sessionId?: string;
   error?: string;
 }
 
@@ -39,7 +40,11 @@ function SuccessContent() {
         setSessionData(data);
         if (data.valid && !purchaseTracked.current) {
           purchaseTracked.current = true;
-          trackPurchase();
+          trackPurchase({
+            value: data.amountPaid,
+            currency: data.currency,
+            eventID: data.sessionId,
+          });
         }
       } catch {
         setSessionData({ valid: false, error: 'Failed to verify payment' });
