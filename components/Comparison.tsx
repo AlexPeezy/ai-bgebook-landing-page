@@ -7,23 +7,7 @@ export default function Comparison() {
   return (
     <Section
       id="comparison"
-      background="dark"
-      backgroundEffects={
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div
-            className="absolute top-0 left-0 right-0 h-[400px]"
-            style={{
-              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)',
-            }}
-          />
-          <div
-            className="absolute bottom-0 left-0 right-0 h-[300px]"
-            style={{
-              background: 'linear-gradient(0deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%)',
-            }}
-          />
-        </div>
-      }
+      background="white"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -32,10 +16,10 @@ export default function Comparison() {
         className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">
-          От <span className="text-yellow-400">объркване</span> към{' '}
+          От <span className="text-yellow-500">объркване</span> към{' '}
           <span className="bg-gradient-to-r from-cyan to-blue bg-clip-text text-transparent">реални доходи</span>
         </h2>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Виж разликата между случаен подход и стратегията от AI в Реален Доход
         </p>
       </motion.div>

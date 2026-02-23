@@ -163,10 +163,10 @@ export default function Showcase() {
       </motion.div>
     </Section>
 
-      {/* White Section - Features Grid */}
+      {/* Dark Section - Features Grid */}
       <Section
         id="features"
-        background="white"
+        background="dark"
       >
         {/* Features/Content value grid */}
         <motion.div
@@ -175,7 +175,7 @@ export default function Showcase() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 font-heading text-navy-dark">
+          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 font-heading text-white">
             Какво ще получиш?
           </h3>
         </motion.div>
@@ -190,7 +190,7 @@ export default function Showcase() {
               transition={{ duration: 0.5, delay: index * 0.08 }}
             >
               <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: "easeOut" }}>
-                <Card className="h-full bg-white border border-gray-200 hover:border-cyan/30 hover:shadow-xl hover:shadow-cyan/10 transition-all duration-300 group">
+                <Card className="h-full bg-white/5 border border-gray-700 hover:border-cyan/30 hover:shadow-xl hover:shadow-cyan/10 transition-all duration-300 group">
                   <div className="flex items-start gap-4">
                     {/* Icon with rotation on hover */}
                     <motion.div
@@ -210,11 +210,11 @@ export default function Showcase() {
                         />
                       </div>
 
-                      <h4 className="text-lg font-semibold mb-2 text-navy group-hover:text-navy-dark transition-colors duration-300">
+                      <h4 className="text-lg font-semibold mb-2 text-white group-hover:text-gray-100 transition-colors duration-300">
                         {feature.title}
                       </h4>
 
-                      <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                      <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
                         {feature.description}
                       </p>
                     </div>
@@ -234,7 +234,7 @@ export default function Showcase() {
         >
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan/10 to-blue/5 rounded-full border border-cyan/30 shadow-lg shadow-cyan/5 hover:shadow-cyan/10 transition-all duration-300">
             <span className="text-2xl">🎉</span>
-            <span className="text-navy-dark font-semibold">
+            <span className="text-white font-semibold">
               Всичко това за само <span className="text-cyan font-bold">€15</span>
             </span>
           </div>
