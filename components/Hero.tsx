@@ -93,8 +93,8 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10 pt-20 pb-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left column - Text content */}
-          <div className="text-white space-y-8">
+          {/* Left column - Text content (shown second on mobile) */}
+          <div className="text-white space-y-8 order-2 lg:order-1">
             {/* Main headline */}
             <AnimatedText delay={0.2}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-heading">
@@ -165,12 +165,12 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right column - Book + Pricing Card */}
+          {/* Right column - Book + Pricing Card (shown first on mobile) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            className="relative order-1 lg:order-2"
           >
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl border border-cyan/20 p-6 shadow-2xl shadow-cyan/10">
               {/* Book cover */}

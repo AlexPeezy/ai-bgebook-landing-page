@@ -33,11 +33,11 @@ export default function StickyMobileCTA() {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
+            initial={{ y: -80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
+            exit={{ y: -80, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-navy-darker/95 backdrop-blur-lg border-t border-cyan/20 px-4 py-3 pb-safe"
+            className="md:hidden fixed top-16 left-0 right-0 z-40 bg-navy-darker/95 backdrop-blur-lg border-b border-cyan/20 px-4 py-3"
           >
             <Button
               size="lg"
@@ -47,7 +47,7 @@ export default function StickyMobileCTA() {
             >
               КУПИ САМО СЕГА ЗА €15
             </Button>
-            <p className="text-center text-xs text-gray-400 mt-1.5">
+            <p className="text-center text-xs text-gray-500 mt-1.5">
               🔒 Сигурно плащане чрез Stripe
             </p>
           </motion.div>
