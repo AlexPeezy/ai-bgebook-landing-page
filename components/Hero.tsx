@@ -173,17 +173,9 @@ export default function Hero() {
             className="relative order-1 lg:order-2"
           >
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl border border-cyan/20 p-6 shadow-2xl shadow-cyan/10">
-              {/* Book cover with flanking badges */}
-              <div className="flex items-center justify-between gap-2 mb-6">
-                {/* Left: Early Bird badge */}
-                <div className="flex-shrink-0">
-                  <div className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
-                    EARLY BIRD
-                  </div>
-                </div>
-
-                {/* Center: Book cover */}
-                <div className="relative flex-shrink-0">
+              {/* Book cover */}
+              <div className="flex justify-center mb-6">
+                <div className="relative">
                   <motion.div
                     animate={isMobile ? undefined : {
                       opacity: [0.3, 0.5, 0.3],
@@ -199,19 +191,13 @@ export default function Hero() {
                   <Image
                     src="/ebook-cover.png"
                     alt="Как да превърнеш AI в реален доход - Book Cover"
-                    width={200}
-                    height={300}
+                    width={240}
+                    height={360}
                     priority
-                    sizes="200px"
+                    sizes="240px"
                     quality={85}
                     className="relative z-10 rounded-lg border border-cyan/20 shadow-lg"
                   />
-                </div>
-
-                {/* Right: Spots counter */}
-                <div className="flex-shrink-0 text-right">
-                  <div className="text-cyan text-xs font-semibold">Останаха само</div>
-                  <div className="text-white text-xl font-bold">14 <span className="text-gray-400 text-xs font-normal">на тази цена</span></div>
                 </div>
               </div>
 
