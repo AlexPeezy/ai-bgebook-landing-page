@@ -124,6 +124,8 @@ export default function Hero() {
                 'Готов 30-дневен план за първите ти приходи',
                 'Стратегии, създадени специално за българския пазар',
                 '50+ безплатни AI консултации (24-часов отговор)',
+                'Безплатни актуализации',
+                'Моментален достъп (PDF)',
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
@@ -224,8 +226,6 @@ export default function Hero() {
                   '12 глави от основи до реален доход',
                   '7 модела за доход без програмиране',
                   'Написана изцяло за българския пазар',
-                  'Безплатни актуализации',
-                  'Моментален достъп (PDF)',
                 ].map((feature, idx) => (
                   <div key={idx} className="flex items-center justify-center gap-2 text-gray-300">
                     <svg className="w-4 h-4 text-cyan flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
