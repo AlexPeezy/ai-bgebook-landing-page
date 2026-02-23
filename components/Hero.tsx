@@ -173,9 +173,17 @@ export default function Hero() {
             className="relative order-1 lg:order-2"
           >
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl border border-cyan/20 p-6 shadow-2xl shadow-cyan/10">
-              {/* Book cover */}
-              <div className="flex justify-center mb-6">
-                <div className="relative">
+              {/* Book cover with flanking badges */}
+              <div className="flex items-center justify-between gap-2 mb-6">
+                {/* Left: Early Bird badge */}
+                <div className="flex-shrink-0">
+                  <div className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
+                    EARLY BIRD
+                  </div>
+                </div>
+
+                {/* Center: Book cover */}
+                <div className="relative flex-shrink-0">
                   <motion.div
                     animate={isMobile ? undefined : {
                       opacity: [0.3, 0.5, 0.3],
@@ -199,14 +207,9 @@ export default function Hero() {
                     className="relative z-10 rounded-lg border border-cyan/20 shadow-lg"
                   />
                 </div>
-              </div>
 
-              {/* Early Bird Badge */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
-                  EARLY BIRD
-                </div>
-                <div className="text-right">
+                {/* Right: Spots counter */}
+                <div className="flex-shrink-0 text-right">
                   <div className="text-cyan text-xs font-semibold">Останаха само</div>
                   <div className="text-white text-xl font-bold">14 <span className="text-gray-400 text-xs font-normal">на тази цена</span></div>
                 </div>
@@ -238,7 +241,7 @@ export default function Hero() {
                   'Безплатни актуализации',
                   'Моментален достъп (PDF)',
                 ].map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-gray-300">
+                  <div key={idx} className="flex items-center justify-center gap-2 text-gray-300">
                     <svg className="w-4 h-4 text-cyan flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
