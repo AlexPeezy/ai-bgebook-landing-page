@@ -30,11 +30,11 @@ const pricingPlan = {
   badge: 'ОГРАНИЧЕНА ОФЕРТА',
   badgeColor: 'bg-gradient-to-r from-cyan to-blue',
   price: '15',
-  originalPrice: '',
-  discount: '',
+  originalPrice: '30',
+  discount: '€15 (50%)',
   features: features,
   cta: 'Купи Early Bird',
-  spots: 53,
+  spots: 14,
   description: 'Специална цена за първите купувачи',
 };
 
@@ -219,12 +219,12 @@ export default function Pricing() {
               </div>
               <div className="text-right">
                 <div className="text-cyan text-xs font-semibold">
-                  Останаха
+                  Останаха само
                 </div>
                 <div className="text-white text-2xl font-bold">
                   {pricingPlan.spots}
                 </div>
-                <div className="text-gray-400 text-xs">копия</div>
+                <div className="text-gray-400 text-xs">на тази цена</div>
               </div>
             </div>
 
