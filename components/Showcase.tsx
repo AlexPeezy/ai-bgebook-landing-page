@@ -93,9 +93,9 @@ export default function Showcase() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="max-w-2xl mx-auto mb-16"
       >
-        <div className="bg-gray-50 rounded-xl border border-cyan/30 overflow-hidden shadow-2xl shadow-cyan/10">
+        <div className="bg-navy-darker rounded-xl border border-cyan/30 overflow-hidden shadow-2xl shadow-cyan/10">
           {/* Window header */}
-          <div className="flex items-center gap-3 px-4 py-3 bg-gray-100 border-b border-cyan/20">
+          <div className="flex items-center gap-3 px-4 py-3 bg-navy-dark/80 border-b border-cyan/20">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500" />
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -114,8 +114,8 @@ export default function Showcase() {
               transition={{ duration: 0.4 }}
             >
               <div className="text-gray-500 text-xs uppercase tracking-wider mb-2">ВАШИЯТ ПРОМПТ:</div>
-              <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
-                <p className="text-gray-700 font-mono text-sm">Напиши ми бизнес идея с AI.</p>
+              <div className="bg-navy-dark/50 rounded-lg p-4 border border-gray-700">
+                <p className="text-gray-300 font-mono text-sm">Напиши ми бизнес идея с AI.</p>
               </div>
             </motion.div>
 
@@ -149,7 +149,7 @@ export default function Showcase() {
                   text="Действай като бизнес консултант с 15г. опит в дигитален маркетинг. Създай 5 конкретни начина да печеля пари с ChatGPT, включващи: необходими умения, начални инвестиции, потенциален месечен доход и стъпки за стартиране. Фокусирай се върху българския пазар."
                   delay={800}
                   speed={25}
-                  className="text-gray-700 font-mono text-sm leading-relaxed"
+                  className="text-gray-200 font-mono text-sm leading-relaxed"
                 />
               </div>
             </motion.div>
