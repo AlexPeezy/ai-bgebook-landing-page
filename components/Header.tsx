@@ -16,7 +16,6 @@ const navLinks = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const lastScrollY = useRef(0);
@@ -26,22 +25,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Transparent → solid background transition
       setIsScrolled(currentScrollY > 100);
-
-      // Mobile: auto-hide on scroll down, show on scroll up
-      if (window.innerWidth < 768) {
-        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-          setIsHidden(true);
-          setIsMobileMenuOpen(false);
-        } else {
-          setIsHidden(false);
-        }
-      } else {
-        setIsHidden(false);
-      }
-
       lastScrollY.current = currentScrollY;
     };
 
@@ -69,8 +53,6 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-navy-darker/95 backdrop-blur-lg border-b border-cyan/10 ${
           isScrolled ? 'shadow-lg shadow-black/10' : ''
-        } ${
-          isHidden ? '-translate-y-full' : 'translate-y-0'
         }`}
       >
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
