@@ -5,6 +5,7 @@ import Section from './Section';
 import Card from './Card';
 import AnimatedCounter from './AnimatedCounter';
 import TypingText from './TypingText';
+import { useIsMobile } from '@/lib/useIsMobile';
 
 const features = [
   {
@@ -47,6 +48,7 @@ const features = [
 ];
 
 export default function Showcase() {
+  const isMobile = useIsMobile();
   return (
     <>
       {/* Dark Section - Terminal */}
@@ -126,7 +128,7 @@ export default function Showcase() {
               className="flex justify-center"
             >
               <motion.div
-                animate={{ y: [0, 4, 0] }}
+                animate={isMobile ? undefined : { y: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                 className="text-cyan text-2xl"
               >

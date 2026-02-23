@@ -73,6 +73,11 @@ html {
   background: var(--cyan-dark);
 }
 
+/* iOS safe area padding for sticky bottom bars */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+
 /* Reduced motion support for accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -8,10 +8,12 @@ import Button from './Button';
 import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
+import { useIsMobile } from '@/lib/useIsMobile';
 
 export default function Hero() {
   const { initiateCheckout, loading, error } = useCheckout();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleBuyNow = () => {
     trackAddToCart();
@@ -175,7 +177,7 @@ export default function Hero() {
               <div className="flex justify-center mb-6">
                 <div className="relative">
                   <motion.div
-                    animate={{
+                    animate={isMobile ? undefined : {
                       opacity: [0.3, 0.5, 0.3],
                       scale: [1.02, 1, 1.02],
                     }}
@@ -191,8 +193,10 @@ export default function Hero() {
                     alt="Как да превърнеш AI в реален доход - Book Cover"
                     width={200}
                     height={300}
-                    className="relative z-10 rounded-lg border border-cyan/20 shadow-lg"
                     priority
+                    sizes="200px"
+                    quality={85}
+                    className="relative z-10 rounded-lg border border-cyan/20 shadow-lg"
                   />
                 </div>
               </div>

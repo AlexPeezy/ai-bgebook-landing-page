@@ -9,6 +9,7 @@ import Button from './Button';
 import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
+import { useIsMobile } from '@/lib/useIsMobile';
 
 const features = [
   '12 глави практическо съдържание',
@@ -40,6 +41,7 @@ const pricingPlan = {
 export default function Pricing() {
   const { initiateCheckout, loading, error } = useCheckout();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleBuyEarlyBird = () => {
     trackAddToCart();
@@ -107,7 +109,7 @@ export default function Pricing() {
         <motion.div
           className="relative"
           style={{ filter: 'drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2))' }}
-          animate={{
+          animate={isMobile ? undefined : {
             y: [0, -15, 0],
             x: [0, 5, 0, -5, 0],
             rotate: [0, 1, 0, -1, 0],
@@ -120,7 +122,7 @@ export default function Pricing() {
         >
           {/* Outer glow - more prominent */}
           <motion.div
-            animate={{
+            animate={isMobile ? undefined : {
               opacity: [0.3, 0.6, 0.3],
               scale: [1.08, 1, 1.08],
             }}
@@ -134,7 +136,7 @@ export default function Pricing() {
 
           {/* Inner glow */}
           <motion.div
-            animate={{
+            animate={isMobile ? undefined : {
               opacity: [0.4, 0.7, 0.4],
               scale: [1, 1.05, 1],
             }}
@@ -148,13 +150,15 @@ export default function Pricing() {
           />
 
           {/* Shimmer overlay */}
-          <motion.div className="absolute inset-0 rounded-xl overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-              animate={{ x: ['-200%', '200%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
-            />
-          </motion.div>
+          {!isMobile && (
+            <motion.div className="absolute inset-0 rounded-xl overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                animate={{ x: ['-200%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+              />
+            </motion.div>
+          )}
 
           {/* Book image - larger size with white background removed */}
           <Image
@@ -162,6 +166,8 @@ export default function Pricing() {
             alt="AI Ebook Cover"
             width={400}
             height={600}
+            sizes="(max-width: 768px) 280px, 350px"
+            quality={85}
             className="relative z-10 max-w-[280px] md:max-w-[350px]"
             style={{
               boxShadow: '0 0 30px rgba(34, 197, 230, 0.25), 0 0 60px rgba(59, 130, 246, 0.15)',
@@ -233,7 +239,7 @@ export default function Pricing() {
               >
                 {/* Main price with glow */}
                 <motion.span
-                  animate={{
+                  animate={isMobile ? undefined : {
                     textShadow: [
                       '0 0 10px rgba(34, 197, 230, 0)',
                       '0 0 20px rgba(34, 197, 230, 0.4)',
@@ -360,7 +366,7 @@ export default function Pricing() {
               </Button>
 
               {/* Shimmer effect overlay */}
-              {!loading && (
+              {!loading && !isMobile && (
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
                   animate={{ x: ['-200%', '200%'] }}
