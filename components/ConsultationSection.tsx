@@ -12,7 +12,7 @@ export default function ConsultationSection() {
   return (
     <Section
       id="consultation"
-      background="gradient"
+      background="dark"
       backgroundEffects={
         <div className="absolute inset-0 pointer-events-none">
           <div
@@ -48,7 +48,7 @@ export default function ConsultationSection() {
           </h2>
 
           {/* Subheading */}
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
             Получи <strong>безплатна AI консултация</strong> от експерт - реални решения за твоя бизнес.
           </p>
 
@@ -65,11 +65,11 @@ export default function ConsultationSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * idx }}
-                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+                className="bg-white/5 rounded-xl p-6 border border-gray-700"
               >
                 <div className="text-4xl mb-2">{benefit.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-1">{benefit.title}</h3>
-                <p className="text-sm text-gray-600">{benefit.desc}</p>
+                <h3 className="font-bold text-white mb-1">{benefit.title}</h3>
+                <p className="text-sm text-gray-400">{benefit.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -92,9 +92,9 @@ export default function ConsultationSection() {
           </motion.div>
 
           {/* Fine print */}
-          <div className="mt-6 inline-block bg-gradient-to-r from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-lg px-6 py-3">
-            <p className="text-base text-gray-800 font-semibold">
-              💎 Купувачите на книгата получават <span className="text-cyan-600">50+ безплатни консултации</span>
+          <div className="mt-6 inline-block bg-white/5 border-2 border-cyan/30 rounded-lg px-6 py-3">
+            <p className="text-base text-white font-semibold">
+              💎 Купувачите на книгата получават <span className="text-cyan">50+ безплатни консултации</span>
             </p>
           </div>
         </motion.div>
