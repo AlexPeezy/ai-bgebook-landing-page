@@ -162,12 +162,12 @@ export default function Pricing() {
 
           {/* Book image - larger size with white background removed */}
           <Image
-            src="/ebook-cover.png"
+            src="/ebook-cover.webp"
             alt="AI Ebook Cover"
             width={400}
             height={600}
             sizes="(max-width: 768px) 280px, 350px"
-            quality={85}
+            quality={90}
             className="relative z-10 max-w-[280px] md:max-w-[350px]"
             style={{
               boxShadow: '0 0 30px rgba(34, 197, 230, 0.25), 0 0 60px rgba(59, 130, 246, 0.15)',

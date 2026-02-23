@@ -26,62 +26,63 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-48px)] flex items-center justify-center bg-gradient-to-br from-navy-darker via-navy-dark to-navy overflow-hidden">
-      {/* Glowing background effects - REPOSITIONED to safe zones */}
+      {/* Glowing background effects - desktop only (heavy blur/GPU cost on mobile) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large glowing horizon arc - REPOSITIONED to bottom-left corner */}
-        <div
-          className="absolute left-[-20%] bottom-[-60%] w-[120vw] h-[80vh] rounded-[50%]"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.4) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%)',
-            filter: 'blur(100px)',
-          }}
-        />
-        {/* Brighter inner arc - bottom-left */}
-        <div
-          className="absolute left-[-15%] bottom-[-50%] w-[100vw] h-[60vh] rounded-[50%]"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.5) 0%, rgba(59, 130, 246, 0.3) 30%, transparent 60%)',
-            filter: 'blur(60px)',
-          }}
-        />
-        {/* Sharp glowing edge - bottom-left accent */}
-        <div
-          className="absolute left-[-10%] bottom-[-40%] w-[80vw] h-[50vh] rounded-[50%]"
-          style={{
-            background: 'transparent',
-            boxShadow: '0 0 80px 20px rgba(6, 182, 212, 0.5), 0 0 120px 40px rgba(59, 130, 246, 0.3)',
-          }}
-        />
+        {!isMobile && (
+          <>
+            {/* Large glowing horizon arc - bottom-left corner */}
+            <div
+              className="absolute left-[-20%] bottom-[-60%] w-[120vw] h-[80vh] rounded-[50%]"
+              style={{
+                background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.4) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%)',
+                filter: 'blur(100px)',
+              }}
+            />
+            {/* Brighter inner arc - bottom-left */}
+            <div
+              className="absolute left-[-15%] bottom-[-50%] w-[100vw] h-[60vh] rounded-[50%]"
+              style={{
+                background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.5) 0%, rgba(59, 130, 246, 0.3) 30%, transparent 60%)',
+                filter: 'blur(60px)',
+              }}
+            />
+            {/* Sharp glowing edge - bottom-left accent */}
+            <div
+              className="absolute left-[-10%] bottom-[-40%] w-[80vw] h-[50vh] rounded-[50%]"
+              style={{
+                background: 'transparent',
+                boxShadow: '0 0 80px 20px rgba(6, 182, 212, 0.5), 0 0 120px 40px rgba(59, 130, 246, 0.3)',
+              }}
+            />
+            {/* Floating orb - top-left corner */}
+            <div
+              className="absolute top-[2%] left-[2%] w-[200px] h-[200px] rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
+                filter: 'blur(50px)',
+              }}
+            />
+            {/* Floating orb - top-right corner */}
+            <div
+              className="absolute top-[2%] right-[2%] w-[220px] h-[220px] rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, transparent 70%)',
+                filter: 'blur(60px)',
+              }}
+            />
+            {/* Subtle diagonal accent - bottom-right */}
+            <div
+              className="absolute bottom-[15%] right-[-5%] w-[400px] h-[1px] rotate-[-25deg]"
+              style={{
+                background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent)',
+                filter: 'blur(1px)',
+                boxShadow: '0 0 10px rgba(6, 182, 212, 0.3)',
+              }}
+            />
+          </>
+        )}
 
-        {/* Floating orb - top-left corner (safe zone) */}
-        <div
-          className="absolute top-[2%] left-[2%] w-[200px] h-[200px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
-            filter: 'blur(50px)',
-          }}
-        />
-
-        {/* Floating orb - top-right corner (safe zone) */}
-        <div
-          className="absolute top-[2%] right-[2%] w-[220px] h-[220px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-          }}
-        />
-
-        {/* Subtle diagonal accent - bottom-right safe zone */}
-        <div
-          className="absolute bottom-[15%] right-[-5%] w-[400px] h-[1px] rotate-[-25deg]"
-          style={{
-            background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent)',
-            filter: 'blur(1px)',
-            boxShadow: '0 0 10px rgba(6, 182, 212, 0.3)',
-          }}
-        />
-
-        {/* Dot grid pattern */}
+        {/* Dot grid pattern - cheap, keep on all devices */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -191,13 +192,14 @@ export default function Hero() {
                     className="absolute -inset-4 bg-gradient-to-tr from-blue/20 via-cyan/30 to-blue/20 rounded-xl blur-xl"
                   />
                   <Image
-                    src="/ebook-cover.png"
+                    src="/ebook-cover.webp"
                     alt="Как да превърнеш AI в реален доход - Book Cover"
                     width={240}
                     height={360}
                     priority
+                    fetchPriority="high"
                     sizes="240px"
-                    quality={85}
+                    quality={90}
                     className="relative z-10 rounded-lg border border-cyan/20 shadow-lg"
                   />
                 </div>
