@@ -203,10 +203,10 @@ export default function Hero() {
 
               {/* Pricing - clean display */}
               <div className="mb-4 text-center">
-                <div className="flex items-end justify-center gap-2 mb-2">
+                <div className="flex items-center justify-center gap-2 mb-2">
                   <span className="text-4xl font-bold text-white">€15</span>
-                  <span className="text-xl text-gray-500 line-through mb-1">€30</span>
-                  <span className="mb-1 bg-red-500/20 text-red-400 text-xs font-bold px-2 py-0.5 rounded-full">-50%</span>
+                  <span className="text-xl text-gray-500 line-through">€30</span>
+                  <span className="bg-red-500/20 text-red-400 text-xs font-bold px-2 py-0.5 rounded-full">-50%</span>
                 </div>
                 <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
                   Еднократно плащане • Без абонамент
