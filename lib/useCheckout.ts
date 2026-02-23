@@ -11,7 +11,6 @@ export function useCheckout() {
     setLoading(true);
     setError(null);
     trackLead();
-    trackInitiateCheckout();
 
     try {
       const response = await fetch('/api/create-checkout', {
@@ -27,6 +26,9 @@ export function useCheckout() {
       if (!response.ok) {
         throw new Error(data.error || 'Грешка при създаване на поръчката');
       }
+
+      // Fire InitiateCheckout with matching eventId so CAPI deduplicates correctly
+      trackInitiateCheckout(data.sessionId);
 
       // Redirect to Stripe checkout
       if (data.url) {
