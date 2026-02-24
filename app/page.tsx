@@ -35,10 +35,10 @@ export default function Home() {
       <StickyMobileCTA />
       <Header />
       <Hero />
+      <Testimonials />
       <ConsultationSection />
       <Showcase />
       <Comparison />
-      <Testimonials />
       <Pricing />
       <FAQ />
       <Footer />

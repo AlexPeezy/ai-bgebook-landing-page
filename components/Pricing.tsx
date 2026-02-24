@@ -28,11 +28,11 @@ const pricingPlan = {
   badge: 'ОГРАНИЧЕНА ОФЕРТА',
   badgeColor: 'bg-gradient-to-r from-cyan to-blue',
   price: '15',
-  originalPrice: '',
-  discount: '',
+  originalPrice: '30',
+  discount: '€15 (50%)',
   features: features,
   cta: 'Купи Early Bird',
-  spots: 53,
+  spots: 14,
   description: 'Специална цена за първите купувачи',
 };
 
@@ -155,12 +155,12 @@ export default function Pricing() {
 
           {/* Book image - larger size with white background removed */}
           <Image
-            src="/ebook-cover.png"
+            src="/ebook-cover.webp"
             alt="AI Ebook Cover"
             width={400}
             height={600}
             sizes="(max-width: 768px) 280px, 350px"
-            quality={85}
+            quality={90}
             className="relative z-10 max-w-[280px] md:max-w-[350px]"
             style={{
               boxShadow: '0 0 30px rgba(34, 197, 230, 0.25), 0 0 60px rgba(59, 130, 246, 0.15)',
@@ -212,12 +212,12 @@ export default function Pricing() {
               </div>
               <div className="text-right">
                 <div className="text-cyan text-xs font-semibold">
-                  Останаха
+                  Останаха само
                 </div>
                 <div className="text-white text-2xl font-bold">
                   {pricingPlan.spots}
                 </div>
-                <div className="text-gray-400 text-xs">копия</div>
+                <div className="text-gray-400 text-xs">на тази цена</div>
               </div>
             </div>
 

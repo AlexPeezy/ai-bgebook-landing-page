@@ -61,13 +61,13 @@ export function trackAddToCart() {
 }
 
 // User submitted email and is heading to Stripe
-export function trackInitiateCheckout() {
+export function trackInitiateCheckout(eventID?: string) {
   fbq('InitiateCheckout', {
     content_name: 'AI Ebook',
     content_type: 'product',
     currency: 'EUR',
     value: 15,
-  });
+  }, eventID);
 }
 
 // User submitted their email (useful for Lead campaigns)
