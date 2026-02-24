@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from './Section';
 import Card from './Card';
 import Button from './Button';
-import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 import { useIsMobile } from '@/lib/useIsMobile';
@@ -40,16 +38,11 @@ const pricingPlan = {
 
 export default function Pricing() {
   const { initiateCheckout, loading, error } = useCheckout();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const handleBuyEarlyBird = () => {
     trackAddToCart();
-    setIsModalOpen(true);
-  };
-
-  const handleEmailSubmit = (email: string) => {
-    initiateCheckout('early_bird', email);
+    initiateCheckout('early_bird');
   };
 
   return (
@@ -396,13 +389,6 @@ export default function Pricing() {
         </motion.div>
       </div>
 
-      {/* Email capture modal */}
-      <EmailCaptureModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleEmailSubmit}
-        isLoading={loading}
-      />
     </Section>
   );
 }

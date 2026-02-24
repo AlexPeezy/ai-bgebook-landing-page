@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
         priceType,
         displayPrice,
       },
-      billing_address_collection: 'required',
+      billing_address_collection: 'auto',
       locale: 'bg',
     });
 

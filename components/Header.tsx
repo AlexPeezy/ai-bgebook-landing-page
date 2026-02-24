@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from './Button';
-import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { useCountdown } from '@/lib/useCountdown';
 import { trackAddToCart } from '@/lib/meta-pixel';
@@ -18,7 +17,6 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const lastScrollY = useRef(0);
   const { initiateCheckout, loading } = useCheckout();
   const countdown = useCountdown();
@@ -51,12 +49,8 @@ export default function Header() {
 
   const handleBuyClick = () => {
     trackAddToCart();
-    setIsModalOpen(true);
+    initiateCheckout('early_bird');
     setIsMobileMenuOpen(false);
-  };
-
-  const handleEmailSubmit = (email: string) => {
-    initiateCheckout('early_bird', email);
   };
 
   const handleNavClick = (href: string) => {
@@ -208,13 +202,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Email capture modal */}
-      <EmailCaptureModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleEmailSubmit}
-        isLoading={loading}
-      />
     </>
   );
 }

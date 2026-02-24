@@ -3,13 +3,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from './Button';
-import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 
 export default function StickyMobileCTA() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { initiateCheckout, loading } = useCheckout();
 
   useEffect(() => {
@@ -21,11 +19,7 @@ export default function StickyMobileCTA() {
 
   const handleClick = () => {
     trackAddToCart();
-    setIsModalOpen(true);
-  };
-
-  const handleEmailSubmit = (email: string) => {
-    initiateCheckout('early_bird', email);
+    initiateCheckout('early_bird');
   };
 
   return (
@@ -54,12 +48,6 @@ export default function StickyMobileCTA() {
         )}
       </AnimatePresence>
 
-      <EmailCaptureModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleEmailSubmit}
-        isLoading={loading}
-      />
     </>
   );
 }

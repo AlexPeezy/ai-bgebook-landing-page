@@ -1,27 +1,20 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import AnimatedText from './AnimatedText';
 import Button from './Button';
-import EmailCaptureModal from './EmailCaptureModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 import { useIsMobile } from '@/lib/useIsMobile';
 
 export default function Hero() {
   const { initiateCheckout, loading, error } = useCheckout();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const handleBuyNow = () => {
     trackAddToCart();
-    setIsModalOpen(true);
-  };
-
-  const handleEmailSubmit = (email: string) => {
-    initiateCheckout('early_bird', email);
+    initiateCheckout('early_bird');
   };
 
   return (
@@ -276,13 +269,6 @@ export default function Hero() {
       {/* Bottom gradient fade - FIXED for dark-to-light transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-navy-dark/50 to-white pointer-events-none z-10" />
 
-      {/* Email capture modal */}
-      <EmailCaptureModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleEmailSubmit}
-        isLoading={loading}
-      />
     </section>
   );
 }
