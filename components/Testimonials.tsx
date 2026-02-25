@@ -229,7 +229,7 @@ export default function Testimonials() {
           </span>
         </h2>
         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-          Присъедини се към стотици предприемачи, които вече печелят с AI
+          Какво споделят хора, които използват AI в работата си
         </p>
       </motion.div>
 
@@ -239,14 +239,14 @@ export default function Testimonials() {
         ))}
       </div>
 
-      {/* Disclaimer */}
+      {/* Legal disclaimer — illustrative testimonials */}
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="text-center text-xs text-gray-400 mt-8 max-w-2xl mx-auto"
+        className="text-left text-[11px] text-gray-500 italic mt-8 max-w-4xl mx-auto"
       >
-        * Отзивите представят типични резултати на наши клиенти. Индивидуалните резултати може да варират в зависимост от усилията и приложението на наученото.
+        * Отзивите са илюстративни и представят типичния опит на потребители. Индивидуалните резултати може да варират.
       </motion.p>
     </Section>
   );

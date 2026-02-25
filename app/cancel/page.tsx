@@ -58,11 +58,11 @@ export default function CancelPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-cyan">✓</span>
-                    <span>Проверено от 500+ доволни клиенти</span>
+                    <span>Практическо съдържание с реални примери</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-cyan">✓</span>
-                    <span>Early Bird цената още е достъпна!</span>
+                    <span>Ексклузивен достъп до 15 март 2026</span>
                   </li>
                 </ul>
               </div>

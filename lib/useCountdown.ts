@@ -9,33 +9,8 @@ interface CountdownResult {
   formatted: string;
 }
 
-const STORAGE_KEY = 'earlyBirdDeadline';
-const DURATION_DAYS = 3;
-
-function getOrCreateDeadline(): Date {
-  if (typeof window === 'undefined') {
-    // SSR fallback
-    const d = new Date();
-    d.setDate(d.getDate() + DURATION_DAYS);
-    d.setHours(23, 59, 59, 999);
-    return d;
-  }
-
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    const storedDate = new Date(stored);
-    if (storedDate > new Date()) {
-      return storedDate;
-    }
-  }
-
-  // Expired or not set — create a new rolling deadline
-  const deadline = new Date();
-  deadline.setDate(deadline.getDate() + DURATION_DAYS);
-  deadline.setHours(23, 59, 59, 999);
-  localStorage.setItem(STORAGE_KEY, deadline.toISOString());
-  return deadline;
-}
+// Real early bird deadline — do NOT reset or extend this
+const EARLY_BIRD_DEADLINE = new Date('2026-03-15T23:59:59+02:00');
 
 export function useCountdown(): CountdownResult {
   const [timeLeft, setTimeLeft] = useState<CountdownResult>({
@@ -48,17 +23,11 @@ export function useCountdown(): CountdownResult {
   });
 
   useEffect(() => {
-    let deadline = getOrCreateDeadline();
-
     const calculateTimeLeft = (): CountdownResult => {
-      const now = new Date().getTime();
-      const distance = deadline.getTime() - now;
+      const distance = EARLY_BIRD_DEADLINE.getTime() - new Date().getTime();
 
-      if (distance < 0) {
-        // Auto-renew: set a new deadline and keep counting
-        deadline = getOrCreateDeadline();
-        const newDistance = deadline.getTime() - new Date().getTime();
-        return buildResult(newDistance);
+      if (distance <= 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true, formatted: '' };
       }
 
       return buildResult(distance);

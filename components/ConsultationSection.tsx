@@ -94,8 +94,9 @@ export default function ConsultationSection() {
           {/* Fine print */}
           <div className="mt-6 inline-block bg-white/5 border-2 border-cyan/30 rounded-lg px-6 py-3">
             <p className="text-base text-white font-semibold">
-              💎 Купувачите на книгата получават <span className="text-cyan">50+ безплатни консултации</span>
+              💎 Купувачите на книгата получават <span className="text-cyan">10 безплатни AI консултации</span> (24-часов отговор)
             </p>
+            <p className="text-sm text-gray-400 mt-1">Всички потребители: 3 безплатни въпроса</p>
           </div>
         </motion.div>
       </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from './Button';
+import WithdrawalModal from './WithdrawalModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { useCountdown } from '@/lib/useCountdown';
 import { trackAddToCart } from '@/lib/meta-pixel';
@@ -16,6 +17,7 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isWithdrawalOpen, setIsWithdrawalOpen] = useState(false);
   const lastScrollY = useRef(0);
   const { initiateCheckout, loading } = useCheckout();
   const countdown = useCountdown();
@@ -33,8 +35,13 @@ export default function Header() {
 
   const handleBuyClick = () => {
     trackAddToCart();
-    initiateCheckout('early_bird');
     setIsMobileMenuOpen(false);
+    setIsWithdrawalOpen(true);
+  };
+
+  const handleWithdrawalConfirm = () => {
+    setIsWithdrawalOpen(false);
+    initiateCheckout('early_bird');
   };
 
   const handleNavClick = (href: string) => {
@@ -183,6 +190,13 @@ export default function Header() {
           </AnimatePresence>
         </div>
       </header>
+
+      {/* Withdrawal consent modal */}
+      <WithdrawalModal
+        isOpen={isWithdrawalOpen}
+        onClose={() => setIsWithdrawalOpen(false)}
+        onConfirm={handleWithdrawalConfirm}
+      />
 
     </>
   );

@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from './Section';
 import Card from './Card';
 import Button from './Button';
+import WithdrawalModal from './WithdrawalModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 import { useIsMobile } from '@/lib/useIsMobile';
@@ -18,30 +20,32 @@ const features = [
   'Как да създадеш първата си оферта с AI',
   '7 грешки, които да избегнеш от старта',
   'Написана изцяло за българския пазар',
-  '50+ безплатни AI консултации (24-часов отговор)',
+  '10 безплатни AI консултации (24-часов отговор)',
   'Моментално получаване (PDF)',
   'Достъп от всички устройства',
 ];
 
 const pricingPlan = {
-  name: 'Early Bird',
-  badge: 'ОГРАНИЧЕНА ОФЕРТА',
+  name: 'Ексклузивен достъп',
+  badge: 'ЕКСКЛУЗИВЕН ДОСТЪП',
   badgeColor: 'bg-gradient-to-r from-cyan to-blue',
   price: '15',
-  originalPrice: '30',
-  discount: '€15 (50%)',
-  features: features,
-  cta: 'Купи Early Bird',
-  spots: 14,
-  description: 'Специална цена за първите купувачи',
+  description: 'Ексклузивен достъп до 15 март 2026',
+  cta: 'Купи сега',
 };
 
 export default function Pricing() {
   const { initiateCheckout, loading, error } = useCheckout();
+  const [isWithdrawalOpen, setIsWithdrawalOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const handleBuyEarlyBird = () => {
     trackAddToCart();
+    setIsWithdrawalOpen(true);
+  };
+
+  const handleWithdrawalConfirm = () => {
+    setIsWithdrawalOpen(false);
     initiateCheckout('early_bird');
   };
 
@@ -153,7 +157,7 @@ export default function Pricing() {
             </motion.div>
           )}
 
-          {/* Book image - larger size with white background removed */}
+          {/* Book image */}
           <Image
             src="/ebook-cover.webp"
             alt="AI Ebook Cover"
@@ -208,27 +212,18 @@ export default function Pricing() {
                 <h3 className="text-2xl font-bold text-white mb-2 font-heading">
                   {pricingPlan.name}
                 </h3>
-                <p className="text-gray-400 text-sm">{pricingPlan.description}</p>
-              </div>
-              <div className="text-right">
-                <div className="text-cyan text-xs font-semibold">
-                  Останаха само
-                </div>
-                <div className="text-white text-2xl font-bold">
-                  {pricingPlan.spots}
-                </div>
-                <div className="text-gray-400 text-xs">на тази цена</div>
+                <p className="text-cyan text-sm font-medium">{pricingPlan.description}</p>
               </div>
             </div>
 
-            {/* Pricing with emphasis animation */}
+            {/* Pricing */}
             <div className="mb-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex items-end gap-2 mb-2"
+                className="mb-1"
               >
                 {/* Main price with glow */}
                 <motion.span
@@ -248,43 +243,13 @@ export default function Pricing() {
                 >
                   €{pricingPlan.price}
                 </motion.span>
-
-                {/* Original price with fade-in */}
-                {pricingPlan.originalPrice && (
-                <motion.span
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="text-2xl text-gray-500 line-through mb-2"
-                >
-                  €{pricingPlan.originalPrice}
-                </motion.span>
-                )}
               </motion.div>
-
-              {/* Discount badge with bounce */}
-              {pricingPlan.discount && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: 0.6,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 15,
-                }}
-                className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full"
-              >
-                Спестяваш {pricingPlan.discount}
-              </motion.div>
-              )}
+              <p className="text-xs text-gray-500 mt-1">вкл. ДДС 20%</p>
             </div>
 
             {/* Features with staggered reveal */}
             <div className="space-y-3 mb-8">
-              {pricingPlan.features.map((feature, idx) => (
+              {features.map((feature, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
@@ -388,6 +353,13 @@ export default function Pricing() {
           </Card>
         </motion.div>
       </div>
+
+      {/* Withdrawal consent modal */}
+      <WithdrawalModal
+        isOpen={isWithdrawalOpen}
+        onClose={() => setIsWithdrawalOpen(false)}
+        onConfirm={handleWithdrawalConfirm}
+      />
 
     </Section>
   );

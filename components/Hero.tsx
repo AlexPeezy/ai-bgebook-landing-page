@@ -1,19 +1,27 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import AnimatedText from './AnimatedText';
 import Button from './Button';
+import WithdrawalModal from './WithdrawalModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 import { useIsMobile } from '@/lib/useIsMobile';
 
 export default function Hero() {
   const { initiateCheckout, loading, error } = useCheckout();
+  const [isWithdrawalOpen, setIsWithdrawalOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const handleBuyNow = () => {
     trackAddToCart();
+    setIsWithdrawalOpen(true);
+  };
+
+  const handleWithdrawalConfirm = () => {
+    setIsWithdrawalOpen(false);
     initiateCheckout('early_bird');
   };
 
@@ -117,7 +125,7 @@ export default function Hero() {
                 '7 реални начина да печелиш с AI без програмиране',
                 'Готов 30-дневен план за първите ти приходи',
                 'Стратегии, създадени специално за българския пазар',
-                '50+ безплатни AI консултации (24-часов отговор)',
+                '10 безплатни AI консултации за купувачи (24-часов отговор)',
                 'Безплатни актуализации',
                 'Моментален достъп (PDF)',
               ].map((benefit, index) => (
@@ -146,17 +154,16 @@ export default function Hero() {
               className="flex items-center gap-6 text-sm text-gray-300"
             >
               <div className="flex items-center gap-2">
-                <div className="flex items-center">
-                  <span className="text-yellow-400">★★★★</span>
-                  <span className="text-yellow-400/50">★</span>
-                </div>
-                <span>4.5/5 (127 отзива)</span>
-              </div>
-              <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>Моментално получаване</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>Сигурно плащане</span>
               </div>
             </motion.div>
           </div>
@@ -200,11 +207,11 @@ export default function Hero() {
 
               {/* Pricing - clean display */}
               <div className="mb-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="flex items-center justify-center gap-2 mb-1">
                   <span className="text-4xl font-bold text-white">€15</span>
-                  <span className="text-xl text-gray-500 line-through">€30</span>
-                  <span className="bg-red-500/20 text-red-400 text-xs font-bold px-2 py-0.5 rounded-full">-50%</span>
+                  <span className="bg-cyan/20 text-cyan text-xs font-bold px-2 py-0.5 rounded-full">ЕКСКЛУЗИВЕН ДОСТЪП</span>
                 </div>
+                <p className="text-xs text-gray-500 mb-2">вкл. ДДС 20%</p>
                 <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
                   Еднократно плащане • Без абонамент
                 </div>
@@ -261,6 +268,13 @@ export default function Hero() {
 
       {/* Bottom gradient fade - FIXED for dark-to-light transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-navy-dark/50 to-white pointer-events-none z-10" />
+
+      {/* Withdrawal consent modal */}
+      <WithdrawalModal
+        isOpen={isWithdrawalOpen}
+        onClose={() => setIsWithdrawalOpen(false)}
+        onConfirm={handleWithdrawalConfirm}
+      />
 
     </section>
   );
