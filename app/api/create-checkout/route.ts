@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
       },
       billing_address_collection: 'auto',
       locale: 'bg',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     // Fire Meta CAPI (fire-and-forget)
