@@ -27,7 +27,7 @@ export async function sendPurchaseConfirmation({
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to,
-      subject: 'Вашета съдържание е готово за изтегляне! 📚',
+      subject: 'Вашето съдържание е готово за изтегляне! 📚',
       html: getPurchaseEmailTemplate(downloadUrl, orderAmount, bonusUrl),
     });
 
