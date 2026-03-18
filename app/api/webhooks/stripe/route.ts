@@ -51,7 +51,6 @@ export async function POST(request: NextRequest) {
 async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   console.log('Processing checkout.session.completed:', session.id);
 
-  // Idempotency check - don't process same session twice
   if (await orderExists(session.id)) {
     console.log('Order already exists for session:', session.id);
     return;
@@ -63,40 +62,49 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     return;
   }
 
-  // Create order in database
+  const includesBonus = session.metadata?.includes_bonus === 'true';
+
   const order = await createOrder({
     email: customerEmail,
     stripeSessionId: session.id,
     amountCents: session.amount_total || 0,
     currency: session.currency || 'eur',
+    includesBonus,
   });
 
   if (!order) {
     throw new Error('Failed to create order');
   }
 
-  // Generate download token
-  const downloadToken = await createDownloadToken(order.id);
-  if (!downloadToken) {
-    throw new Error('Failed to create download token');
+  // Always create the ebook download token
+  const ebookToken = await createDownloadToken(order.id, 'ebook');
+  if (!ebookToken) {
+    throw new Error('Failed to create ebook download token');
   }
 
-  // Format amount for email
+  // Create bonus token if order includes bonus
+  let bonusToken: string | null = null;
+  if (includesBonus) {
+    bonusToken = await createDownloadToken(order.id, 'bonus');
+    if (!bonusToken) {
+      console.error('Failed to create bonus download token — order still valid');
+      // Don't throw: ebook token exists, order is valid. Bonus can be retried manually.
+    }
+  }
+
   const amount = formatAmount(session.amount_total || 0, session.currency || 'eur');
 
-  // Send purchase confirmation email
   const emailSent = await sendPurchaseConfirmation({
     to: customerEmail,
-    downloadToken,
+    downloadToken: ebookToken,
+    bonusDownloadToken: bonusToken ?? undefined,
     orderAmount: amount,
   });
 
   if (!emailSent) {
     console.error('Failed to send confirmation email to:', customerEmail);
-    // Don't throw - order is created, email can be resent manually
   }
 
-  // Send Purchase event to Meta CAPI (fire-and-forget)
   sendCAPIEvent({
     eventName: 'Purchase',
     email: customerEmail,
