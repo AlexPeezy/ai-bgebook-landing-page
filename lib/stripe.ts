@@ -1,4 +1,6 @@
 import Stripe from 'stripe';
+export type { CheckoutType } from '@/lib/bonus';
+export { isBonusFree } from '@/lib/bonus';
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('STRIPE_SECRET_KEY is not set');
@@ -11,8 +13,10 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export const STRIPE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
 
-// Product prices in cents (€15 = 1500 cents)
+// All prices in cents
 export const PRICES = {
-  EARLY_BIRD: 1500, // €15
-  REGULAR: 1500, // €15
+  EBOOK: 2500,             // €25.00 — main book
+  BONUS_FREE: 0,           // €0.00  — bonus during free period
+  BONUS_ADDON: 500,        // €5.00  — bonus add-on after free period (25+5=30 bundle)
+  BONUS_STANDALONE: 1500,  // €15.00 — bonus purchased alone
 };
