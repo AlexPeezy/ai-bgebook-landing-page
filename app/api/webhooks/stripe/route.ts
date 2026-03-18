@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
 async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   console.log('Processing checkout.session.completed:', session.id);
 
+  // Idempotency check - don't process same session twice
   if (await orderExists(session.id)) {
     console.log('Order already exists for session:', session.id);
     return;
@@ -64,6 +65,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   const includesBonus = session.metadata?.includes_bonus === 'true';
 
+  // Create order in database
   const order = await createOrder({
     email: customerEmail,
     stripeSessionId: session.id,
@@ -103,8 +105,10 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   if (!emailSent) {
     console.error('Failed to send confirmation email to:', customerEmail);
+    // Don't throw - order is created, email can be resent manually
   }
 
+  // Send Purchase event to Meta CAPI (fire-and-forget)
   sendCAPIEvent({
     eventName: 'Purchase',
     email: customerEmail,
