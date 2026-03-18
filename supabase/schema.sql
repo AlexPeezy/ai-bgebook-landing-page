@@ -99,3 +99,11 @@ ALTER TABLE consultations ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Service role full access on consultations"
   ON consultations FOR ALL
   USING (auth.role() = 'service_role');
+
+-- Migration: Bonus prompts upsell
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS includes_bonus BOOLEAN NOT NULL DEFAULT false;
+
+ALTER TABLE download_tokens ADD COLUMN IF NOT EXISTS token_type TEXT NOT NULL DEFAULT 'ebook'
+  CHECK (token_type IN ('ebook', 'bonus'));
+
+CREATE INDEX IF NOT EXISTS idx_download_tokens_type ON download_tokens(token_type);
