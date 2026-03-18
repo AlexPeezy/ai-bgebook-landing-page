@@ -8,6 +8,7 @@ export interface Order {
   amount_cents: number;
   currency: string;
   status: 'pending' | 'completed';
+  includes_bonus: boolean;
   created_at: string;
 }
 
@@ -15,6 +16,7 @@ export interface DownloadToken {
   id: string;
   order_id: string;
   token: string;
+  token_type: 'ebook' | 'bonus';
   download_count: number;
   max_downloads: number;
   expires_at: string;
@@ -51,6 +53,7 @@ export async function createOrder(data: {
   stripeSessionId: string;
   amountCents: number;
   currency: string;
+  includesBonus?: boolean;
 }): Promise<Order | null> {
   const { data: order, error } = await supabaseAdmin
     .from('orders')
@@ -60,6 +63,7 @@ export async function createOrder(data: {
       amount_cents: data.amountCents,
       currency: data.currency,
       status: 'completed',
+      includes_bonus: data.includesBonus ?? false,
     })
     .select()
     .single();
@@ -73,16 +77,20 @@ export async function createOrder(data: {
 }
 
 // Create download token for an order
-export async function createDownloadToken(orderId: string): Promise<string | null> {
+export async function createDownloadToken(
+  orderId: string,
+  tokenType: 'ebook' | 'bonus' = 'ebook'
+): Promise<string | null> {
   const token = generateSecureToken();
   const expiresAt = new Date();
-  expiresAt.setHours(expiresAt.getHours() + 72); // 72 hour expiry
+  expiresAt.setHours(expiresAt.getHours() + 72);
 
   const { error } = await supabaseAdmin
     .from('download_tokens')
     .insert({
       order_id: orderId,
       token,
+      token_type: tokenType,
       max_downloads: 5,
       expires_at: expiresAt.toISOString(),
     });
@@ -99,6 +107,7 @@ export async function createDownloadToken(orderId: string): Promise<string | nul
 export async function validateDownloadToken(token: string): Promise<{
   valid: boolean;
   orderId?: string;
+  tokenType?: 'ebook' | 'bonus';
   error?: string;
 }> {
   const { data, error } = await supabaseAdmin
@@ -119,13 +128,12 @@ export async function validateDownloadToken(token: string): Promise<{
     return { valid: false, error: 'Download limit reached' };
   }
 
-  // Increment download count
   await supabaseAdmin
     .from('download_tokens')
     .update({ download_count: data.download_count + 1 })
     .eq('id', data.id);
 
-  return { valid: true, orderId: data.order_id };
+  return { valid: true, orderId: data.order_id, tokenType: data.token_type ?? 'ebook' };
 }
 
 // Check if order already exists (idempotency)
