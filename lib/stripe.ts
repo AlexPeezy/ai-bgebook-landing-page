@@ -1,6 +1,5 @@
 import Stripe from 'stripe';
 export type { CheckoutType } from '@/lib/bonus';
-export { isBonusFree } from '@/lib/bonus';
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('STRIPE_SECRET_KEY is not set');
