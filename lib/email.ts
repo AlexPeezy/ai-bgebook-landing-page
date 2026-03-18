@@ -8,22 +8,27 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 interface SendPurchaseEmailParams {
   to: string;
   downloadToken: string;
+  bonusDownloadToken?: string;
   orderAmount: string;
 }
 
 export async function sendPurchaseConfirmation({
   to,
   downloadToken,
+  bonusDownloadToken,
   orderAmount,
 }: SendPurchaseEmailParams): Promise<boolean> {
   const downloadUrl = `${BASE_URL}/api/download?token=${downloadToken}`;
+  const bonusUrl = bonusDownloadToken
+    ? `${BASE_URL}/api/download?token=${bonusDownloadToken}`
+    : null;
 
   try {
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to,
-      subject: 'Вашата книга е готова за изтегляне! 📚',
-      html: getPurchaseEmailTemplate(downloadUrl, orderAmount),
+      subject: 'Вашета съдържание е готово за изтегляне! 📚',
+      html: getPurchaseEmailTemplate(downloadUrl, orderAmount, bonusUrl),
     });
 
     if (error) {
@@ -38,7 +43,11 @@ export async function sendPurchaseConfirmation({
   }
 }
 
-function getPurchaseEmailTemplate(downloadUrl: string, amount: string): string {
+function getPurchaseEmailTemplate(
+  downloadUrl: string,
+  amount: string,
+  bonusUrl: string | null
+): string {
   return `
 <!DOCTYPE html>
 <html>
@@ -92,6 +101,22 @@ function getPurchaseEmailTemplate(downloadUrl: string, amount: string): string {
                 </tr>
               </table>
 
+              ${bonusUrl ? `
+              <!-- Bonus Download Button -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin: 16px 0;">
+                <tr>
+                  <td align="center">
+                    <a href="${bonusUrl}" style="display: inline-block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 14px 36px; border-radius: 8px; font-size: 16px; font-weight: bold;">
+                      🎁 Изтегли Бонус: 10 Промпта за Напреднали
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="color: #6b7280; font-size: 14px; text-align: center; margin: 0 0 20px 0;">
+                Безплатен бонус към твоята поръчка
+              </p>
+              ` : ''}
+
               <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin: 20px 0;">
                 <strong>Важно:</strong> Линкът за изтегляне е валиден 72 часа и може да бъде използван до 5 пъти.
               </p>
@@ -100,8 +125,9 @@ function getPurchaseEmailTemplate(downloadUrl: string, amount: string): string {
               <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
                 <h3 style="color: #065f46; margin: 0 0 10px 0; font-size: 16px;">Какво следва?</h3>
                 <ul style="color: #374151; font-size: 14px; margin: 0; padding-left: 20px; line-height: 1.8;">
-                  <li>Изтегли PDF файла</li>
-                  <li>Запази го на удобно място</li>
+                  <li>Изтегли PDF файла на книгата</li>
+                  ${bonusUrl ? '<li>Изтегли бонус PDF — 10 Промпта за Напреднали</li>' : ''}
+                  <li>Запази ги на удобно място</li>
                   <li>Започни да учиш и прилагай веднага!</li>
                 </ul>
               </div>
