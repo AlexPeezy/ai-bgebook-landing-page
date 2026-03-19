@@ -16,6 +16,7 @@ interface SessionData {
   amountPaid?: number;
   currency?: string;
   sessionId?: string;
+  includesBonus?: boolean;
   error?: string;
 }
 
@@ -256,12 +257,12 @@ function SuccessContent() {
           </Card>
         </motion.div>
 
-        {/* Direct download button */}
+        {/* Direct download buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="mb-8"
+          className="mb-4"
         >
           <Card glass className="border-2 border-cyan/30 bg-cyan/5">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -269,10 +270,10 @@ function SuccessContent() {
                 <div className="text-3xl">📥</div>
                 <div className="text-left">
                   <h3 className="text-lg font-semibold text-white">
-                    Директно изтегляне
+                    Изтегли книгата
                   </h3>
                   <p className="text-sm text-gray-400">
-                    Не чакай имейла - изтегли веднага
+                    Не чакай имейла — изтегли веднага
                   </p>
                 </div>
               </div>
@@ -285,10 +286,40 @@ function SuccessContent() {
           </Card>
         </motion.div>
 
+        {sessionData.includesBonus && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="mb-8"
+          >
+            <Card glass className="border-2 border-green-500/30 bg-green-500/5">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl">🎁</div>
+                  <div className="text-left">
+                    <h3 className="text-lg font-semibold text-white">
+                      БОНУС: 30 Промпта за Напреднали
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      Твоят безплатен бонус PDF
+                    </p>
+                  </div>
+                </div>
+                <a href={`/api/download?session_id=${sessionId}&type=bonus`}>
+                  <Button size="lg" variant="outline">
+                    Изтегли Бонус PDF
+                  </Button>
+                </a>
+              </div>
+            </Card>
+          </motion.div>
+        )}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link href="/">
