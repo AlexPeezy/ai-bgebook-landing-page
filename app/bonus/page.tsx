@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Button from '@/components/Button';
 import { useCheckout } from '@/lib/useCheckout';
 import { isBonusFree } from '@/lib/bonus';
@@ -71,12 +72,12 @@ export default function BonusPage() {
               <p className="text-green-400 text-sm font-semibold">
                 🎁 Получи тези промпта БЕЗПЛАТНО когато купиш книгата!
               </p>
-              <a
+              <Link
                 href="/#pricing"
                 className="inline-block mt-2 text-cyan text-sm underline hover:text-white transition-colors"
               >
                 Виж офертата за книгата →
-              </a>
+              </Link>
             </div>
           ) : (
             <>
