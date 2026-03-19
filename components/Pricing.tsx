@@ -5,10 +5,12 @@ import Image from 'next/image';
 import Section from './Section';
 import Card from './Card';
 import Button from './Button';
+import WithdrawalModal from './WithdrawalModal';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 import { useIsMobile } from '@/lib/useIsMobile';
 import { isBonusFree } from '@/lib/bonus';
+import { useState } from 'react';
 
 const baseFeatures = [
   '12 глави практическо съдържание',
@@ -19,7 +21,7 @@ const baseFeatures = [
   'Как да създадеш първата си оферта с AI',
   '7 грешки, които да избегнеш от старта',
   'Написана изцяло за българския пазар',
-  '50 персонализирани AI консултации (до 24 часа)',
+  '10 безплатни AI консултации за купувачи (24-часов отговор)',
   'Моментално получаване (PDF)',
   'Достъп от всички устройства',
 ];
@@ -28,15 +30,24 @@ export default function Pricing() {
   const { initiateCheckout, loading, error } = useCheckout();
   const isMobile = useIsMobile();
   const bonusFree = isBonusFree();
+  const [isWithdrawalOpen, setIsWithdrawalOpen] = useState(false);
+  const [pendingCheckoutType, setPendingCheckoutType] = useState<'ebook_with_free_bonus' | 'ebook_only' | 'ebook_with_bonus'>('ebook_only');
 
   const handleBuyNow = () => {
     trackAddToCart();
-    initiateCheckout(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
+    setPendingCheckoutType(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
+    setIsWithdrawalOpen(true);
   };
 
   const handleBuyBundle = () => {
     trackAddToCart();
-    initiateCheckout('ebook_with_bonus');
+    setPendingCheckoutType('ebook_with_bonus');
+    setIsWithdrawalOpen(true);
+  };
+
+  const handleWithdrawalConfirm = () => {
+    setIsWithdrawalOpen(false);
+    initiateCheckout(pendingCheckoutType);
   };
 
   return (
@@ -98,6 +109,7 @@ export default function Pricing() {
                   <span className="bg-green-500/20 text-green-400 text-sm font-bold px-3 py-1.5 rounded-full mb-2">+ БОНУС БЕЗПЛАТНО</span>
                 )}
               </motion.div>
+              <p className="text-gray-500 text-xs mb-1">вкл. ДДС 20%</p>
               {!bonusFree && <p className="text-gray-500 text-xs mb-2">Или €30 с бонус промптовете</p>}
             </div>
 
@@ -164,6 +176,12 @@ export default function Pricing() {
           </Card>
         </motion.div>
       </div>
+
+      <WithdrawalModal
+        isOpen={isWithdrawalOpen}
+        onClose={() => setIsWithdrawalOpen(false)}
+        onConfirm={handleWithdrawalConfirm}
+      />
     </Section>
   );
 }

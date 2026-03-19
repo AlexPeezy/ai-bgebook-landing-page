@@ -39,15 +39,36 @@ export default function TermsPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">3. Плащане и доставка</h2>
         <p className="text-gray-300 mb-4">
-          Всички плащания се обработват сигурно чрез Stripe. След успешно плащане получавате:
+          Всички плащания се обработват сигурно чрез Stripe. Цените са в евро и включват ДДС 20%. След успешно плащане получавате:
         </p>
         <ul className="list-disc list-inside text-gray-300 space-y-2">
           <li>Моментален достъп до PDF файла на книгата</li>
-          <li>Имейл с линк за изтегляне</li>
+          <li>Имейл с линк за изтегляне (валиден 72 часа, максимум 5 изтегляния)</li>
           <li>Безплатни бъдещи актуализации</li>
         </ul>
-        <p className="text-gray-500 text-sm mt-4">
-          Съгласно чл. 57, ал. 1, т. 13 от Закона за защита на потребителите, правото на отказ не се прилага за дигитално съдържание, което не се доставя на материален носител, когато изпълнението е започнало с изричното предварително съгласие на потребителя. С извършване на покупката потвърждавате съгласието си за незабавна доставка и губите правото на 14-дневен отказ. При технически проблем с достъпа, моля свържете се с нас на contact@bgpromptbook.shop в рамките на 48 часа.
+        <p className="text-gray-300 mt-4">
+          При изтичане на линка за изтегляне или технически проблем, свържете се с нас на{' '}
+          <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+            contact@bgpromptbook.shop
+          </a>{' '}
+          за нов линк.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-white mb-4">3а. Право на отказ</h2>
+        <p className="text-gray-300 mb-4">
+          Съгласно чл. 57, т. 13 от Закона за защита на потребителите (ЗЗП), потребителят има право на отказ от договора в срок от 14 дни без да посочва причина.
+        </p>
+        <p className="text-gray-300 mb-4">
+          За договори за дигитално съдържание, което не се доставя на материален носител (PDF файл), правото на отказ отпада, ако потребителят е дал изрично предварително съгласие за незабавно изпълнение и е декларирал, че знае, че с това губи правото си на отказ.
+        </p>
+        <p className="text-gray-300">
+          При покупка на книгата потвърждавате изрично тези условия чрез отметка преди плащането. Ако имате въпроси относно правото на отказ, свържете се с нас преди покупката на{' '}
+          <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+            contact@bgpromptbook.shop
+          </a>
+          .
         </p>
       </section>
 
@@ -61,7 +82,7 @@ export default function TermsPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">5. Отказ от отговорност</h2>
         <p className="text-gray-300 mb-4">
-          Наръчникът е с образователна цел и предоставя информация за AI инструменти и стратегии. Прилагането на наученото изисква индивидуални усилия, умения и адаптация към конкретния пазар. Не гарантираме конкретни финансови резултати. Доходите от прилагане на описаните стратегии зависят изцяло от индивидуалните усилия, предишен опит, пазарни условия и фактори извън нашия контрол.
+          Съдържанието на книгата е с образователна цел. Резултатите може да варират в зависимост от индивидуалните усилия и приложение. Не гарантираме конкретни финансови резултати.
         </p>
       </section>
 
@@ -72,11 +93,21 @@ export default function TermsPage() {
         </p>
       </section>
 
-      <section>
+      <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">7. Контакт</h2>
         <p className="text-gray-300">
           За въпроси относно тези условия, свържете се с нас на{' '}
           <a href="mailto:contact@bgpromptbook.shop" className="text-cyan hover:underline">
+            contact@bgpromptbook.shop
+          </a>
+        </p>
+      </section>
+
+      {/* Trader identification — legally required disclosure */}
+      <section className="border-t border-white/10 pt-6 mt-8">
+        <p className="text-xs text-gray-600">
+          Търговец: Александър Александров Поплилов · Град: София, България · Имейл:{' '}
+          <a href="mailto:contact@bgpromptbook.shop" className="hover:underline">
             contact@bgpromptbook.shop
           </a>
         </p>

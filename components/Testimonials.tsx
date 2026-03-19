@@ -131,6 +131,16 @@ export default function Testimonials() {
           <ContentPreviewCard key={index} card={card} index={index} />
         ))}
       </div>
+
+      {/* Legal disclaimer */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-left text-[11px] text-gray-500 italic mt-8 max-w-4xl mx-auto"
+      >
+        * Описанието е илюстративно. Индивидуалните резултати зависят от усилията и пазарните условия.
+      </motion.p>
     </Section>
   );
 }

@@ -81,9 +81,9 @@ export default function Comparison() {
             </div>
             {/* Content */}
             <div className="p-6 font-mono text-sm">
-              <p className="text-cyan mb-4">📋 5 AI УСЛУГИ ЗА БЪЛГАРСКИЯ ПАЗАР</p>
+              <p className="text-cyan mb-4">💰 5 РЕАЛНИ НАЧИНА ЗА AI ДОХОДИ В БЪЛГАРИЯ</p>
 
-              <p className="text-blue-400 mb-3">📊 ПАЗАРЕН ПРЕГЛЕД:</p>
+              <p className="text-blue-400 mb-3">📊 ПАЗАРНИ ДАННИ:</p>
 
               {/* Table */}
               <div className="text-xs overflow-x-auto -mx-2 px-2">
@@ -92,7 +92,7 @@ export default function Comparison() {
                     <tr className="text-gray-400 border-b border-gray-700">
                       <th className="pb-2 pr-2">Услуга</th>
                       <th className="pb-2 pr-2">Инвестиция</th>
-                      <th className="pb-2 pr-2">Пазарни ставки*</th>
+                      <th className="pb-2 pr-2">Пазарен диапазон*</th>
                       <th className="pb-2">Старт</th>
                     </tr>
                   </thead>
@@ -124,6 +124,7 @@ export default function Comparison() {
                   </tbody>
                 </table>
               </div>
+              <p className="text-gray-600 text-[10px] mt-2 italic">* Пазарни данни. Индивидуалните резултати зависят от усилията и пазарните условия.</p>
 
               <p className="text-gray-500 mt-2 text-[10px]">*Приблизителни пазарни ставки — не са гарантиран резултат от наръчника</p>
 
