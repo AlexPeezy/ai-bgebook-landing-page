@@ -10,7 +10,7 @@ interface CountdownResult {
 }
 
 // Real early bird deadline — do NOT reset or extend this
-const EARLY_BIRD_DEADLINE = new Date('2026-03-15T23:59:59+02:00');
+const EARLY_BIRD_DEADLINE = new Date('2026-03-22T15:10:00+02:00');
 
 export function useCountdown(): CountdownResult {
   const [timeLeft, setTimeLeft] = useState<CountdownResult>({

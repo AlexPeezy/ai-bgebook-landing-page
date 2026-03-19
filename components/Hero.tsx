@@ -137,10 +137,7 @@ export default function Hero() {
                 'Готов 30-дневен план за действие стъпка по стъпка',
                 'Стратегии, създадени специално за българския пазар',
                 '10 безплатни AI консултации за купувачи (24-часов отговор)',
-                'Безплатни актуализации',
-                'Моментален достъп (PDF)',
                 '12 глави от основи до практическо приложение',
-                'Написана изцяло за българския пазар',
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
@@ -239,36 +236,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Pricing display */}
-              <div className="mb-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <span className="text-4xl font-bold text-white">€25</span>
-                  {bonusFree && (
-                    <span className="bg-green-500/20 text-green-400 text-sm font-bold px-3 py-1.5 rounded-full">
-                      + БОНУС БЕЗПЛАТНО
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs text-gray-500 mb-1">вкл. ДДС 20%</p>
-                <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
-                  Еднократно плащане • Без абонамент
-                </div>
-              </div>
-
-              {/* Bonus badge during free period */}
-              {bonusFree && (
-                <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg p-3 mb-4 text-center">
-                  <p className="text-green-400 text-xs font-bold uppercase tracking-wide mb-1">🎁 Включен безплатен бонус</p>
-                  <p className="text-white text-sm font-semibold">30 Промпта за Напреднали</p>
-                  <p className="text-gray-400 text-xs">PDF на стойност €15 — безплатно с книгата</p>
-                </div>
-              )}
-
-              {/* One-time payment note */}
-              <div className="text-center text-gray-300 text-xs mb-4">
-                Моментален достъп след плащане
-              </div>
-
               {/* CTA Button(s) */}
               {bonusFree ? (
                 <Button size="lg" fullWidth onClick={handleBuyNow} isLoading={loading}>
@@ -291,6 +258,36 @@ export default function Hero() {
 
               <div className="mt-3 text-center text-xs text-gray-300">
                 🔒 Сигурно плащане чрез Stripe
+              </div>
+
+              {/* Pricing display */}
+              <div className="mt-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <span className="text-4xl font-bold text-white">€25</span>
+                  {bonusFree && (
+                    <span className="bg-green-500/20 text-green-400 text-sm font-bold px-3 py-1.5 rounded-full">
+                      + БОНУС БЕЗПЛАТНО
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500 mb-1">вкл. ДДС 20%</p>
+                <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
+                  Еднократно плащане • Без абонамент
+                </div>
+              </div>
+
+              {/* Bonus badge during free period */}
+              {bonusFree && (
+                <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg p-3 mt-4 text-center">
+                  <p className="text-green-400 text-xs font-bold uppercase tracking-wide mb-1">🎁 Включен безплатен бонус</p>
+                  <p className="text-white text-sm font-semibold">30 Промпта за Напреднали</p>
+                  <p className="text-gray-400 text-xs">PDF на стойност €15 — безплатно с книгата</p>
+                </div>
+              )}
+
+              {/* One-time payment note */}
+              <div className="text-center text-gray-300 text-xs mt-3">
+                Моментален достъп след плащане
               </div>
 
               {error && (
