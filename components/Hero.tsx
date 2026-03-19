@@ -17,15 +17,23 @@ export default function Hero() {
   const isMobile = useIsMobile();
 
   const bonusFree = isBonusFree();
+  const [pendingCheckoutType, setPendingCheckoutType] = useState<'ebook_with_free_bonus' | 'ebook_only' | 'ebook_with_bonus'>('ebook_only');
 
   const handleBuyNow = () => {
     trackAddToCart();
+    setPendingCheckoutType(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
+    setIsWithdrawalOpen(true);
+  };
+
+  const handleBuyBundle = () => {
+    trackAddToCart();
+    setPendingCheckoutType('ebook_with_bonus');
     setIsWithdrawalOpen(true);
   };
 
   const handleWithdrawalConfirm = () => {
     setIsWithdrawalOpen(false);
-    initiateCheckout(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
+    initiateCheckout(pendingCheckoutType);
   };
 
   return (
