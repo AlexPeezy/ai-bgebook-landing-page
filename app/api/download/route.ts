@@ -18,7 +18,8 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
   const token = request.nextUrl.searchParams.get('token');
   const sessionId = request.nextUrl.searchParams.get('session_id');
-  const downloadType = (request.nextUrl.searchParams.get('type') || 'ebook') as 'ebook' | 'bonus';
+  const typeParam = request.nextUrl.searchParams.get('type');
+  const downloadType: 'ebook' | 'bonus' = typeParam === 'bonus' ? 'bonus' : 'ebook';
 
   // Handle download by session_id (from success page)
   if (sessionId && !token) {
@@ -103,6 +104,27 @@ export async function GET(request: NextRequest) {
       { error: 'Липсва токен за изтегляне' },
       { status: 400 }
     );
+  }
+
+  // Peek at token type WITHOUT consuming it, then verify the file exists
+  const { data: tokenPeek } = await supabaseAdmin
+    .from('download_tokens')
+    .select('token_type')
+    .eq('token', token)
+    .single();
+
+  if (tokenPeek) {
+    const peekIsBonus = tokenPeek.token_type === 'bonus';
+    const peekFilePath = peekIsBonus ? BONUS_STORAGE_FILE_PATH : STORAGE_FILE_PATH;
+    const { error: fileCheckError } = await supabaseAdmin.storage
+      .from(STORAGE_BUCKET)
+      .createSignedUrl(peekFilePath, 5);
+    if (fileCheckError) {
+      console.error('File not found in storage:', peekFilePath, fileCheckError);
+      return NextResponse.redirect(
+        new URL(`/download-error?message=${encodeURIComponent('Файлът не е наличен. Моля, свържете се с поддръжката.')}`, request.url)
+      );
+    }
   }
 
   const validation = await validateDownloadToken(token);

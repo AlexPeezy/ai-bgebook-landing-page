@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function GET(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  if (!rateLimit(`verify-session:${ip}`, 10, 60_000)) {
+    return NextResponse.json({ valid: false, error: 'Too many requests' }, { status: 429 });
+  }
+
   const sessionId = request.nextUrl.searchParams.get('session_id');
 
   if (!sessionId) {

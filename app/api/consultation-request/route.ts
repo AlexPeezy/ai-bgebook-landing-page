@@ -1,8 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createConsultationRequest } from '@/lib/supabase';
 import { sendConsultationConfirmation, sendAdminNotification } from '@/lib/email';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  if (!rateLimit(`consultation:${ip}`, 5, 60 * 60_000)) {
+    return NextResponse.json(
+      { error: 'Твърде много заявки. Моля, опитайте по-късно.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { name, email, message, phone } = body;

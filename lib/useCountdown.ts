@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BONUS_FREE_DEADLINE } from '@/lib/constants';
 
 interface CountdownResult {
   days: number;
@@ -8,9 +9,6 @@ interface CountdownResult {
   isExpired: boolean;
   formatted: string;
 }
-
-// Real early bird deadline — do NOT reset or extend this
-const EARLY_BIRD_DEADLINE = new Date('2026-03-22T15:10:00+02:00');
 
 export function useCountdown(): CountdownResult {
   const [timeLeft, setTimeLeft] = useState<CountdownResult>({
@@ -24,7 +22,7 @@ export function useCountdown(): CountdownResult {
 
   useEffect(() => {
     const calculateTimeLeft = (): CountdownResult => {
-      const distance = EARLY_BIRD_DEADLINE.getTime() - new Date().getTime();
+      const distance = BONUS_FREE_DEADLINE.getTime() - new Date().getTime();
 
       if (distance <= 0) {
         return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true, formatted: '' };

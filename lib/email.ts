@@ -1,5 +1,14 @@
 import { Resend } from 'resend';
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM_EMAIL = process.env.EMAIL_FROM || 'AI Ebook <noreply@bgpromptbook.shop>';
@@ -207,7 +216,7 @@ function getConsultationEmailTemplate(name: string, message: string): string {
     <!-- Content -->
     <div style="padding: 40px 30px;">
       <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
-        Здравей <strong>${name}</strong>,
+        Здравей <strong>${escapeHtml(name)}</strong>,
       </p>
 
       <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
@@ -217,7 +226,7 @@ function getConsultationEmailTemplate(name: string, message: string): string {
       <!-- Message Box -->
       <div style="background-color: #f3f4f6; border-left: 4px solid #06b6d4; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
         <p style="font-size: 14px; line-height: 1.6; color: #4b5563; margin: 0; font-style: italic;">
-          "${message}"
+          "${escapeHtml(message)}"
         </p>
       </div>
 
@@ -276,14 +285,14 @@ export async function sendAdminNotification(
       subject: `🔔 Ново запитване за консултация от ${name}`,
       html: `
         <h2>Ново запитване за консултация</h2>
-        <p><strong>Име:</strong> ${name}</p>
-        <p><strong>Имейл:</strong> ${email}</p>
-        <p><strong>Телефон:</strong> ${phone || 'Не е посочен'}</p>
+        <p><strong>Име:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Имейл:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Телефон:</strong> ${escapeHtml(phone || 'Не е посочен')}</p>
         <p><strong>Съобщение:</strong></p>
         <blockquote style="background: #f3f4f6; padding: 15px; border-left: 4px solid #06b6d4;">
-          ${message}
+          ${escapeHtml(message)}
         </blockquote>
-        <p><em>Отговори на ${email} в рамките на 24 часа.</em></p>
+        <p><em>Отговори на ${escapeHtml(email)} в рамките на 24 часа.</em></p>
       `,
     });
 

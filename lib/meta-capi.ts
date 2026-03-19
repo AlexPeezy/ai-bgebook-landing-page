@@ -61,10 +61,13 @@ export async function sendCAPIEvent(params: CAPIEventParams): Promise<boolean> {
   }
 
   try {
-    const url = `https://graph.facebook.com/${API_VERSION}/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`;
+    const url = `https://graph.facebook.com/${API_VERSION}/${PIXEL_ID}/events`;
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+      },
       body: JSON.stringify({ data: [eventData] }),
     });
 
