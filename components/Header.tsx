@@ -6,6 +6,7 @@ import Button from './Button';
 import { useCheckout } from '@/lib/useCheckout';
 import { useCountdown } from '@/lib/useCountdown';
 import { trackAddToCart } from '@/lib/meta-pixel';
+import { isBonusFree } from '@/lib/bonus';
 
 const navLinks = [
   { name: 'За книгата', href: '#showcase' },
@@ -31,9 +32,11 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const bonusFree = isBonusFree();
+
   const handleBuyClick = () => {
     trackAddToCart();
-    initiateCheckout('early_bird');
+    initiateCheckout(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
     setIsMobileMenuOpen(false);
   };
 
@@ -106,7 +109,7 @@ export default function Header() {
 
               {/* CTA Button */}
               <Button size="sm" onClick={handleBuyClick} isLoading={loading}>
-                КУПИ САМО СЕГА ЗА €15
+                КУПИ САМО СЕГА ЗА €25
               </Button>
             </div>
 
@@ -174,7 +177,7 @@ export default function Header() {
 
                   <div className="px-4 pt-2">
                     <Button size="sm" fullWidth onClick={handleBuyClick} isLoading={loading}>
-                      КУПИ САМО СЕГА ЗА €15
+                      КУПИ САМО СЕГА ЗА €25
                     </Button>
                   </div>
                 </nav>

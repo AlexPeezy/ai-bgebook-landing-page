@@ -196,10 +196,6 @@ export async function getPendingConsultationsCount(email: string): Promise<numbe
 
 // Generate secure random token
 function generateSecureToken(): string {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let token = '';
-  for (let i = 0; i < 32; i++) {
-    token += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return token;
+  // Use Node.js crypto for cryptographically secure token generation
+  return crypto.randomUUID().replace(/-/g, '') + crypto.randomUUID().replace(/-/g, '');
 }

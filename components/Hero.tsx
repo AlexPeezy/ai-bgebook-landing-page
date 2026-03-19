@@ -7,14 +7,22 @@ import Button from './Button';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
 import { useIsMobile } from '@/lib/useIsMobile';
+import { isBonusFree } from '@/lib/bonus';
 
 export default function Hero() {
   const { initiateCheckout, loading, error } = useCheckout();
   const isMobile = useIsMobile();
 
+  const bonusFree = isBonusFree();
+
   const handleBuyNow = () => {
     trackAddToCart();
-    initiateCheckout('early_bird');
+    initiateCheckout(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
+  };
+
+  const handleBuyBundle = () => {
+    trackAddToCart();
+    initiateCheckout('ebook_with_bonus');
   };
 
   return (
@@ -101,7 +109,7 @@ export default function Hero() {
             {/* Subheader */}
             <AnimatedText delay={0.4}>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                Практическият наръчник за печелене с AI на български език — от промптове до първите ти клиенти
+                Практическият наръчник за prompt engineering и AI услуги на български език — от основите до намиране на клиенти
               </p>
             </AnimatedText>
 
@@ -114,12 +122,14 @@ export default function Hero() {
             >
               {[
                 'Формулата за силни промптове в 5 стъпки',
-                '7 реални начина да печелиш с AI без програмиране',
-                'Готов 30-дневен план за първите ти приходи',
+                '7 конкретни AI услуги без програмиране',
+                'Готов 30-дневен план за действие стъпка по стъпка',
                 'Стратегии, създадени специално за българския пазар',
-                '50+ безплатни AI консултации (24-часов отговор)',
+                '50 персонализирани AI консултации (до 24 часа)',
                 'Безплатни актуализации',
                 'Моментален достъп (PDF)',
+                '12 глави от основи до практическо приложение',
+                'Написана изцяло за българския пазар',
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
@@ -136,6 +146,21 @@ export default function Hero() {
                   <span className="text-gray-200">{benefit}</span>
                 </motion.div>
               ))}
+              {bonusFree && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.4 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span className="text-green-400 font-medium">🎁 БОНУС: 30 Промпта за Напреднали (PDF)</span>
+                </motion.div>
+              )}
             </motion.div>
 
             {/* Trust indicators */}
@@ -146,11 +171,10 @@ export default function Hero() {
               className="flex items-center gap-6 text-sm text-gray-300"
             >
               <div className="flex items-center gap-2">
-                <div className="flex items-center">
-                  <span className="text-yellow-400">★★★★</span>
-                  <span className="text-yellow-400/50">★</span>
-                </div>
-                <span>4.5/5 (127 отзива)</span>
+                <svg className="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span>150+ стр. практическо съдържание</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,48 +222,57 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Pricing - clean display */}
+              {/* Pricing display */}
               <div className="mb-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="text-4xl font-bold text-white">€15</span>
-                  <span className="text-xl text-gray-500 line-through">€30</span>
-                  <span className="bg-red-500/20 text-red-400 text-xs font-bold px-2 py-0.5 rounded-full">-50%</span>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <span className="text-4xl font-bold text-white">€25</span>
+                  {bonusFree && (
+                    <span className="bg-green-500/20 text-green-400 text-sm font-bold px-3 py-1.5 rounded-full">
+                      + БОНУС БЕЗПЛАТНО
+                    </span>
+                  )}
                 </div>
+                {!bonusFree && (
+                  <p className="text-gray-500 text-xs mb-1">Или €30 с бонус промптовете</p>
+                )}
                 <div className="inline-block bg-green-500/20 text-green-400 text-sm font-semibold px-3 py-1 rounded-full">
                   Еднократно плащане • Без абонамент
                 </div>
               </div>
+
+              {/* Bonus badge during free period */}
+              {bonusFree && (
+                <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg p-3 mb-4 text-center">
+                  <p className="text-green-400 text-xs font-bold uppercase tracking-wide mb-1">🎁 Включен безплатен бонус</p>
+                  <p className="text-white text-sm font-semibold">30 Промпта за Напреднали</p>
+                  <p className="text-gray-400 text-xs">PDF на стойност €15 — безплатно с книгата</p>
+                </div>
+              )}
 
               {/* One-time payment note */}
               <div className="text-center text-gray-300 text-xs mb-4">
                 Моментален достъп след плащане
               </div>
 
-              {/* Key features */}
-              <div className="space-y-2 mb-6 text-sm">
-                {[
-                  '12 глави от основи до реален доход',
-                  '7 модела за доход без програмиране',
-                  'Написана изцяло за българския пазар',
-                ].map((feature, idx) => (
-                  <div key={idx} className="flex items-center justify-center gap-2 text-gray-300">
-                    <svg className="w-4 h-4 text-cyan flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA Button */}
-              <Button
-                size="lg"
-                fullWidth
-                onClick={handleBuyNow}
-                isLoading={loading}
-              >
-                ЗАПОЧНИ ДА ПЕЧЕЛИШ СЕГА
-              </Button>
+              {/* CTA Button(s) */}
+              {bonusFree ? (
+                <Button size="lg" fullWidth onClick={handleBuyNow} isLoading={loading}>
+                  ВЗЕМИ НАРЪЧНИКА + БОНУС ГОТОВИ СПЕЦИАЛИЗИРАНИ ПРОМПТОВЕ ЗА €25
+                </Button>
+              ) : (
+                <div className="space-y-2">
+                  <Button size="lg" fullWidth onClick={handleBuyBundle} isLoading={loading}>
+                    ВЗЕМИ ДВАТА PDF-А ЗА €30
+                  </Button>
+                  <button
+                    onClick={handleBuyNow}
+                    disabled={loading}
+                    className="w-full text-gray-400 text-sm underline hover:text-white transition-colors py-1"
+                  >
+                    Само книгата — €25
+                  </button>
+                </div>
+              )}
 
               <div className="mt-3 text-center text-xs text-gray-300">
                 🔒 Сигурно плащане чрез Stripe
@@ -259,8 +292,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom gradient fade - FIXED for dark-to-light transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-navy-dark/50 to-white pointer-events-none z-10" />
+      {/* Bottom gradient fade - dark to dark into BonusSection */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0f172a] pointer-events-none z-10" />
 
     </section>
   );

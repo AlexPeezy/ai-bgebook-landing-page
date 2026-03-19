@@ -43,7 +43,6 @@ export async function POST(req: NextRequest) {
       checkoutType === 'ebook_with_bonus';
 
     const session = await stripe.checkout.sessions.create({
-      automatic_payment_methods: { enabled: true },
       line_items: lineItems,
       mode: 'payment',
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -95,8 +94,8 @@ function buildLineItems(checkoutType: CheckoutType, baseUrl: string) {
     price_data: {
       currency: 'eur',
       product_data: {
-        name: '10 Промпта за Напреднали',
-        description: 'Бонус PDF — 10 структурирани промпта за реален резултат',
+        name: '30 Промпта за Напреднали',
+        description: 'Бонус PDF — 30 структурирани промпта за реален резултат',
       },
       unit_amount: PRICES.BONUS_FREE,
     },
@@ -107,8 +106,8 @@ function buildLineItems(checkoutType: CheckoutType, baseUrl: string) {
     price_data: {
       currency: 'eur',
       product_data: {
-        name: '10 Промпта за Напреднали',
-        description: 'Бонус PDF — 10 структурирани промпта за реален резултат',
+        name: '30 Промпта за Напреднали',
+        description: 'Бонус PDF — 30 структурирани промпта за реален резултат',
       },
       unit_amount: PRICES.BONUS_ADDON,
     },
@@ -119,8 +118,8 @@ function buildLineItems(checkoutType: CheckoutType, baseUrl: string) {
     price_data: {
       currency: 'eur',
       product_data: {
-        name: '10 Промпта за Напреднали',
-        description: '10 структурирани промпта за работа с AI — бизнес стратегия, маркетинг, съдържание',
+        name: '30 Промпта за Напреднали',
+        description: '30 структурирани промпта за работа с AI — бизнес стратегия, маркетинг, съдържание',
       },
       unit_amount: PRICES.BONUS_STANDALONE,
     },

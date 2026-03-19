@@ -17,7 +17,7 @@ export default function Comparison() {
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">
           От <span className="text-yellow-500">объркване</span> към{' '}
-          <span className="bg-gradient-to-r from-cyan to-blue bg-clip-text text-transparent">реални доходи</span>
+          <span className="bg-gradient-to-r from-cyan to-blue bg-clip-text text-transparent">ясна стратегия</span>
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Виж разликата между случаен подход и стратегията от AI в Реален Доход
@@ -81,9 +81,9 @@ export default function Comparison() {
             </div>
             {/* Content */}
             <div className="p-6 font-mono text-sm">
-              <p className="text-cyan mb-4">💰 5 ДОКАЗАНИ НАЧИНА ЗА AI ДОХОДИ В БЪЛГАРИЯ</p>
+              <p className="text-cyan mb-4">📋 5 AI УСЛУГИ ЗА БЪЛГАРСКИЯ ПАЗАР</p>
 
-              <p className="text-blue-400 mb-3">📊 БИЗНЕС СТРАТЕГИЯ:</p>
+              <p className="text-blue-400 mb-3">📊 ПАЗАРЕН ПРЕГЛЕД:</p>
 
               {/* Table */}
               <div className="text-xs overflow-x-auto -mx-2 px-2">
@@ -92,7 +92,7 @@ export default function Comparison() {
                     <tr className="text-gray-400 border-b border-gray-700">
                       <th className="pb-2 pr-2">Услуга</th>
                       <th className="pb-2 pr-2">Инвестиция</th>
-                      <th className="pb-2 pr-2">Месечен доход</th>
+                      <th className="pb-2 pr-2">Пазарни ставки*</th>
                       <th className="pb-2">Старт</th>
                     </tr>
                   </thead>
@@ -125,7 +125,9 @@ export default function Comparison() {
                 </table>
               </div>
 
-              <p className="text-cyan mt-4">📝 &quot;Стъпка по стъпка план за всяка услуга!&quot;</p>
+              <p className="text-gray-500 mt-2 text-[10px]">*Приблизителни пазарни ставки — не са гарантиран резултат от наръчника</p>
+
+              <p className="text-cyan mt-3">📝 &quot;Стъпка по стъпка план за всяка услуга!&quot;</p>
 
               <div className="mt-4 pt-4 border-t border-cyan/20">
                 <p className="text-green-400/90 text-xs">✓ Конкретни стъпки и инструкции</p>

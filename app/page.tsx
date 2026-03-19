@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import BonusSection from '@/components/BonusSection';
 import MetaViewContent from '@/components/MetaViewContent';
 import MetaScrollTracker from '@/components/MetaScrollTracker';
 import StickyMobileCTA from '@/components/StickyMobileCTA';
@@ -35,6 +36,7 @@ export default function Home() {
       <StickyMobileCTA />
       <Header />
       <Hero />
+      <BonusSection />
       <Testimonials />
       <ConsultationSection />
       <Showcase />

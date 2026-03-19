@@ -139,6 +139,10 @@ export default function Footer() {
             <span>в България</span>
           </div>
         </div>
+        {/* Trader identity — required by Bulgarian Electronic Commerce Act (ZEKT) */}
+        <div className="pb-4 text-center">
+          <p className="text-gray-600 text-xs">Търговец: Alexander Alexandrov Poplilov | Адрес: София, България | contact@bgpromptbook.shop</p>
+        </div>
 
         {/* Trust badges */}
         <div className="pb-8">

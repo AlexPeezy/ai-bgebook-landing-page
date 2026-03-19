@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { trackInitiateCheckout, trackLead } from '@/lib/meta-pixel';
+import type { CheckoutType } from '@/lib/bonus';
 
 export function useCheckout() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const initiateCheckout = async (priceType: 'early_bird' | 'regular', email?: string) => {
+  const initiateCheckout = async (checkoutType: CheckoutType, email?: string) => {
     setLoading(true);
     setError(null);
     trackLead();
@@ -15,10 +16,8 @@ export function useCheckout() {
     try {
       const response = await fetch('/api/create-checkout', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ priceType, email }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ checkoutType, email }),
       });
 
       const data = await response.json();

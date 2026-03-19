@@ -13,7 +13,7 @@ export default function Hero() {
   const countdown = useCountdown();
 
   const handleBuyNow = () => {
-    initiateCheckout('early_bird');
+    initiateCheckout('ebook_only');
   };
 
   const handleScrollToContent = () => {

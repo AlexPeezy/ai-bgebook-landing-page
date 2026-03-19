@@ -51,7 +51,7 @@ export default function Pricing() {
   const { initiateCheckout, loading, error } = useCheckout();
 
   const handleBuyEarlyBird = () => {
-    initiateCheckout('early_bird');
+    initiateCheckout('ebook_only');
   };
 
   return (

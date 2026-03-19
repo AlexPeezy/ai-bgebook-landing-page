@@ -5,10 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Button from './Button';
 import { useCheckout } from '@/lib/useCheckout';
 import { trackAddToCart } from '@/lib/meta-pixel';
+import { isBonusFree } from '@/lib/bonus';
 
 export default function StickyMobileCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const { initiateCheckout, loading } = useCheckout();
+  const bonusFree = isBonusFree();
 
   useEffect(() => {
     const threshold = window.innerHeight * 0.8;
@@ -19,7 +21,7 @@ export default function StickyMobileCTA() {
 
   const handleClick = () => {
     trackAddToCart();
-    initiateCheckout('early_bird');
+    initiateCheckout(bonusFree ? 'ebook_with_free_bonus' : 'ebook_only');
   };
 
   return (
@@ -39,7 +41,7 @@ export default function StickyMobileCTA() {
               onClick={handleClick}
               isLoading={loading}
             >
-              КУПИ САМО СЕГА ЗА €15
+              {bonusFree ? 'КУПИ ЗА €25 + БОНУС' : 'КУПИ ЗА €25'}
             </Button>
             <p className="text-center text-xs text-gray-500 mt-1.5">
               🔒 Сигурно плащане чрез Stripe

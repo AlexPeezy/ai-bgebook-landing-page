@@ -107,7 +107,7 @@ function getPurchaseEmailTemplate(
                 <tr>
                   <td align="center">
                     <a href="${bonusUrl}" style="display: inline-block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 14px 36px; border-radius: 8px; font-size: 16px; font-weight: bold;">
-                      🎁 Изтегли Бонус: 10 Промпта за Напреднали
+                      🎁 Изтегли Бонус: 30 Промпта за Напреднали
                     </a>
                   </td>
                 </tr>
@@ -126,7 +126,7 @@ function getPurchaseEmailTemplate(
                 <h3 style="color: #065f46; margin: 0 0 10px 0; font-size: 16px;">Какво следва?</h3>
                 <ul style="color: #374151; font-size: 14px; margin: 0; padding-left: 20px; line-height: 1.8;">
                   <li>Изтегли PDF файла на книгата</li>
-                  ${bonusUrl ? '<li>Изтегли бонус PDF — 10 Промпта за Напреднали</li>' : ''}
+                  ${bonusUrl ? '<li>Изтегли бонус PDF — 30 Промпта за Напреднали</li>' : ''}
                   <li>Запази ги на удобно място</li>
                   <li>Започни да учиш и прилагай веднага!</li>
                 </ul>

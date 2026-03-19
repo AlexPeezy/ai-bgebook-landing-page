@@ -54,15 +54,15 @@ export default function CancelPage() {
                 <ul className="text-gray-300 space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-cyan">✓</span>
-                    <span>Моментално получаване след покупка</span>
+                    <span>Моментален достъп до PDF веднага след покупка</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-cyan">✓</span>
-                    <span>Проверено от 500+ доволни клиенти</span>
+                    <span>Включен бонус: 30 Промпта за Напреднали — безплатно</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-cyan">✓</span>
-                    <span>Early Bird цената още е достъпна!</span>
+                    <span>50 персонализирани AI консултации до 24 часа</span>
                   </li>
                 </ul>
               </div>
