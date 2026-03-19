@@ -1,13 +1,11 @@
+// Bonus free window: 72 hours from launch at 15:10 BG time (EET = UTC+2)
+const BONUS_FREE_DEADLINE = new Date('2026-03-22T13:10:00Z');
+
 /**
  * Returns true while the 72-hour free bonus window is open.
- * Reads NEXT_PUBLIC_BONUS_FREE_DEADLINE (ISO date string).
- * Safe to import in both server and client ('use client') components.
- * If the env var is not set, defaults to true (bonus is free) — safe for launch.
  */
 export function isBonusFree(): boolean {
-  const deadline = process.env.NEXT_PUBLIC_BONUS_FREE_DEADLINE;
-  if (!deadline) return true;
-  return new Date() < new Date(deadline);
+  return new Date() < BONUS_FREE_DEADLINE;
 }
 
 /** The 4 checkout types. Defined here so client components can use the type without importing lib/stripe.ts. */
